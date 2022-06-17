@@ -1,8 +1,8 @@
 <script type="text/javascript">
-    export var env = 'debug'; 
+    var env = 'remote'; 
     let loader_interval = setInterval(()=> document.querySelector("load-await").innerHTML += " . ", 100);
     const minigame_stylesheet_url = {
-        'remote': 'https://raw.githubusercontent.com/Serp1co/ct-custom-page/main/target/section.min.css',
+        'remote': 'https://raw.githubusercontent.com/Serp1co/ct-custom-page/main/section.css',
         'local': 'http://localhost:8080/static/section.css'
     };
     const minigame_script_url = {
@@ -13,9 +13,13 @@
         'remote': 'https://raw.githubusercontent.com/Serp1co/ct-custom-page/main/section.html',
         'local': 'http://localhost:8080/static/section.html'
     };
+    const process_response = function (response) {
+        if(response.ok) response.text(); 
+        else throw {"status_code: " : response.status,"status_description": response.statusText};
+    }
     window.onload = async function () {
         await fetch(minigame_stylesheet_url[env])
-            .then(response => { return response.text() })
+            .then(response => process_response(response))
             .then(data => {
                 let style = document.createElement("style");
                 style.innerHTML = data;
@@ -23,7 +27,7 @@
             })
             .then(() => {
                 fetch(minigame_script_url[env])
-                    .then(response => {return response.text();})
+                    .then(response => process_response(response))
                     .then(data => {
                         let script = document.createElement("script");
                         script.innerHTML = data;
@@ -31,13 +35,13 @@
                     })
                     .then(() => {
                         fetch(minigame_html_url[env])
-                            .then(response => { return response.text() })
+                            .then(response => process_response(response))
                             .then(data => { document.querySelector("custom-section").innerHTML += data })
-                            .catch(exception => console.log("couldn't fetch html data. " + exception))
+                            .catch(exception => console.log("couldn't fetch html data. " + JSON.stringify(exception)))
                     })
-                    .catch(exception => console.log("couldn't fetch js data. " + exception))
+                    .catch(exception => console.log("couldn't fetch js data. " + JSON.stringify(exception)))
             })
-            .catch(exception => console.log("couldn't fetch css data. " + exception))
+            .catch(exception => console.log("couldn't fetch css data. " + JSON.stringify(exception)))
             .finally(()=> {
                 clearInterval(loader_interval);
                 document.querySelector("load-await").remove();
