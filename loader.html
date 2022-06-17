@@ -1,23 +1,23 @@
 <script type="text/javascript">
-    const env = 'remote'; 
-    let loader_interval = setInterval(()=> document.querySelector("load-await").innerHTML += " . ", 100);
-    const minigame_stylesheet_url = {
-        'remote': 'https://raw.githubusercontent.com/Serp1co/ct-custom-page/main/section.css',
-        'local': 'http://localhost:8080/static/section.css'
-    };
-    const minigame_script_url = {
-        'remote': 'https://raw.githubusercontent.com/Serp1co/ct-custom-page/main/section.js',
-        'local': 'http://localhost:8080/static/section.js'
-    };
-    const minigame_html_url = {
-        'remote': 'https://raw.githubusercontent.com/Serp1co/ct-custom-page/main/section.html',
-        'local': 'http://localhost:8080/static/section.html'
-    };
-    const process_response = function (response) {
-        if(response.ok) return response.text(); 
-        else throw {"status_code: " : response.status,"status_description": response.statusText};
-    }
     window.onload = async function () {
+        let env = 'remote';
+        let loader_interval = setInterval(() => document.querySelector("load-await").innerHTML += " . ", 100);
+        const minigame_stylesheet_url = {
+            'remote': 'https://raw.githubusercontent.com/Serp1co/ct-custom-page/main/section.css',
+            'local': 'http://localhost:8080/static/section.css'
+        };
+        const minigame_script_url = {
+            'remote': 'https://raw.githubusercontent.com/Serp1co/ct-custom-page/main/section.js',
+            'local': 'http://localhost:8080/static/section.js'
+        };
+        const minigame_html_url = {
+            'remote': 'https://raw.githubusercontent.com/Serp1co/ct-custom-page/main/section.html',
+            'local': 'http://localhost:8080/static/section.html'
+        };
+        const process_response = function (response) {
+            if (response.ok) return response.text();
+            else throw { "status_code: ": response.status, "status_description": response.statusText };
+        }
         await fetch(minigame_stylesheet_url[env])
             .then(response => process_response(response))
             .then(data => {
@@ -42,15 +42,15 @@
                     .catch(exception => console.log("couldn't fetch js data. " + JSON.stringify(exception)))
             })
             .catch(exception => console.log("couldn't fetch css data. " + JSON.stringify(exception)))
-            .finally(()=> {
+            .finally(() => {
                 clearInterval(loader_interval);
                 document.querySelector("load-await").remove();
             })
-        ;
+            ;
     }
 </script>
 <load-await>
-    Loading. 
+    Loading.
 </load-await>
 <custom-styles>
 </custom-styles>
