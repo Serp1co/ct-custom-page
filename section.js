@@ -78,10 +78,12 @@ function start(arg) {
     not_found = false;
     if (arg == "enable --now cockpit.socket") {
         print_terminal_string("Connecting to socket.",200)
-            .then(setTimeout(()=>document.querySelector("#terminal_output").innerHTML += ".", 150))
-            .then(document.querySelector("#terminal_output").innerHTML += ".. OK")
-            .then(print_terminal_string("Logged in as root. Access audit registered."))
-            .finally(print_terminal_string("Type ".concat(create_hint('--help')).concat("to view the list of commands")))
+        setTimeout(()=>document.querySelector("#terminal_output").innerHTML += " . ", 350)
+        setTimeout(()=>document.querySelector("#terminal_output").innerHTML += " . ", 400)
+        setTimeout(()=>document.querySelector("#terminal_output").innerHTML += " . ", 650)
+        setTimeout(()=>document.querySelector("#terminal_output").innerHTML += " OK ", 750)
+        print_terminal_string("Logged in as root. Access audit registered.", 950)
+        print_terminal_string("Type ".concat(create_hint('--help')).concat("to view the list of commands"), 1000)
         ;
     } else {
         print_terminal_string("Not allowed");
