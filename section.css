@@ -103,18 +103,17 @@ div.sector {
     flex-direction: column;
     text-align: left;
     padding-left: 10px;
+    height: 600px;
 }
 
 .visible {
-    display: flex;
-    opacity: 100%;
-    height: 600px;
+    opacity: 100% !important;
     transition: opacity 1s ease-in;
 }
 
 .hidden {
-    display: none;
-    opacity: 0%;
+    display: none !important;
+    opacity: 0% !important;
     transition: opacity display 1s ease-in;
 }
 
