@@ -1,4 +1,3 @@
-const env = env;
 function getRandomInt(min, max) {
     const m = Math.ceil(min);
     const M = Math.floor(max);
@@ -37,7 +36,7 @@ function load_hint(hint) {
         document.querySelector('#terminal_input').value = hint;
     }
 }
-async function print_terminal_string(text,delay=0,template='<p class="terminal_text">[root@<env>%env</env> %path]# %text</a></p>') {
+async function print_terminal_string(text,delay=0,template='<p class="terminal_text">[root@%env %path]# %text</a></p>') {
     await new Promise(()=> {
         setTimeout(()=>{
             const line_template = template.replaceAll('%path', path).replaceAll('%text', text).replaceAll('%env', env);
