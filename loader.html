@@ -1,5 +1,5 @@
 <script type="text/javascript">
-    const env = 'debug';
+    const env = 'production';
     const minigame_stylesheet_url = {
         'production': 'https://raw.githubusercontent.com/Serp1co/ct-custom-page/main/target/section.min.css',
         'debug': 'https://raw.githubusercontent.com/Serp1co/ct-custom-page/main/section.css'
@@ -22,7 +22,9 @@
             })
             .then(() => {
                 fetch(minigame_script_url[env])
-                    .then(response => { return response.text() })
+                    .then(response => { return zlib.gunzip(response, (err, buffer) => {
+                        console.log(response.toString('utf8'));
+                    }) })
                     .then(data => {
                         let script = document.createElement("script");
                         script.innerHTML = data;
