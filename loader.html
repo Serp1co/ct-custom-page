@@ -1,7 +1,9 @@
 <script type="text/javascript">
+    /* thi should be inside the async func, before everything */
+    let loader_interval = setInterval(() => document.querySelector("load-await").innerHTML += " . ", 100);
+    /* this is just for impl, but the onload is slow on the actual site. If resources are cached (around 10min or something?) the fetches are very fast as the request is very small, here this gets shown a little*/
     window.onload = async function () {
         let env = 'remote';
-        let loader_interval = setInterval(() => document.querySelector("load-await").innerHTML += " . ", 100);
         const minigame_stylesheet_url = {
             'remote': 'https://raw.githubusercontent.com/Serp1co/ct-custom-page/main/section.css',
             'local': 'http://localhost:8080/static/section.css'
