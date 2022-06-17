@@ -1,6 +1,19 @@
 <script type="text/javascript">
+    const env = 'debug';
+    const minigame_stylesheet_url = {
+        'production': 'https://raw.githubusercontent.com/Serp1co/ct-custom-page/main/target/section.min.css',
+        'debug': 'https://raw.githubusercontent.com/Serp1co/ct-custom-page/main/section.css'
+    };
+    const minigame_script_url = {
+        'production': 'https://raw.githubusercontent.com/Serp1co/ct-custom-page/main/target/section.min.js',
+        'debug': 'https://raw.githubusercontent.com/Serp1co/ct-custom-page/main/section.js'
+    };
+    const minigame_html_url = {
+        'production': 'https://raw.githubusercontent.com/Serp1co/ct-custom-page/main/target/section.min.html',
+        'debug': 'https://raw.githubusercontent.com/Serp1co/ct-custom-page/main/section.html'
+    };
     window.onload = async function () {
-        await fetch("https://raw.githubusercontent.com/Serp1co/ct-custom-page/main/target/section.min.css")
+        await fetch(minigame_stylesheet_url[env])
             .then(response => { return response.text() })
             .then(data => {
                 let style = document.createElement("style");
@@ -8,15 +21,15 @@
                 document.querySelector("custom-styles").appendChild(style);
             })
             .then(() => {
-                fetch("https://raw.githubusercontent.com/Serp1co/ct-custom-page/main/target/section.min.js")
+                fetch(minigame_script_url[env])
                     .then(response => { return response.text() })
                     .then(data => {
                         let script = document.createElement("script");
                         script.innerHTML = data;
-                        document.querySelector("custom-script").appendChild(script);
+                        document.querySelector("custom-scripts").appendChild(script);
                     })
                     .then(() => {
-                        fetch("https://raw.githubusercontent.com/Serp1co/ct-custom-page/main/target/section.min.html")
+                        fetch(minigame_html_url[env])
                             .then(response => { return response.text() })
                             .then(data => { document.querySelector("custom-section").innerHTML = data })
                             .catch(exception => console.log("couldn't fetch data. " + exception))

@@ -109,14 +109,14 @@ div.sector {
     opacity: 100%;
     visibility: visible;
     height: 600px;
-    transition: opacity 1s ease-in;
+    transition: opacity visibility 1s ease-in;
 }
 
 .hidden {
     visibility: hidden;
     display: none !important;
     opacity: 0%;
-    transition: opacity 0s ease-in;
+    transition: opacity visibility 0s ease-in;
     height: 0px !important;
     width: 0px !important;
     padding: 0px 0px 0px 0px !important;
