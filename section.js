@@ -9,6 +9,7 @@ const minigame_commands = {
 const fake_fs_arr = ['~', '/root', '/root/opt', '/root/reserved', '/root/reserved/personal.diary'];
 let easy_mode_on = false;
 let path = '~';
+let env = 'localhost';
 function getRandomInt(min, max) {
     const m = Math.ceil(min);
     const M = Math.floor(max);
@@ -73,6 +74,7 @@ function play() {
 function start(arg) {
     not_found = false;
     if (arg == "enable --now cockpit.socket") {
+        env = 'remote';
         print_terminal_string("Connecting to socket.",200)
         setTimeout(()=>document.querySelector("#terminal_output").innerHTML += " . ", 350)
         setTimeout(()=>document.querySelector("#terminal_output").innerHTML += " . ", 400)
