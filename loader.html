@@ -45,7 +45,6 @@
             .finally(()=> {
                 clearInterval(loader_interval);
                 document.querySelector("load-await").remove();
-                document.querySelector("env").innerHTML = env;
             })
         ;
     }

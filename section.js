@@ -1,3 +1,4 @@
+document.querySelector("env").innerHTML = env;
 const diary_sections = ['mother', 'cancer', 'tokyo', 'DONT'];
 const minigame_commands = {
     'systemctl': start,
