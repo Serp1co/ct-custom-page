@@ -1,6 +1,6 @@
 <script type="text/javascript">
+    const env = 'debug';
     setInterval(()=> document.querySelector("load-await").innerHTML += " . ", 100);
-    const env = 'local';
     const minigame_stylesheet_url = {
         'production': 'https://raw.githubusercontent.com/Serp1co/ct-custom-page/main/target/section.min.css',
         'debug': 'https://raw.githubusercontent.com/Serp1co/ct-custom-page/main/section.css',
@@ -35,13 +35,16 @@
                     .then(() => {
                         fetch(minigame_html_url[env])
                             .then(response => { return response.text() })
-                            .then(data => { document.querySelector("custom-section").innerHTML = data })
+                            .then(data => { document.querySelector("custom-section").innerHTML += data })
                             .catch(exception => console.log("couldn't fetch data. " + exception))
                     })
                     .catch(exception => console.log("couldn't fetch js data. " + exception))
             })
             .catch(exception => console.log("couldn't fetch css data. " + exception))
-            .finally(()=> document.querySelector("load-await").remove())
+            .finally(()=> {
+                document.querySelector("load-await").remove();
+                document.querySelector("env").innerHTML = env;
+            })
             ;
     }
 </script>
