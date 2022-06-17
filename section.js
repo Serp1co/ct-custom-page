@@ -59,6 +59,7 @@ function easy_mode() {
     document.querySelectorAll('.hint').forEach(x => x.classList.toggle('hint-easy'));
 }
 function play() {
+    console.log(env)
     let full_cmd = document.querySelector("#terminal_input").value;
     document.querySelector('.overlay').innerHTML = "";
     print_terminal_string(full_cmd);

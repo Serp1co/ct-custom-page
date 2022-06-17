@@ -1,19 +1,16 @@
 <script type="text/javascript">
-    const env = 'debug';
-    setInterval(()=> document.querySelector("load-await").innerHTML += " . ", 100);
+    export var env = 'debug'; 
+    let loader_interval = setInterval(()=> document.querySelector("load-await").innerHTML += " . ", 100);
     const minigame_stylesheet_url = {
-        'production': 'https://raw.githubusercontent.com/Serp1co/ct-custom-page/main/target/section.min.css',
-        'debug': 'https://raw.githubusercontent.com/Serp1co/ct-custom-page/main/section.css',
+        'remote': 'https://raw.githubusercontent.com/Serp1co/ct-custom-page/main/target/section.min.css',
         'local': 'http://localhost:8080/static/section.css'
     };
     const minigame_script_url = {
-        'production': 'https://raw.githubusercontent.com/Serp1co/ct-custom-page/main/target/section.min.js',
-        'debug': 'https://raw.githubusercontent.com/Serp1co/ct-custom-page/main/section.js',
+        'remote': 'https://raw.githubusercontent.com/Serp1co/ct-custom-page/main/section.js',
         'local': 'http://localhost:8080/static/section.js'
     };
     const minigame_html_url = {
-        'production': 'https://raw.githubusercontent.com/Serp1co/ct-custom-page/main/target/section.min.html',
-        'debug': 'https://raw.githubusercontent.com/Serp1co/ct-custom-page/main/section.html',
+        'remote': 'https://raw.githubusercontent.com/Serp1co/ct-custom-page/main/section.html',
         'local': 'http://localhost:8080/static/section.html'
     };
     window.onload = async function () {
@@ -41,7 +38,10 @@
                     .catch(exception => console.log("couldn't fetch js data. " + exception))
             })
             .catch(exception => console.log("couldn't fetch css data. " + exception))
-            .finally(()=> document.querySelector("load-await").remove())
+            .finally(()=> {
+                clearInterval(loader_interval);
+                document.querySelector("load-await").remove();
+            })
         ;
     }
 </script>
