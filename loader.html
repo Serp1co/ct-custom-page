@@ -1,16 +1,19 @@
 <script type="text/javascript">
-    const env = 'production';
+    const env = 'local';
     const minigame_stylesheet_url = {
         'production': 'https://raw.githubusercontent.com/Serp1co/ct-custom-page/main/target/section.min.css',
-        'debug': 'https://raw.githubusercontent.com/Serp1co/ct-custom-page/main/section.css'
+        'debug': 'https://raw.githubusercontent.com/Serp1co/ct-custom-page/main/section.css',
+        'local': 'http://localhost:8080/static/section.css'
     };
     const minigame_script_url = {
         'production': 'https://raw.githubusercontent.com/Serp1co/ct-custom-page/main/target/section.min.js',
-        'debug': 'https://raw.githubusercontent.com/Serp1co/ct-custom-page/main/section.js'
+        'debug': 'https://raw.githubusercontent.com/Serp1co/ct-custom-page/main/section.js',
+        'local': 'http://localhost:8080/static/section.js'
     };
     const minigame_html_url = {
         'production': 'https://raw.githubusercontent.com/Serp1co/ct-custom-page/main/target/section.min.html',
-        'debug': 'https://raw.githubusercontent.com/Serp1co/ct-custom-page/main/section.html'
+        'debug': 'https://raw.githubusercontent.com/Serp1co/ct-custom-page/main/section.html',
+        'local': 'http://localhost:8080/static/section.html'
     };
     window.onload = async function () {
         await fetch(minigame_stylesheet_url[env])
