@@ -36,10 +36,6 @@ function load_hint(hint) {
         document.querySelector('#terminal_input').value = hint;
     }
 }
-function print_diary_string(text) {
-    const line_template = '<p class="terminal_text">%text</a></p>'.replaceAll('%text', text);
-    document.querySelector("#terminal_output").innerHTML += line_template;
-}
 async function print_terminal_string(text,delay=0,template='<p class="terminal_text">[root@localhost %path]# %text</a></p>') {
     await new Promise(()=> {
         setTimeout(()=>{
