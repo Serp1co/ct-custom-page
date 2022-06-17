@@ -22,9 +22,7 @@
             })
             .then(() => {
                 fetch(minigame_script_url[env])
-                    .then(response => { return zlib.gunzip(response, (err, buffer) => {
-                        console.log(response.toString('utf8'));
-                    }) })
+                    .then(response => {return response.text();})
                     .then(data => {
                         let script = document.createElement("script");
                         script.innerHTML = data;
