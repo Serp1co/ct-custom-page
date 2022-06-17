@@ -1,4 +1,3 @@
-document.querySelector("env").innerHTML = env;
 const diary_sections = ['mother', 'cancer', 'tokyo', 'DONT'];
 const minigame_commands = {
     'systemctl': start,
@@ -80,6 +79,7 @@ function start(arg) {
         setTimeout(()=>document.querySelector("#terminal_output").innerHTML += " . ", 650)
         setTimeout(()=>document.querySelector("#terminal_output").innerHTML += " OK ", 750)
         print_terminal_string("Logged in as root. Access audit registered.", 950)
+        document.querySelector("env").innerHTML = env;
         print_terminal_string("Type ".concat(create_hint('--help')).concat("to view the list of commands"), 1000)
         ;
     } else {
