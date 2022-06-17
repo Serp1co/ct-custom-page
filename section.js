@@ -37,15 +37,13 @@ function load_hint(hint) {
     }
 }
 function print_diary_string(text) {
-    const line_template = '<p class="terminal_text">%text</a></p>'.replaceAll('%path', path).replaceAll('%text', text);
+    const line_template = '<p class="terminal_text">%text</a></p>'.replaceAll('%text', text);
     document.querySelector("#terminal_output").innerHTML += line_template;
 }
-async function print_terminal_string(text, delay=0) {
+async function print_terminal_string(text,delay=0,template='<p class="terminal_text">[root@localhost %path]# %text</a></p>') {
     await new Promise(()=> {
         setTimeout(()=>{
-            const line_template = '<p class="terminal_text">[root@localhost %path]# %text</a></p>'
-                .replaceAll('%path', path)
-                .replaceAll('%text', text);
+            const line_template = template.replaceAll('%path', path).replaceAll('%text', text);
             document.querySelector("#terminal_output").innerHTML += line_template;
         }, delay)});
 }
@@ -113,9 +111,9 @@ function move(arg) {
 function read(arg) {
     if (arg == "/root/reserved/personal.diary") {
         print_terminal_string("Accessing file: personal.diary");
-        print_diary_string("A normal life.");
+        print_terminal_string("A normal life.", 0, '<p class="terminal_text">%text</a></p>');
         const hint_text = 'A normal '.concat(create_tip("family", 0));
-        print_diary_string(hint_text);
+        print_terminal_string(hint_text, 0, '<p class="terminal_text">%text</a></p>');
     }
 }
 function change(arg) {
