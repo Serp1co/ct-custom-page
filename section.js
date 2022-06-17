@@ -1,14 +1,13 @@
 function getRandomInt(min, max) {
-    min = Math.ceil(min);
-    max = Math.floor(max);
-    return Math.floor(Math.random() * (max - min) + min);
+    const m = Math.ceil(min);
+    const M = Math.floor(max);
+    return Math.floor(Math.random() * (M - m) + m);
 }
 function glitched_hint_html_fn(letter, offset_x, offset_y) {
-    let template = '<p class="glitch" style="top:%s1px;left:%s2px"><span aria-hidden="true">%s0</span>%s0<span aria-hidden="true">%s0</span></p>';
-    template = template.replaceAll('%s0', letter);
-    template = template.replaceAll('%s1', offset_y);
-    template = template.replaceAll('%s2', offset_x);
-    return template;
+    return '<p class="glitch" style="top:%s1px;left:%s2px"><span aria-hidden="true">%s0</span>%s0<span aria-hidden="true">%s0</span></p>'
+        .replaceAll('%s0', letter)
+        .replaceAll('%s1', offset_y)
+        .replaceAll('%s2', offset_x);
 }
 function switch_visibility(domElement) {
     domElement.classList.toggle('visible');
@@ -23,16 +22,14 @@ function select_section(section_name) {
     switch_visibility(domElement);
 }
 function create_tip(text, index) {
-    let template = '<a onclick="load_tip('.concat("%index)").concat('" class="tip').concat(easy_mode_on ? '' : '').concat('">%text</a> ');
-    template = template.replaceAll('%text', text);
-    template = template.replaceAll('%index', index);
-    return template;
+    return '<a onclick="load_tip('.concat("%index)").concat('" class="tip').concat(easy_mode_on ? '' : '').concat('">%text</a> ')
+        .replaceAll('%text', text)
+        .replaceAll('%index', index);
 }
 function create_hint(text, hint = text) {
-    let template = '<a onclick="load_hint('.concat("'%hint')").concat('" class="hint').concat(easy_mode_on ? ' hint-easy' : '').concat('">%text</a> ');
-    template = template.replaceAll('%text', text);
-    template = template.replaceAll('%hint', hint);
-    return template;
+    return '<a onclick="load_hint('.concat("'%hint')").concat('" class="hint').concat(easy_mode_on ? ' hint-easy' : '').concat('">%text</a> ')
+        .replaceAll('%text', text)
+        .replaceAll('%hint', hint);
 }
 function load_hint(hint) {
     if (easy_mode_on) {
@@ -40,16 +37,17 @@ function load_hint(hint) {
     }
 }
 function print_diary_string(text) {
-    let line_template = '<p class="terminal_text">%text</a></p>';
-    line_template = line_template.replaceAll('%path', path);
-    line_template = line_template.replaceAll('%text', text);
+    const line_template = '<p class="terminal_text">%text</a></p>'.replaceAll('%path', path).replaceAll('%text', text);
     document.querySelector("#terminal_output").innerHTML += line_template;
 }
-function print_terminal_string(text) {
-    let line_template = '<p class="terminal_text">[root@localhost %path]# %text</a></p>';
-    line_template = line_template.replaceAll('%path', path);
-    line_template = line_template.replaceAll('%text', text);
-    document.querySelector("#terminal_output").innerHTML += line_template;
+async function print_terminal_string(text, delay=0) {
+    await new Promise(()=> {
+        setTimeout(()=>{
+            const line_template = '<p class="terminal_text">[root@localhost %path]# %text</a></p>'
+                .replaceAll('%path', path)
+                .replaceAll('%text', text);
+            document.querySelector("#terminal_output").innerHTML += line_template;
+        }, delay)});
 }
 const diary_sections = ['mother', 'cancer', 'tokyo', 'DONT'];
 const minigame_commands = {
@@ -79,7 +77,9 @@ function play() {
 function start(arg) {
     not_found = false;
     if (arg == "enable --now cockpit.socket") {
-        print_terminal_string("Connecting to socket...");
+        print_terminal_string("Connecting to socket.",200)
+            .then(()=>setTimeout(()=>document.querySelector("#terminal_output").innerHTML += ".", delay))
+            .then(()=>document.querySelector("#terminal_output").innerHTML += ".. OK")
         print_terminal_string("Logged in as root. Access audit registered.");
         print_terminal_string("Type ".concat(create_hint('--help')).concat("to view the list of commands"));
     } else {
@@ -117,7 +117,7 @@ function read(arg) {
 }
 function change(arg) {
     clean_all_visible(".sector");
-    const section = select_section(arg);
+    select_section(arg);
 }
 function load_tip(arg) {
     const tip = [...diary_sections[arg]];
