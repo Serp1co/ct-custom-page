@@ -1,0 +1,1147 @@
+<!--Force IE6 into quirks mode with this comment tag-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="it" lang="it">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <!-- IE9: mi stai ampiamente rompendo i maroni. -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link rel="shortcut icon" href="favicon.png" type="image/png" />
+    <link rel="stylesheet" href="https://crystaltokyo.altervista.org/themes/crystal/homepage.css" type="text/css" />
+    <link rel="stylesheet" href="https://crystaltokyo.altervista.org/themes/crystal/main.css" type="text/css" />
+    <link rel="stylesheet" href="https://crystaltokyo.altervista.org/themes/crystal/chat.css" type="text/css" />
+    <link rel="stylesheet" href="https://crystaltokyo.altervista.org/themes/crystal/presenti.css" type="text/css" />
+    <link rel="stylesheet" href="https://crystaltokyo.altervista.org/themes/crystal/scheda.css" type="text/css" />
+    <link rel="stylesheet" href="https://crystaltokyo.altervista.org/themes/crystal/messaggi.css" type="text/css" />
+    <link rel="stylesheet" href="https://crystaltokyo.altervista.org/themes/crystal/forum.css" type="text/css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css" />
+    <link rel="stylesheet" href="layouts/left-right_frames.php?css=true" type="text/css" />
+    <title>
+        Crystal Tokyo </title>
+</head>
+
+<body class="main_body">
+    <!-- Colonna sinistra -->
+    <div id="framecontentLeft">
+        <div class="innertube">
+
+            <div class="colonne_sx">
+                <div class="info">
+                    <div class="pagina_info_location">
+                        <div class="page_title">
+                            <h2>Mappa principale</h2>
+                        </div>
+                        <div class="page_body">
+                            <!--Immagine/descrizione -->
+                            <div class="info_image">
+                                <img src="https://crystaltokyo.altervista.org/themes/crystal/imgs/locations/ingresso.png"
+                                    class="immagine_luogo" title="">
+                                <img class="descrizione"
+                                    src="https://crystaltokyo.altervista.org/themes/crystal/imgs/colonna_sx/descrizione_luogo.png">
+                            </div>
+                            <div class="box_stato_luogo">&nbsp;</div>
+                            <div class="page_title">
+                                <h2>Condizioni meteo</h2>
+                            </div>
+                            <div class="meteo_date">
+                                15/06/2022 </div>
+                            <div class="meteo">
+                                <div class="meteo_left"><img
+                                        src="/https://crystaltokyo.altervista.org/themes/crystal/imgs/meteo/sole_nuvoloso.png">
+                                </div>
+                                <div class="meteo_right">Variabile 26&deg;C </div>
+                            </div>
+                        </div>
+                        <!-- page_body -->
+                    </div><!-- Pagina -->
+                </div>
+                <div class="menu">
+                    <div class="pagina_link_menu">
+                        <select id="gotomap" onchange="self.location.href=this.value;">
+                            <option value="main.php?page=mappaclick&map_id=3" class="map">Shinjuku</option>
+                            <option value="main.php?dir=14&map_id=3">&raquo; Secret Pandora</option>
+                            <option value="main.php?dir=38&map_id=3">&raquo; Stazione</option>
+                            <option value="main.php?dir=18&map_id=3">&raquo; Zona Malfamata</option>
+                            <option value="main.php?page=mappaclick&map_id=1" selected="selected" class="map">Mappa
+                                principale</option>
+                            <option value="main.php?dir=27&map_id=1">&raquo; Reame Onirico</option>
+                            <option value="main.php?dir=400&map_id=1">&raquo; Chat privata </option>
+                            <option value="main.php?dir=401&map_id=1">&raquo; Chat privata 2</option>
+                            <option value="main.php?dir=402&map_id=1">&raquo; Chat privata 3</option>
+                            <option value="main.php?dir=403&map_id=1">&raquo; Chat privata 4</option>
+                            <option value="main.php?dir=11&map_id=1">&raquo; Stella Prima</option>
+                            <option value="main.php?dir=43&map_id=1">&raquo; Giardino dei Fiori del Male</option>
+                            <option value="main.php?dir=17&map_id=1">&raquo; Palazzo di Cristallo</option>
+                            <option value="main.php?dir=31&map_id=1">&raquo; Reggia Lunare</option>
+                            <option value="main.php?dir=19&map_id=1">&raquo; Santuario di Cosmos</option>
+                            <option value="main.php?dir=32&map_id=1">&raquo; Regno di Caos</option>
+                            <option value="main.php?page=mappaclick&map_id=8" class="map">Fuji</option>
+                            <option value="main.php?dir=9&map_id=8">&raquo; Bosco</option>
+                            <option value="main.php?dir=10&map_id=8">&raquo; Altri luoghi</option>
+                            <option value="main.php?dir=28&map_id=8">&raquo; Terme</option>
+                            <option value="main.php?dir=428&map_id=8">&raquo; Monte Nikogiri</option>
+                            <option value="main.php?page=mappaclick&map_id=4" class="map">Shibuya</option>
+                            <option value="main.php?dir=23&map_id=4">&raquo; Centro</option>
+                            <option value="main.php?dir=30&map_id=4">&raquo; Tae & Myuzuakademi</option>
+                            <option value="main.php?dir=24&map_id=4">&raquo; Shirokuro Magic Shop</option>
+                            <option value="main.php?dir=33&map_id=4">&raquo; Harajuku</option>
+                            <option value="main.php?dir=8&map_id=4">&raquo; Zona residenziale ovest</option>
+                            <option value="main.php?page=mappaclick&map_id=7" class="map">Ueno</option>
+                            <option value="main.php?dir=16&map_id=7">&raquo; Luna Park</option>
+                            <option value="main.php?dir=7&map_id=7">&raquo; Zoo</option>
+                            <option value="main.php?dir=12&map_id=7">&raquo; Periferia Nord</option>
+                            <option value="main.php?dir=4&map_id=7">&raquo; Parco di Ueno</option>
+                            <option value="main.php?page=mappaclick&map_id=10" class="map">Tsukiji</option>
+                            <option value="main.php?dir=37&map_id=10">&raquo; Periferia Sud</option>
+                            <option value="main.php?dir=49&map_id=10">&raquo; Palazzo abbandonato</option>
+                            <option value="main.php?dir=20&map_id=10">&raquo; S.T.R.I.K.E. Base</option>
+                            <option value="main.php?dir=2&map_id=10">&raquo; Porto</option>
+                            <option value="main.php?dir=21&map_id=10">&raquo; Fiume</option>
+                            <option value="main.php?page=mappaclick&map_id=5" class="map">Roppongi</option>
+                            <option value="main.php?dir=13&map_id=5">&raquo; Gatto Nero</option>
+                            <option value="main.php?dir=47&map_id=5">&raquo; Terrazza Panoramica</option>
+                            <option value="main.php?dir=35&map_id=5">&raquo; Tokyo Tower</option>
+                            <option value="main.php?page=mappaclick&map_id=6" class="map">Chiyoda</option>
+                            <option value="main.php?dir=36&map_id=6">&raquo; Corte di Crystal Tokyo</option>
+                            <option value="main.php?dir=25&map_id=6">&raquo; Ospedale</option>
+                            <option value="main.php?dir=26&map_id=6">&raquo; Chitoku Academy</option>
+                            <option value="main.php?page=mappaclick&map_id=9" class="map">Asakusa</option>
+                            <option value="main.php?dir=34&map_id=9">&raquo; Cimitero</option>
+                            <option value="main.php?dir=15&map_id=9">&raquo; Tempio Scintoista</option>
+                            <option value="main.php?dir=48&map_id=9">&raquo; Zona residenziale est</option>
+                            <option value="main.php?page=mappaclick&map_id=11" class="map">Odaiba</option>
+                            <option value="main.php?dir=3&map_id=11">&raquo; Ponte</option>
+                            <option value="main.php?dir=22&map_id=11">&raquo; Spiaggia</option>
+                            <option value="main.php?dir=50&map_id=11">&raquo; Faro</option>
+                        </select>
+                        <div class="page_title">
+                            <h2>Menu</h2>
+                        </div>
+                        <div class="page_body">
+                            <div class="link_menu"><a href="main.php?page=forum" id="link_menu_forum"><img
+                                        class="menu_img"
+                                        src="/https://crystaltokyo.altervista.org/themes/crystal/imgs/menu/../menu/bacheca_off.png"
+                                        alt="Bacheca" title="Bacheca" /></a></div>
+                            <div class="link_menu"><a href="main.php?page=uffici" id="link_menu_services"><img
+                                        class="menu_img"
+                                        src="/https://crystaltokyo.altervista.org/themes/crystal/imgs/menu/../menu/uffici_off.png"
+                                        alt="Uffici" title="Uffici" /></a></div>
+                            <div class="link_menu"><a href="documentazione_main.php" target="_blank"" id="
+                                    link_menu_manuali"><img class="menu_img"
+                                        src="/https://crystaltokyo.altervista.org/themes/crystal/imgs/menu/../menu/manuali_off.png"
+                                        alt="Manuali" title="Manuali" /></a></div>
+                            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+                            <script type="application/javascript">
+                                var menu_hovers = { "link_menu_forum": { "normal": "\/https://crystaltokyo.altervista.org/themes\/crystal\/imgs\/menu\/..\/menu\/bacheca_off.png", "hover": "\/https://crystaltokyo.altervista.org/themes\/crystal\/imgs\/menu\/..\/menu\/bacheca_off.png" }, "link_menu_services": { "normal": "\/https://crystaltokyo.altervista.org/themes\/crystal\/imgs\/menu\/..\/menu\/uffici_off.png", "hover": "\/https://crystaltokyo.altervista.org/themes\/crystal\/imgs\/menu\/..\/menu\/uffici_off.png" }, "link_menu_manuali": { "normal": "\/https://crystaltokyo.altervista.org/themes\/crystal\/imgs\/menu\/..\/menu\/manuali_off.png", "hover": "\/https://crystaltokyo.altervista.org/themes\/crystal\/imgs\/menu\/..\/menu\/manuali_off.png" } };
+
+                                $(function () {
+                                    $('.menu .link_menu a').mouseenter(function (ev) {
+                                        var $t = $(this);
+                                        var id = $t.attr('id');
+                                        if (id in menu_hovers) {
+                                            ev.preventDefault();
+                                            $t.find('img').attr('src', menu_hovers[id]['hover']);
+                                        }
+                                    })
+                                        .mouseleave(function (ev) {
+                                            var $t = $(this);
+                                            var id = $t.attr('id');
+                                            if (id in menu_hovers) {
+                                                ev.preventDefault();
+                                                $t.find('img').attr('src', menu_hovers[id]['normal']);
+                                            }
+                                        });
+                                });
+                            </script>
+                        </div>
+                    </div>
+                </div>
+                <div class="msgs">
+                    <iframe src="pages/menu.inc.php?ref=30" class="iframe_messaggi" allowtransparency="true"
+                        frameborder="0" scrolling="no">
+                        <p></p>
+                    </iframe>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Colonna destra -->
+    <div id="framecontentRight">
+        <div class="innertube">
+
+            <div class="colonne_dx">
+                <div class="anteprima_scheda">
+                    <div class="pagina_info_location">
+                        <div class="page_title">
+                            <h2>Ash</h2>
+                        </div>
+                        <div class="page_body">
+                            <!--Immagine/descrizione -->
+                            <div class="info_pg">
+                                <img src="" class="immagine_pg">
+                                <a alt="_top" href="main.php?page=scheda&pg=Ash"><img class="descrizione"
+                                        src="https://crystaltokyo.altervista.org//crystal/imgs/colonna_dx/scheda_personaggio.png"></a>
+                            </div>
+
+                            <div class="presenti_button">
+                                <a href="main.php?page=presenti_estesi" alt=_top><img
+                                        src="https://crystaltokyo.altervista.org//crystal/imgs/menu/presenti.png"></a>
+                            </div>
+                        </div>
+                        <!-- page_body -->
+                    </div><!-- Pagina -->
+                </div>
+                <div class="presenti"><iframe src="pages/presenti.inc.php?ref=60" class="iframe_presenti"
+                        allowtransparency="true" frameborder="0">
+                        <p> (http://https://crystaltokyo.altervista.org//pages/presenti.inc.php</p>
+                    </iframe></div>
+                <div class="secondo_menu">
+                    <div class="pagina_link_menu">
+                        <select id="gotomap" onchange="self.location.href=this.value;">
+                            <option value="main.php?page=mappaclick&map_id=3" class="map">Shinjuku</option>
+                            <option value="main.php?dir=14&map_id=3">&raquo; Secret Pandora</option>
+                            <option value="main.php?dir=38&map_id=3">&raquo; Stazione</option>
+                            <option value="main.php?dir=18&map_id=3">&raquo; Zona Malfamata</option>
+                            <option value="main.php?page=mappaclick&map_id=1" selected="selected" class="map">Mappa
+                                principale</option>
+                            <option value="main.php?dir=27&map_id=1">&raquo; Reame Onirico</option>
+                            <option value="main.php?dir=400&map_id=1">&raquo; Chat privata </option>
+                            <option value="main.php?dir=401&map_id=1">&raquo; Chat privata 2</option>
+                            <option value="main.php?dir=402&map_id=1">&raquo; Chat privata 3</option>
+                            <option value="main.php?dir=403&map_id=1">&raquo; Chat privata 4</option>
+                            <option value="main.php?dir=11&map_id=1">&raquo; Stella Prima</option>
+                            <option value="main.php?dir=43&map_id=1">&raquo; Giardino dei Fiori del Male</option>
+                            <option value="main.php?dir=17&map_id=1">&raquo; Palazzo di Cristallo</option>
+                            <option value="main.php?dir=31&map_id=1">&raquo; Reggia Lunare</option>
+                            <option value="main.php?dir=19&map_id=1">&raquo; Santuario di Cosmos</option>
+                            <option value="main.php?dir=32&map_id=1">&raquo; Regno di Caos</option>
+                            <option value="main.php?page=mappaclick&map_id=8" class="map">Fuji</option>
+                            <option value="main.php?dir=9&map_id=8">&raquo; Bosco</option>
+                            <option value="main.php?dir=10&map_id=8">&raquo; Altri luoghi</option>
+                            <option value="main.php?dir=28&map_id=8">&raquo; Terme</option>
+                            <option value="main.php?dir=428&map_id=8">&raquo; Monte Nikogiri</option>
+                            <option value="main.php?page=mappaclick&map_id=4" class="map">Shibuya</option>
+                            <option value="main.php?dir=23&map_id=4">&raquo; Centro</option>
+                            <option value="main.php?dir=30&map_id=4">&raquo; Tae & Myuzuakademi</option>
+                            <option value="main.php?dir=24&map_id=4">&raquo; Shirokuro Magic Shop</option>
+                            <option value="main.php?dir=33&map_id=4">&raquo; Harajuku</option>
+                            <option value="main.php?dir=8&map_id=4">&raquo; Zona residenziale ovest</option>
+                            <option value="main.php?page=mappaclick&map_id=7" class="map">Ueno</option>
+                            <option value="main.php?dir=16&map_id=7">&raquo; Luna Park</option>
+                            <option value="main.php?dir=7&map_id=7">&raquo; Zoo</option>
+                            <option value="main.php?dir=12&map_id=7">&raquo; Periferia Nord</option>
+                            <option value="main.php?dir=4&map_id=7">&raquo; Parco di Ueno</option>
+                            <option value="main.php?page=mappaclick&map_id=10" class="map">Tsukiji</option>
+                            <option value="main.php?dir=37&map_id=10">&raquo; Periferia Sud</option>
+                            <option value="main.php?dir=49&map_id=10">&raquo; Palazzo abbandonato</option>
+                            <option value="main.php?dir=20&map_id=10">&raquo; S.T.R.I.K.E. Base</option>
+                            <option value="main.php?dir=2&map_id=10">&raquo; Porto</option>
+                            <option value="main.php?dir=21&map_id=10">&raquo; Fiume</option>
+                            <option value="main.php?page=mappaclick&map_id=5" class="map">Roppongi</option>
+                            <option value="main.php?dir=13&map_id=5">&raquo; Gatto Nero</option>
+                            <option value="main.php?dir=47&map_id=5">&raquo; Terrazza Panoramica</option>
+                            <option value="main.php?dir=35&map_id=5">&raquo; Tokyo Tower</option>
+                            <option value="main.php?page=mappaclick&map_id=6" class="map">Chiyoda</option>
+                            <option value="main.php?dir=36&map_id=6">&raquo; Corte di Crystal Tokyo</option>
+                            <option value="main.php?dir=25&map_id=6">&raquo; Ospedale</option>
+                            <option value="main.php?dir=26&map_id=6">&raquo; Chitoku Academy</option>
+                            <option value="main.php?page=mappaclick&map_id=9" class="map">Asakusa</option>
+                            <option value="main.php?dir=34&map_id=9">&raquo; Cimitero</option>
+                            <option value="main.php?dir=15&map_id=9">&raquo; Tempio Scintoista</option>
+                            <option value="main.php?dir=48&map_id=9">&raquo; Zona residenziale est</option>
+                            <option value="main.php?page=mappaclick&map_id=11" class="map">Odaiba</option>
+                            <option value="main.php?dir=3&map_id=11">&raquo; Ponte</option>
+                            <option value="main.php?dir=22&map_id=11">&raquo; Spiaggia</option>
+                            <option value="main.php?dir=50&map_id=11">&raquo; Faro</option>
+                        </select>
+                        <div class="page_body">
+                            <div class="link_menu"><a href="main.php?page=servizi_gilde"
+                                    id="link_secondo_menu_famiglie"><img onclick="" class="menu_img"
+                                        src="https://crystaltokyo.altervista.org//crystal/imgs/secondo_menu/../menu/famiglie_off.png"
+                                        alt="Famiglie" title="Famiglie" /></a></div>
+                            <div class="link_menu"><a href="main.php?page=servizi_mestieri"
+                                    id="link_secondo_menu_mestieri"><img onclick="" class="menu_img"
+                                        src="https://crystaltokyo.altervista.org//crystal/imgs/secondo_menu/../menu/mestieri_off.png"
+                                        alt="Mestieri" title="Mestieri" /></a></div>
+                            <div class="link_menu"><a href="#" id="link_secondo_menu_ctnews"><img
+                                        onclick="ctNews('Ash')" class="menu_img"
+                                        src="https://crystaltokyo.altervista.org//crystal/imgs/secondo_menu/../menu/ctnews_off.png"
+                                        alt="CT News" title="CT News" /></a></div>
+                            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+                            <script type="application/javascript">
+                                var secondo_menu_hovers = { "link_secondo_menu_famiglie": { "normal": "\/themes\/crystal\/imgs\/secondo_menu\/..\/menu\/famiglie_off.png", "hover": "\/themes\/crystal\/imgs\/secondo_menu\/..\/menu\/famiglie_off.png" }, "link_secondo_menu_mestieri": { "normal": "\/themes\/crystal\/imgs\/secondo_menu\/..\/menu\/mestieri_off.png", "hover": "\/themes\/crystal\/imgs\/secondo_menu\/..\/menu\/mestieri_off.png" }, "link_secondo_menu_ctnews": { "normal": "\/themes\/crystal\/imgs\/secondo_menu\/..\/menu\/ctnews_off.png", "hover": "\/themes\/crystal\/imgs\/secondo_menu\/..\/menu\/ctnews_off.png" } };
+
+                                $(function () {
+                                    $('.secondo_menu .link_menu a').mouseenter(function (ev) {
+                                        var $t = $(this);
+                                        var id = $t.attr('id');
+                                        if (id in secondo_menu_hovers) {
+                                            ev.preventDefault();
+                                            $t.find('img').attr('src', secondo_menu_hovers[id]['hover']);
+                                        }
+                                    })
+                                        .mouseleave(function (ev) {
+                                            var $t = $(this);
+                                            var id = $t.attr('id');
+                                            if (id in secondo_menu_hovers) {
+                                                ev.preventDefault();
+                                                $t.find('img').attr('src', secondo_menu_hovers[id]['normal']);
+                                            }
+                                        });
+                                });
+                            </script>
+                        </div>
+                    </div>
+                </div>
+                <div class="calendario_box">
+                    <!-- Box calendario-->
+                    <div id="calendario">
+                        <iframe src="pages/agenda/index.php" frameborder="0" scrolling="no" width="220px" height="250">
+                        </iframe>
+                    </div>
+                    <div id="calendario_role">
+                        <a href="../main.php?page=agenda_center&op=add_role" target="_top"">Prenota role </a>
+    </div>
+	
+    <!-- Chiudura finestra del gioco -->
+</div>                </div>
+
+            </div>
+        </div>
+
+        
+    <div id=" maincontent">
+                            <div class="output">
+                                <!-- Popup per mostrare cose -->
+                                <div id="id01" class="modal">
+
+                                    <form class="modal-content animate" action="/action_page.php" method="post">
+                                        <div class="imgcontainer">
+                                            <span onclick="document.getElementById('id01').style.display='none'"
+                                                class="close" title="Close Modal">Chiudi</span>
+                                        </div>
+
+                                        <div class="container2">
+                                            <iframe id="myframe" src="/default.php"></iframe>
+                                        </div>
+                                    </form>
+                                </div>
+                                <script type="text/javascript">
+                                    function showHideRow(row) {
+                                        $("#" + row).toggle();
+                                    } 
+                                </script>
+                                <div class="pagina_scheda">
+                                    <div class="page_title">
+                                        <h2>Scheda del personaggio</h2>
+                                    </div>
+                                    <div class="scheda_page_body">
+                                        <div class="menu_scheda">
+                                            <!-- Menu scheda -->
+                                            <a href="main.php?page=user_cambio_pass">
+                                                Cambio password </a>
+                                            <a href="main.php?page=scheda_modifica&pg=Ash">
+                                                Modifica </a>
+                                            <a href="main.php?page=scheda&pg=Ash">
+                                                Scheda </a>
+                                            <a href="main.php?page=scheda_storia&pg=Ash">
+                                                Storia </a>
+                                            <a href="main.php?page=scheda_dice&pg=Ash">
+                                                Dice di sè </a>
+                                            <a href="main.php?page=scheda_affetti&pg=Ash">
+                                                Amici </a>
+                                            <a href="main.php?page=scheda_off&pg=Ash">
+                                                Off </a>
+                                            <a href="main.php?page=scheda_trans&pg=Ash">
+                                                Transazioni </a>
+                                            <a href="main.php?page=scheda_px&pg=Ash">
+                                                Esperienza </a>
+                                            <a href="main.php?page=scheda_oggetti&pg=Ash">
+                                                Inventario </a>
+                                            <a href="main.php?page=scheda_skills&pg=Ash">
+                                                Skills </a>
+                                            <a href="main.php?page=scheda_equip&pg=Ash">
+                                                Equipaggiamento </a>
+                                        </div>
+                                        <div class="scheda_page_body">
+                                            <div class="title">
+
+
+                                                <a href="#"
+                                                    onclick="changeFrame('pages/messages/create.inc.php?reply_dest=Ash');document.getElementById('id01').style.display='block';">
+                                                    <img src="https://crystaltokyo.altervista.org//crystal/imgs/scheda/icon_messaggio.png"
+                                                        alt="Invia un SMS a Ash" title="Invia un SMS a Ash"
+                                                        class="link_messaggio_forum">
+                                                </a>
+                                                Ash
+                                                Williams
+                                            </div>
+                                            <div class="ritratto">
+                                                <!-- nome, ritratto, ultimo ingresso -->
+                                                <div class="titolo_box">
+                                                    Avatar </div>
+                                                <div class="ritratto_nome">
+                                                    <span class="ritratto_nome_nome">
+                                                        Ash </span>
+                                                    <span class="ritratto_nome_cognome">
+                                                        Williams </span>
+                                                </div>
+                                                <div class="ritratto_avatar">
+                                                    <img src="" class="ritratto_avatar_immagine" />
+                                                </div>
+                                            </div>
+                                            <!-- nome, ritratto, ultimo ingresso, abiti portati -->
+                                            <div class="profilo">
+                                                <!-- Punteggi, salute, status, classe, razza. -->
+                                                <div class="titolo_box">
+                                                    Profilo </div>
+
+                                                <div class="primo_box">
+                                                    <div class="profilo_voce">
+
+                                                        <div class="profilo_voce_label">
+                                                            Età:
+                                                        </div>
+                                                        <div class="profilo_voce_valore">
+                                                            28 </div>
+                                                    </div>
+                                                    <div class="profilo_voce">
+                                                        <div class="profilo_voce_label">
+                                                            Nato a:
+                                                        </div>
+                                                        <div class="profilo_voce_valore">
+                                                        </div>
+                                                    </div>
+                                                    <div class="profilo_voce">
+
+
+
+                                                        <div class="profilo_voce_label">
+                                                            Inclinazione:
+                                                        </div>
+                                                        <div class="profilo_voce_valore">
+                                                            Neutrali </div>
+                                                    </div>
+
+
+
+
+
+
+
+                                                    <div class="profilo_voce">
+                                                        <div class="profilo_voce_label">
+                                                            Spirito:
+                                                        </div>
+                                                        <div class="profilo_voce_valore">
+                                                            Spirito di Mercurio </div>
+                                                    </div>
+                                                    <div class="profilo_voce">
+                                                        <div class="profilo_voce_label">
+                                                            Carica:
+                                                        </div>
+                                                        <div class="profilo_voce_valore">
+                                                            <img width="25" height="25" src="imgs/guilds/Umani.png"
+                                                                title="Cittadino">
+                                                        </div>
+                                                    </div>
+                                                    <div class="profilo_voce">
+                                                        <div class="profilo_voce_label">
+                                                            Ruolo:
+                                                        </div>
+                                                        <div class="profilo_voce_valore">
+                                                            <img width="25" height="25"
+                                                                src="imgs/mestieri/Dipendente.png"
+                                                                title="Dipendente del Pandora">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="secondo_box">
+                                                    <div class="profilo_voce">
+                                                        <div class="profilo_voce_label">
+                                                            Esperienza:
+                                                        </div>
+                                                        <div class="profilo_voce_valore">
+                                                            0 </div>
+                                                    </div>
+                                                    <!-- caratteristiche -->
+                                                    <div class="profilo_voce">
+                                                        <div class="profilo_voce_label">
+                                                            Forza:
+                                                        </div>
+                                                        <div class="profilo_voce_valore">
+                                                            10 </div>
+                                                    </div>
+                                                    <!-- <div class="profilo_voce">
+                    <div class="profilo_voce_label">
+                        Forza di Gilda:
+                    </div>
+                    <div class="profilo_voce_valore">
+                        0                    </div>
+                </div> -->
+                                                    <div class="profilo_voce">
+                                                        <div class="profilo_voce_label">
+                                                            Destrezza:
+                                                        </div>
+                                                        <div class="profilo_voce_valore">
+                                                            10 </div>
+                                                    </div>
+                                                    <!-- <div class="profilo_voce">
+                    <div class="profilo_voce_label">
+                        Destrezza di Gilda:
+                    </div>
+                    <div class="profilo_voce_valore">
+                        0                    </div>
+                </div> -->
+                                                    <div class="profilo_voce">
+                                                        <div class="profilo_voce_label">
+                                                            Mente:
+                                                        </div>
+                                                        <div class="profilo_voce_valore">
+                                                            10 </div>
+                                                    </div>
+                                                    <!-- <div class="profilo_voce">
+                    <div class="profilo_voce_label">
+                        Mente di Gilda:
+                    </div>
+                    <div class="profilo_voce_valore">
+                        0                    </div>
+                </div> -->
+                                                    <div class="profilo_voce">
+                                                        <div class="profilo_voce_label">
+                                                            Tempra:
+                                                        </div>
+                                                        <div class="profilo_voce_valore">
+                                                            10 </div>
+                                                    </div>
+                                                    <!-- <div class="profilo_voce">
+                    <div class="profilo_voce_label">
+                        Tempra di Gilda:
+                    </div>
+                    <div class="profilo_voce_valore">
+                        0                    </div>
+                </div> -->
+                                                    <div class="profilo_voce">
+                                                        <div class="profilo_voce_label">
+                                                            Punti ferita:
+                                                        </div>
+                                                        <div class="profilo_voce_valore">
+                                                            100/100 </div>
+                                                    </div>
+                                                    <div class="profilo_voce">
+                                                        <div class="profilo_voce_label">
+                                                            Notorietà:
+                                                        </div>
+                                                        <div class="profilo_voce_valore">
+                                                            0 </div>
+                                                    </div>
+                                                    <div class="profilo_voce" style="display: none;">
+                                                        <div class="profilo_voce_label">
+                                                            Status:
+                                                        </div>
+                                                        <div class="profilo_voce_valore" style="display: none;">
+                                                            nessuna </div>
+                                                    </div>
+                                                </div>
+                                                <div class="terzo_box">
+                                                    <div class="profilo_voce">
+                                                        <div class="profilo_voce_label">
+                                                            Iscrizione </div>
+                                                        <div class="profilo_voce_valore">
+                                                            15/06/2022 </div>
+                                                    </div>
+
+                                                    <div class="profilo_voce">
+                                                        <div class="profilo_voce_label">
+                                                            Ultimo login </div>
+                                                        <div class="profilo_voce_valore">
+                                                            15/06/2022 </div>
+                                                    </div>
+                                                    <div class="profilo_voce">
+                                                        <div class="profilo_voce_label">
+                                                            Cariche </div>
+                                                        <div class="profilo_voce">
+                                                            <div class="profilo_voce_label">
+                                                            </div>
+                                                            <div class="profilo_voce_valore">
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="background">
+                                            <!-- Background, affetti, robe varie -->
+                                            <div class="titolo_box_scheda" onclick="showHideRow('NoteEFato');"
+                                                style="cursor: pointer;">
+                                                Particolari e Note del Fato </div>
+                                            <div class="hidden_row body_box" id="NoteEFato">
+                                                <div class="particolari">
+                                                    <div class="green">
+                                                    </div>
+                                                </div>
+                                                <div class="note">
+                                                    <div class="blue">
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="background">
+                                            <!-- Background, affetti, robe varie -->
+                                            <div class="titolo_box_scheda">
+                                                Background </div>
+                                            <div class="body_box">
+<!-- START CUSTOM -->
+<custom-section>
+    <style>
+        div.container {
+            display: flex;
+            flex-direction: column;
+            padding: 2px 2px 2px 2px;
+        }
+
+        div.row {
+            display: flex;
+            flex-direction: row;
+            padding: 2px 2px 2px 2px;
+        }
+
+        div.body_box {
+            border: 0px;
+        }
+
+        .glitch {
+            font-size: 2rem;
+            position: absolute;
+            text-shadow: 0.05em 0 0 #00fffc, -0.03em -0.04em 0 #fc00ff,
+                0.025em 0.04em 0 #fffc00;
+            animation: glitch 725ms infinite;
+        }
+
+        .glitch span {
+            position: absolute;
+        }
+
+        .glitch span:first-child {
+            animation: glitch 500ms infinite;
+            clip-path: polygon(0 0, 100% 0, 100% 35%, 0 35%);
+            transform: translate(-0.04em, -0.03em);
+            opacity: 0.75;
+        }
+
+        .glitch span:last-child {
+            animation: glitch 375ms infinite;
+            clip-path: polygon(0 65%, 100% 65%, 100% 100%, 0 100%);
+            transform: translate(0.04em, 0.03em);
+            opacity: 0.75;
+        }
+
+        @keyframes glitch {
+            0% {
+                text-shadow: 0.05em 0 0 #00fffc, -0.03em -0.04em 0 #fc00ff,
+                    0.025em 0.04em 0 #fffc00;
+            }
+
+            15% {
+                text-shadow: 0.05em 0 0 #00fffc, -0.03em -0.04em 0 #fc00ff,
+                    0.025em 0.04em 0 #fffc00;
+            }
+
+            16% {
+                text-shadow: -0.05em -0.025em 0 #00fffc, 0.025em 0.035em 0 #fc00ff,
+                    -0.05em -0.05em 0 #fffc00;
+            }
+
+            49% {
+                text-shadow: -0.05em -0.025em 0 #00fffc, 0.025em 0.035em 0 #fc00ff,
+                    -0.05em -0.05em 0 #fffc00;
+            }
+
+            50% {
+                text-shadow: 0.05em 0.035em 0 #00fffc, 0.03em 0 0 #fc00ff,
+                    0 -0.04em 0 #fffc00;
+            }
+
+            99% {
+                text-shadow: 0.05em 0.035em 0 #00fffc, 0.03em 0 0 #fc00ff,
+                    0 -0.04em 0 #fffc00;
+            }
+
+            100% {
+                text-shadow: -0.05em 0 0 #00fffc, -0.025em -0.04em 0 #fc00ff,
+                    -0.04em -0.025em 0 #fffc00;
+            }
+        }
+
+        .overlay {
+            position: absolute;
+            height: 0%;
+            width: 0%;
+        }
+
+        div.my_section {
+            border: 1px whitesmoke dashed;
+            height: 600px;
+            padding-top: 5px;
+            padding-bottom: 5px;
+        }
+
+        div#terminal_output {
+            align-content: center;
+            vertical-align: center;
+            overflow: scroll;
+        }
+
+        div.sector {
+            display: flex;
+            justify-content: left;
+            align-content: left;
+            flex-direction: column;
+            text-align: left;
+            padding-left: 10px;
+        }
+
+        .visible {
+            opacity: 100%;
+            visibility: visible;
+            height: 600px;
+            transition: opacity 1s ease-in;
+        }
+
+        .hidden {
+            visibility: hidden;
+            display: none;
+            opacity: 0%;
+            transition: opacity 0s ease-in;
+            padding: 0px 0px 0px 0px !important;
+        }
+
+        .sector_img {
+            align-self: center;
+        }
+
+        p.terminal_text {
+            font-size: 12px;
+            margin-top: 2px;
+            margin-bottom: 0px;
+        }
+
+        input.terminal_input {
+            background-color: transparent;
+            border: 0px;
+            border-radius: 0px;
+            width: 70%;
+            color: white;
+            transition: none;
+        }
+
+        input.terminal_input:hover {
+            background-color: transparent;
+            border: 0px;
+            border-radius: 0px;
+            width: 70%;
+            color: white;
+            transition: none;
+        }
+
+        input.terminal_input:focus {
+            background-color: transparent;
+            border: 0px;
+            border-radius: 0px;
+            width: 70%;
+            color: white;
+            transition: none;
+        }
+
+        input.terminal_input:active {
+            background-color: transparent;
+            border: 0px;
+            border-radius: 0px;
+            width: 70%;
+            color: white;
+            transition: none;
+        }
+
+        button.terminal_button {
+            background-color: transparent;
+            color: white;
+            border: 0px;
+        }
+
+        .hint:hover {
+            color: white;
+        }
+
+        .tip {
+            animation: glitch 375ms infinite;
+        }
+
+        .tip:hover {
+            color: greenyellow;
+            background-color: black;
+        }
+
+        .hint-easy {
+            animation: hint 1000ms infinite step-end;
+        }
+
+        @keyframes hint {
+
+            0%,
+            100% {
+                background-color: transparent;
+                color: white;
+            }
+
+            50% {
+                color: black;
+                background-color: white;
+            }
+        }
+    </style>
+    <script>
+        function getRandomInt(min, max) {
+            min = Math.ceil(min);
+            max = Math.floor(max);
+            return Math.floor(Math.random() * (max - min) + min);
+        }
+        function glitched_hint_html_fn(letter, offset_x, offset_y) {
+            let template = '<p class="glitch" style="top:%s1px;left:%s2px"><span aria-hidden="true">%s0</span>%s0<span aria-hidden="true">%s0</span></p>';
+            template = template.replaceAll('%s0', letter);
+            template = template.replaceAll('%s1', offset_y);
+            template = template.replaceAll('%s2', offset_x);
+            return template;
+        }
+        function switch_visibility(domElement) {
+            domElement.classList.toggle('visible');
+            domElement.classList.toggle('hidden');
+        }
+        function clean_all_visible(arg = "") {
+            document.querySelectorAll(arg.concat(".visible")).forEach((x) => switch_visibility(x));
+        }
+        function select_section(section_name) {
+            const s_section_id = '#' + section_name + '_sector';
+            const domElement = document.querySelector(s_section_id);
+            switch_visibility(domElement);
+        }
+        function create_tip(text, index) {
+            let template = '<a onclick="load_tip('.concat("%index)").concat('" class="tip').concat(easy_mode_on ? '' : '').concat('">%text</a> ');
+            template = template.replaceAll('%text', text);
+            template = template.replaceAll('%index', index);
+            return template;
+        }
+        function create_hint(text, hint = text) {
+            let template = '<a onclick="load_hint('.concat("'%hint')").concat('" class="hint').concat(easy_mode_on ? ' hint-easy' : '').concat('">%text</a> ');
+            template = template.replaceAll('%text', text);
+            template = template.replaceAll('%hint', hint);
+            return template;
+        }
+        function load_hint(hint) {
+            if (easy_mode_on) {
+                document.querySelector('#terminal_input').value = hint;
+            }
+        }
+        function print_diary_string(text) {
+            let line_template = '<p class="terminal_text">%text</a></p>';
+            line_template = line_template.replaceAll('%path', path);
+            line_template = line_template.replaceAll('%text', text);
+            document.querySelector("#terminal_output").innerHTML += line_template;
+        }
+        function print_terminal_string(text) {
+            let line_template = '<p class="terminal_text">[root@localhost %path]# %text</a></p>';
+            line_template = line_template.replaceAll('%path', path);
+            line_template = line_template.replaceAll('%text', text);
+            document.querySelector("#terminal_output").innerHTML += line_template;
+        }
+        const diary_sections = ['mother', 'cancer', 'tokyo', 'DONT'];
+        const minigame_commands = {
+            'systemctl': start,
+            '--help': help,
+            'ls': view,
+            'less': read,
+            'cd': move
+        };
+        const fake_fs_arr = ['~', '/root', '/root/opt', '/root/reserved', '/root/reserved/personal.diary'];
+        let easy_mode_on = false;
+        let path = '~';
+        function easy_mode() {
+            easy_mode_on = !easy_mode_on;
+            document.querySelectorAll('.hint').forEach(x => x.classList.toggle('hint-easy'));
+        }
+        function play() {
+            let full_cmd = document.querySelector("#terminal_input").value;
+            document.querySelector('.overlay').innerHTML = "";
+            print_terminal_string(full_cmd);
+            full_cmd = full_cmd.split(' ');
+            const command = full_cmd[0];
+            const args = full_cmd.slice(1, full_cmd.length + 1).join(' ');
+            if (minigame_commands[command]) minigame_commands[command](args);
+            else change(command)
+        }
+        function start(arg) {
+            not_found = false;
+            if (arg == "enable --now cockpit.socket") {
+                print_terminal_string("Connecting to socket...");
+                print_terminal_string("Logged in as root. Access audit registered.");
+                print_terminal_string("Type ".concat(create_hint('--help')).concat("to view the list of commands"));
+            } else {
+                print_terminal_string("Not allowed");
+            }
+        }
+        function help() {
+            print_terminal_string("ls -fs => to view all file system contents");
+            print_terminal_string("cd path => to move inside the file system");
+            print_terminal_string(create_hint("less path/to/file", "less /root/reserved/personal.diary").concat(" => read a file"));
+        }
+        function view(arg) {
+            if (arg == '-fs') {
+                print_terminal_string("view file system...");
+                fake_fs_arr.forEach((e, i) => print_diary_string(e));
+            } else {
+                print_terminal_string("Not allowed");
+            }
+        }
+        function move(arg) {
+            if (fake_fs_arr.indexOf(arg) != -1) {
+                path = arg;
+                print_terminal_string("");
+            } else {
+                print_terminal_string("Not allowed");
+            }
+        }
+        function read(arg) {
+            if (arg == "/root/reserved/personal.diary") {
+                print_terminal_string("Accessing file: personal.diary");
+                print_diary_string("A normal life.");
+                const hint_text = 'A normal '.concat(create_tip("family", 0));
+                print_diary_string(hint_text);
+            }
+        }
+        function change(arg) {
+            clean_all_visible(".sector");
+            const section = select_section(arg);
+        }
+        function load_tip(arg) {
+            const tip = [...diary_sections[arg]];
+            let tip_html = '';
+            tip.forEach((e, i) => tip_html += get_glitched_tip(e, i));
+            document.querySelector('.overlay').innerHTML = tip_html;
+            if (easy_mode_on) {
+                document.querySelector('#terminal_input').value = tip.join('');
+            }
+        }
+        function get_glitched_tip(e, i) {
+            if (!easy_mode_on) {
+                offset_x = i * getRandomInt(10, 640 / (i + 1));
+                offset_y = getRandomInt(10, 490);
+            } else {
+                offset_x = 175 + (i * 50);
+                offset_y = 220;
+            }
+            return glitched_hint_html_fn(e, offset_x, offset_y);
+        }
+    </script>
+    <div class="container my_section" id="my_section">
+        <button onclick="change_ui_style()">test</button>
+        <div class="overlay" id="overlay">
+
+        </div>
+        <div class="container sector visible" id="terminal_output">
+            <p class="terminal_text">Using username "root".</p>
+            <p class="terminal_text">Activate the web console with: <a class="hint"
+                    onclick="load_hint('systemctl enable --now cockpit.socket')">
+                    systemctl enable --now cockpit.socket</a></p>
+            <p class="terminal_text"></p>
+        </div>
+        <div class="container sector hidden" id="mother_sector">
+            <p>So there's nothing left to do?</p>
+            <img src="https://64.media.tumblr.com/1bac38ff365399e5afc8fd661e8d858a/13708b37496920de-84/s500x750/ac368619622a4a5db93fa7f01c4255ea94a5d7fd.gifv"
+                class="sector_img mother_sector_img" height="400" width="400" />
+            <p><a onclick="load_tip(1)" class="tip">...fuck...</a></p>
+        </div>
+        <div class="container sector hidden" id="cancer_sector">
+            <p>I think i need some <a onclick="load_tip(2)" class="tip">fresh air</a>.</p>
+        </div>
+        <div class="container sector hidden" id="tokyo_sector">
+            <p>Having <a onclick="load_tip(3)" class="tip">f u n</a>
+                being a nobody
+                </a>?</p>
+            <div>
+                <ul>
+                    <li>
+                        Name: Ash
+                    </li>
+                    <li>
+                        Surname: Williams
+                    </li>
+                    <li>
+                        Born in: London, England
+                    </li>
+                    <li>
+                        Height: 1.78m
+                    </li>
+                    <li>
+                        Weight: 70kg
+                    </li>
+                    <li>
+                        Eyes: Green
+                    </li>
+                    <li>
+                        Hairs: Brown
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="container sector hidden" id="DONT_sector">
+            <img src="https://i.ibb.co/6vfttn3/screenshot.png" class="sector_img DONT_sector_img" />
+            <div style="text-align:center">
+                <ul>
+                    <li>
+                        Social Networks are <a class="tip">drugs</a>.
+                    </li>
+                    <li>
+                        The State is a <a class="tip">lie</a>.
+                    </li>
+                    <li>
+                        Privacy is <a class="tip">non-existant</a>.
+                    </li>
+                    <li>
+                        Disinformation runs <a class="tip">rampant</a>.
+                    </li>
+                    <li>
+                        Mind is <a class="tip">power</a>.
+                    </li>
+                    <li>
+                        Money is <a class="tip">truth</a>.
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="container terminal" id="terminal_input_div">
+        <p class="terminal_text">[root@localhost ~]# <input type="text" id="terminal_input"
+                class="terminal_input" /><button class="terminal_button" onclick="play()">></button>
+        </p>
+    </div>
+    <div class="container server_footer" id="server_footer_div">
+        <div>
+            <p>This server is property of Ash Williams, any connection and access will be reported, all
+                actions are under strict auditing.</p>
+            <p>malicious actions <a class="tip">w i l l</a> be persecuted.</p>
+        </div>
+        <br />
+        <br />
+        <hr />
+        <br />
+        <div class="container" style="font-size:13px">
+            Apache 2.0 Open source license, feel free to use, pls report any bugs.<br />
+            Code available at github@serp1co/ct-custom-page)<br />
+            Per la soluzione potete guardare il codice sorgente o cercare gli hint, have fun.<br />
+        </div>
+    </div>
+</custom-section>
+<!-- END CUSTOM -->
+                <!-- Background, affetti, robe varie -->
+            </div>
+        </div><!-- Elenco abilità -->
+    </div><!-- Pagina -->
+    </div>
+    </div>
+
+    <div id="ctnews" style="height: 0px; opacity: 0;">
+        <div class="left">
+            <img src="https://crystaltokyo.altervista.org//crystal/imgs/icone/CTNEWS.png">
+        </div>
+        <div class="right">
+            <marquee align="middle" behavior="scroll" direction="left" scrolldelay="10">BLACKOUT: La città è
+                sottoposta a blackout generali in specifiche fasce orarie. Consultate il forum Crystal News
+                per maggiori specifiche.</marquee>
+        </div>
+    </div>
+    <script>
+        var modal = document.getElementById('id01');
+
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+
+        function changeFrame(input_text) {
+            document.getElementById("myframe").src = input_text;
+        }
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="/includes/corefunctions.js"></script>
+    <!--<script type="text/javascript" src="includes/gdrcdskills.js"></script>-->
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="/includes/forum.js"></script>
+    <script type="text/javascript">
+        var tooltip_offsetX = 20;
+        var tooltip_offsetY = 20;
+    </script>
+    <script type="text/javascript" src="/includes/tooltip.js"></script>
+    <script type="text/javascript" src="/includes/changetitle.js"></script>
+    <script type="text/javascript" src="/includes/popupchoise.js"></script>
+    <script type="text/javascript">
+        function modalWindow(name, title, url, width, height) {
+            // per width ed height imposto dei valori di default così non occorre specificarli in ogni occasione
+            width = typeof width === 'undefined' ? 800 : width;
+            height = typeof height === 'undefined' ? 600 : height;
+
+            // verifichiamo se nel body non esiste il sorgente per la dialog
+            if ($('#dialog-' + name).length == 0) {
+
+                // in questo caso lo creiamo:
+                $('body').append('<div id="dialog-' + name + '" title="' + title + '" style="padding:0;"><iframe src="' + url + '" frameborder="no" style="position:absolute;width:100%;height:100%;" scrolling="yes"></div>');
+
+            } else {
+
+                // se il sorgente invece esiste già assegnamo la nuova url all´iframe:
+                $('#dialog-' + name).attr('title', title);
+                $('#dialog-' + name + ' iframe').attr('src', url);
+            }
+
+            // Ok, adesso siamo pronti per lanciare la modale!
+            $('#dialog-' + name).dialog({ width: width, height: height });
+        }
+    </script>
+    <!--<script type="text/javascript">
+    setTimeout("self.location.href.reload();",);
+</script-->
+</body>
+
+</html>
+
+<!-- Conta caratteri chat -->
+
+<script type="text/javascript">
+    // dichiaro il nome della funzione
+    // prende come parametro l\'input da analizzare
+    function conta(el) {
+        // imposto il limite massimo di caratteri consentiti
+        var max_char = 2000;
+        // conto il numero di caratteri nell\'input
+        var conta_caratteri = el.value.length;
+        // verifico se i caratteri hanno superato il limite
+        if (conta_caratteri >= max_char) {
+            // riporto i caratteri al limite massimo
+            conta_caratteri = 2000;
+            // cancello dall\'input i caratteri in eccesso
+            el.value = el.value.substring(0, max_char);
+        }
+        // aggiorno il contatore testuale
+        document.getElementById("rimanenti").innerHTML = max_char - conta_caratteri;
+        // calcolo la lungezza per il contatore grafico
+        var width = (max_char - conta_caratteri) * 5;
+        // aggiorno il contatore grafico
+        document.getElementById("countdown").style.width = width + "px";
+    }
+</script>
