@@ -36,7 +36,7 @@ function load_hint(hint) {
         document.querySelector('#terminal_input').value = hint;
     }
 }
-async function print_terminal_string(text,delay=0,template='<p class="terminal_text">[root@localhost %path]# %text</a></p>') {
+async function print_terminal_string(text,delay=0,template='<p class="terminal_text">[root@<env>%env</env> %path]# %text</a></p>') {
     await new Promise(()=> {
         setTimeout(()=>{
             const line_template = template.replaceAll('%path', path).replaceAll('%text', text);
@@ -59,7 +59,7 @@ function easy_mode() {
     document.querySelectorAll('.hint').forEach(x => x.classList.toggle('hint-easy'));
 }
 function play() {
-    console.log(env)
+    document.querySelector("env").innerHTML = env;
     let full_cmd = document.querySelector("#terminal_input").value;
     document.querySelector('.overlay').innerHTML = "";
     print_terminal_string(full_cmd);
@@ -68,7 +68,7 @@ function play() {
     const args = full_cmd.slice(1, full_cmd.length + 1).join(' ');
     if (minigame_commands[command]) minigame_commands[command](args);
     else if(diary_sections.indexOf(command) != -1) change(command);
-    else print_terminal_string(command + " not found");
+    else if(command.length != 0) print_terminal_string(command + " not found");
 }
 function start(arg) {
     not_found = false;
