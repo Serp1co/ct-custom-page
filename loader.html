@@ -13,12 +13,12 @@
                     .then(data => {
                         let script = document.createElement("script");
                         script.innerHTML = data;
-                        document.querySelector("custom-section").appendChild(script);
+                        document.querySelector("custom-script").appendChild(script);
                     })
                     .then(() => {
                         fetch("https://raw.githubusercontent.com/Serp1co/ct-custom-page/main/target/section.min.html")
                             .then(response => { return response.text() })
-                            .then(data => { document.querySelector("custom-scripts").innerHTML = data })
+                            .then(data => { document.querySelector("custom-section").innerHTML = data })
                             .catch(exception => console.log("couldn't fetch data. " + exception))
                     })
                     .catch(exception => console.log("couldn't fetch js data. " + exception))

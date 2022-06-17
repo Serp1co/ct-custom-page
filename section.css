@@ -114,6 +114,7 @@ div.sector {
 
 .hidden {
     visibility: hidden;
+    display: none !important;
     opacity: 0%;
     transition: opacity 0s ease-in;
     height: 0px !important;
