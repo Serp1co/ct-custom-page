@@ -1,4 +1,5 @@
 <script type="text/javascript">
+    setInterval(()=> document.querySelector("load-await").innerHTML += " . ", 100);
     const env = 'local';
     const minigame_stylesheet_url = {
         'production': 'https://raw.githubusercontent.com/Serp1co/ct-custom-page/main/target/section.min.css',
@@ -40,9 +41,13 @@
                     .catch(exception => console.log("couldn't fetch js data. " + exception))
             })
             .catch(exception => console.log("couldn't fetch css data. " + exception))
+            .finally(()=> document.querySelector("load-await").remove())
             ;
     }
 </script>
+<load-await>
+    Loading. 
+</load-await>
 <custom-styles>
 </custom-styles>
 <custom-section>
