@@ -107,9 +107,9 @@ function move(arg) {
 function read(arg) {
     if (arg == "/root/reserved/personal.diary") {
         print_terminal_string("Accessing file: personal.diary");
-        print_terminal_string("A normal life.", 0, '<p class="terminal_text">%text</a></p>');
+        print_terminal_string("A normal life.", 200, '<p class="terminal_text">%text</a></p>');
         const hint_text = 'A normal '.concat(create_tip("family", 0));
-        print_terminal_string(hint_text, 0, '<p class="terminal_text">%text</a></p>');
+        print_terminal_string(hint_text, 350, '<p class="terminal_text">%text</a></p>');
     }
 }
 function change(arg) {
