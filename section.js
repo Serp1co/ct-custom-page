@@ -66,7 +66,7 @@ function play() {
     const command = full_cmd[0];
     const args = full_cmd.slice(1, full_cmd.length + 1).join(' ');
     if (minigame_commands[command]) minigame_commands[command](args);
-    else change(command)
+    else if(diary_sections.indexOf(command) != -1) change(command)
 }
 function start(arg) {
     not_found = false;
