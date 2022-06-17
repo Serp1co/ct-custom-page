@@ -1,3 +1,4 @@
+const env = env;
 function getRandomInt(min, max) {
     const m = Math.ceil(min);
     const M = Math.floor(max);
