@@ -112,10 +112,9 @@ div.sector {
 }
 
 .hidden {
-    visibility: hidden;
-    display: none !important;
+    display: none;
     opacity: 0%;
-    transition: opacity display 0s ease-in;
+    transition: opacity display 1s ease-in;
 }
 
 .sector_img {
