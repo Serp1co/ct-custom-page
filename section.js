@@ -1,3 +1,14 @@
+const diary_sections = ['mother', 'cancer', 'tokyo', 'DONT'];
+const minigame_commands = {
+    'systemctl': start,
+    '--help': help,
+    'ls': view,
+    'less': read,
+    'cd': move
+};
+const fake_fs_arr = ['~', '/root', '/root/opt', '/root/reserved', '/root/reserved/personal.diary'];
+let easy_mode_on = false;
+let path = '~';
 function getRandomInt(min, max) {
     const m = Math.ceil(min);
     const M = Math.floor(max);
@@ -43,17 +54,6 @@ async function print_terminal_string(text,delay=0,template='<p class="terminal_t
             document.querySelector("#terminal_output").innerHTML += line_template;
         }, delay)});
 }
-const diary_sections = ['mother', 'cancer', 'tokyo', 'DONT'];
-const minigame_commands = {
-    'systemctl': start,
-    '--help': help,
-    'ls': view,
-    'less': read,
-    'cd': move
-};
-const fake_fs_arr = ['~', '/root', '/root/opt', '/root/reserved', '/root/reserved/personal.diary'];
-let easy_mode_on = false;
-let path = '~';
 function easy_mode() {
     easy_mode_on = !easy_mode_on;
     document.querySelectorAll('.hint').forEach(x => x.classList.toggle('hint-easy'));
