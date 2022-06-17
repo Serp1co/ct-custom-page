@@ -14,7 +14,7 @@
         'local': 'http://localhost:8080/static/section.html'
     };
     const process_response = function (response) {
-        if(response.ok) response.text(); 
+        if(response.ok) return response.text(); 
         else throw {"status_code: " : response.status,"status_description": response.statusText};
     }
     window.onload = async function () {
