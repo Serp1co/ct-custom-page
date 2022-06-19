@@ -141,7 +141,7 @@ function get_glitched_tip(e, i) {
 }
 
 window.onload = function() {
-    document.addEventListener('keypress', function (e) {
+    document.querySelector("#terminal_input").addEventListener('keypress', function (e) {
         if(e.code == 'enter'){
             play()
         }
