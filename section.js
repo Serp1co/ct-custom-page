@@ -139,9 +139,3 @@ function get_glitched_tip(e, i) {
     }
     return glitched_hint_html_fn(e, offset_x, offset_y);
 }
-
-document.querySelector("#terminal_input").addEventListener('keypress', function (e) {
-        if(e.code == 'enter'){
-            play()
-        }
-});
