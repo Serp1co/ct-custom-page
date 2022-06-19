@@ -90,6 +90,7 @@ div#terminal_output {
     align-content: center;
     vertical-align: center;
     overflow: scroll;
+    scrollbar-color: black;
 }
 
 div.sector {
