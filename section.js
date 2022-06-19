@@ -139,3 +139,11 @@ function get_glitched_tip(e, i) {
     }
     return glitched_hint_html_fn(e, offset_x, offset_y);
 }
+
+window.onload = function() {
+    document.addEventListener('keypress', function (e) {
+        if(e.code == 'enter'){
+            play()
+        }
+    });
+}
