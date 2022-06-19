@@ -10,10 +10,6 @@ div.row {
     padding: 2px 2px 2px 2px;
 }
 
-div.body_box {
-    border: 0px;
-}
-
 .glitch {
     font-size: 2rem;
     position: absolute;
