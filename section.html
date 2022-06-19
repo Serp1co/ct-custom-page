@@ -75,7 +75,7 @@
     </div>
 </div>
 <div class="container terminal" id="terminal_input_div">
-    <p class="terminal_text">[root@<env>localhost</env> ~]# <input type="text" id="terminal_input" class="terminal_input" /><button
+    <p class="terminal_text">[root@<env>localhost</env> ~]# <input type="text" id="terminal_input" class="terminal_input" onkeypress="(e)=>{if(e.code=='Enter') play()}"/><button
             class="terminal_button" onclick="play()">></button>
     </p>
 </div>
