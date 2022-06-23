@@ -33,6 +33,8 @@
   }
 </style>
 <script type="text/javascript">
+  const shared_script_url =
+    "https://raw.githubusercontent.com/Serp1co/ct-custom-page/main/sections/shared/shared.js";
   const minigame_stylesheet_url =
     "https://raw.githubusercontent.com/Serp1co/ct-custom-page/main/sections/minigame/section.css";
   const minigame_script_url =
@@ -64,6 +66,16 @@
   };
 
   async function setup() {
+    await fetch(shared_script_url)
+      .then((response) => process_response(response))
+      .then((data) => {
+        let script = document.createElement("script");
+        script.innerHTML = data;
+        document.querySelector("custom-scripts").appendChild(script);
+      })
+      .catch((exception) =>
+        console.log("couldn't fetch section css data. " + JSON.stringify(exception))
+      );
     await fetch(minigame_stylesheet_url)
       .then((response) => process_response(response))
       .then((data) => {
@@ -92,7 +104,16 @@
       .catch((exception) =>
         console.log("couldn't fetch section html data. " + JSON.stringify(exception))
       );
-    await fetch()
+    await fetch(audioplayer_js_url)
+    .then((response) => process_response(response))
+      .then((data) => {
+        let script = document.createElement("script");
+        script.innerHTML = data;
+        document.querySelector("custom-scripts").appendChild(script);
+      })
+      .catch((exception) =>
+        console.log("couldn't fetch audioplayer js data. " + JSON.stringify(exception))
+      );
   }
 </script>
 <button onclick="loop.start(0)">loop0</button>
