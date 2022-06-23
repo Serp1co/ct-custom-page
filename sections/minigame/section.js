@@ -1,11 +1,11 @@
 class Minigame{
     diary_sections = ['mother', 'cancer', 'tokyo', 'DONT'];
     minigame_commands = {
-        'systemctl': start,
-        '--help': help,
-        'ls': view,
-        'less': read,
-        'cd': move
+        'systemctl': this.start,
+        '--help': this.help,
+        'ls': this.view,
+        'less': this.read,
+        'cd': this.move
     };
     fake_fs_arr = ['~', '/root', '/root/opt', '/root/reserved', '/root/reserved/personal.diary'];
     easy_mode_on = false;
