@@ -11,7 +11,6 @@ class Minigame{
     easy_mode_on = false;
     path = '~';
     env = 'localhost';
-    
     constructor() {
 
     }
@@ -34,7 +33,6 @@ class Minigame{
     }
 
     start(arg) {
-        not_found = false;
         if (arg == "enable --now cockpit.socket") {
             this.env = 'remote';
             this.print_terminal_string("Connecting to socket.",200)
