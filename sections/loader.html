@@ -8,19 +8,20 @@
     background: black !important;
     border: none !important;
     border-top: 1px solid white !important;
-    border-bottom: 1px solid white !important;
-    border-radius: 0px 0px 0px 0px !important;
+    border-bottom: 0px solid white !important;
+    border-radius: 10px 10px 10px 10px !important;
   }
 
   .body_box {
     border: none !important;
   }
 
-  .ritratto {
-    border: 1px solid white !important;
+  .ritratto_avatar_immagine {
+    border-radius: 5px 5px 5px 5px !important;
   }
 
   .profilo,
+  .ritratto,
   .primo_box,
   .secondo_box,
   .terzo_box {
@@ -32,19 +33,24 @@
   }
 </style>
 <script type="text/javascript">
-  const minigame_stylesheet_url = "https://raw.githubusercontent.com/Serp1co/ct-custom-page/main/section.css";
-  const minigame_script_url = "https://raw.githubusercontent.com/Serp1co/ct-custom-page/main/section.js";
-  const minigame_html_url = "https://raw.githubusercontent.com/Serp1co/ct-custom-page/main/section.html";
+  const minigame_stylesheet_url =
+    "https://raw.githubusercontent.com/Serp1co/ct-custom-page/main/sections/minigame/section.css";
+  const minigame_script_url =
+    "https://raw.githubusercontent.com/Serp1co/ct-custom-page/main/sections/minigame/section.js";
+  const minigame_html_url =
+    "https://raw.githubusercontent.com/Serp1co/ct-custom-page/main/sections/minigame/section.html";
+    const audioplayer_js_url =
+    "https://raw.githubusercontent.com/Serp1co/ct-custom-page/main/sections/audioplayer/audioplayer.js";
 
   let loader_interval = setInterval(
-      () => (document.querySelector("load-await").innerHTML += " . "),
-      100
-    );
+    () => (document.querySelector("load-await").innerHTML += " . "),
+    100
+  );
 
   window.onload = async function () {
-    await setup().then(()=> {
-        clearInterval(loader_interval);
-        document.querySelector("load-await").remove();
+    await setup().then(() => {
+      clearInterval(loader_interval);
+      document.querySelector("load-await").remove();
     });
   };
 
@@ -52,12 +58,12 @@
     if (response.ok) return response.text();
     else
       throw {
-        "status_code: ": response.status,
-        "status_description": response.statusText,
+        status_code: response.status,
+        status_description: response.statusText,
       };
   };
 
-  async function setup () {
+  async function setup() {
     await fetch(minigame_stylesheet_url)
       .then((response) => process_response(response))
       .then((data) => {
@@ -86,8 +92,12 @@
       .catch((exception) =>
         console.log("couldn't fetch html data. " + JSON.stringify(exception))
       );
-  };
+    await fetch()
+  }
 </script>
+<button onclick="loop.start(0)">loop0</button>
+<button onclick="loop.start(1)">loop1</button>
+<button onclick="loop.start(2)">loop2</button>
 <load-await> Loading. </load-await>
 <custom-styles> </custom-styles>
 <custom-section> </custom-section>

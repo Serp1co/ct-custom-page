@@ -75,8 +75,8 @@
     </div>
 </div>
 <div class="container terminal" id="terminal_input_div">
-    <p class="terminal_text">[root@<env>localhost</env> ~]# <input type="text" id="terminal_input" class="terminal_input" onkeypress="(e)=>{if(e.code==13) play()}"/><button
-            class="terminal_button" onclick="play()">></button>
+    <p class="terminal_text">[root@<env>localhost</env> ~]# <input type="text" id="terminal_input" class="terminal_input" onkeypress="function f(e){if(e.code==13) play()}"/><button
+            class="terminal_button" onclick="minigame.play()">></button>
     </p>
 </div>
 <div class="container server_footer" id="server_footer_div">
@@ -88,7 +88,7 @@
     <br />
     <br />
     <hr style="width: 100%;" />
-    <a class="hint" style="font-size:13px" onclick="easy_mode()">Start/Stop Easy mode - click here</a>
+    <a class="hint" style="font-size:13px" onclick="minigame.easy_mode()">Start/Stop Easy mode - click here</a>
     <hr style="width: 100%;" />
     <br />
     <div class="container" style="font-size:13px">
