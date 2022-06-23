@@ -40,31 +40,3 @@ function select_section(section_name) {
     const domElement = document.querySelector(s_section_id);
     switch_visibility(domElement);
 }
-
-function create_tip(text, index, easy_mode_on) {
-    return '<a onclick="load_tip('.concat("%index)").concat('" class="tip').concat(easy_mode_on ? '' : '').concat('">%text</a> ')
-        .replaceAll('%text', text)
-        .replaceAll('%index', index);
-}
-
-function create_hint(text, hint = text, easy_mode_on) {
-    return '<a onclick="load_hint('.concat("'%hint')").concat('" class="hint').concat(easy_mode_on ? ' hint-easy' : '').concat('">%text</a> ')
-        .replaceAll('%text', text)
-        .replaceAll('%hint', hint);
-}
-
-function load_tip(arg, easy_mode_on) {
-    const tip = [...this.diary_sections[arg]];
-    let tip_html = '';
-    tip.forEach((e, i) => tip_html += get_glitched_tip(e, i));
-    document.querySelector('.overlay').innerHTML = tip_html;
-    if (easy_mode_on) {
-        document.querySelector('#terminal_input').value = tip.join('');
-    }
-}
-
-function load_hint(hint, easy_mode_on) {
-    if (easy_mode_on) {
-        document.querySelector('#terminal_input').value = hint;
-    }
-}

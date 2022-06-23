@@ -93,6 +93,35 @@ class Minigame{
                 document.querySelector("#terminal_output").innerHTML += line_template;
             }, delay)});
     }
+
+    create_tip(text, index) {
+        return '<a onclick="load_tip('.concat("%index)").concat('" class="tip').concat(this.easy_mode_on ? '' : '').concat('">%text</a> ')
+            .replaceAll('%text', text)
+            .replaceAll('%index', index);
+    }
+    
+    create_hint(text, hint = text) {
+        return '<a onclick="load_hint('.concat("'%hint')").concat('" class="hint').concat(this.easy_mode_on ? ' hint-easy' : '').concat('">%text</a> ')
+            .replaceAll('%text', text)
+            .replaceAll('%hint', hint);
+    }
+
+    load_tip(arg) {
+        const tip = [...this.diary_sections[arg]];
+        let tip_html = '';
+        tip.forEach((e, i) => tip_html += get_glitched_tip(e, i));
+        document.querySelector('.overlay').innerHTML = tip_html;
+        if (easy_mode_on) {
+            document.querySelector('#terminal_input').value = tip.join('');
+        }
+    }
+    
+    load_hint(hint) {
+        if (this.easy_mode_on) {
+            document.querySelector('#terminal_input').value = hint;
+        }
+    }
+
 }
 
 const minigame = new Minigame();
