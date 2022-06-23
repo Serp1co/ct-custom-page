@@ -72,7 +72,7 @@
         document.querySelector("custom-styles").appendChild(style);
       })
       .catch((exception) =>
-        console.log("couldn't fetch css data. " + JSON.stringify(exception))
+        console.log("couldn't fetch section css data. " + JSON.stringify(exception))
       );
     await fetch(minigame_script_url)
       .then((response) => process_response(response))
@@ -82,7 +82,7 @@
         document.querySelector("custom-scripts").appendChild(script);
       })
       .catch((exception) =>
-        console.log("couldn't fetch js data. " + JSON.stringify(exception))
+        console.log("couldn't fetch section js data. " + JSON.stringify(exception))
       );
     await fetch(minigame_html_url)
       .then((response) => process_response(response))
@@ -90,7 +90,7 @@
         document.querySelector("custom-section").innerHTML += data;
       })
       .catch((exception) =>
-        console.log("couldn't fetch html data. " + JSON.stringify(exception))
+        console.log("couldn't fetch section html data. " + JSON.stringify(exception))
       );
     await fetch()
   }
