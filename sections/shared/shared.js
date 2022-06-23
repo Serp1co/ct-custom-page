@@ -1,8 +1,3 @@
-function change(arg) {
-    clean_all_visible(".sector");
-    select_section(arg);
-}
-
 function get_glitched_tip(e, i) {
     if (!this.easy_mode_on) {
         offset_x = i * getRandomInt(10, 640 / (i + 1));

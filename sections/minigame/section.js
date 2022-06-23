@@ -28,10 +28,15 @@ class Minigame{
         const command = full_cmd[0];
         const args = full_cmd.slice(1, full_cmd.length + 1).join(' ');
         if (this.minigame_commands[command]) this.minigame_commands[command](args);
-        else if(this.diary_sections.indexOf(command) != -1) change(command);
+        else if(this.diary_sections.indexOf(command) != -1) this.change(command);
         else if(command.length != 0) this.print_terminal_string(command + " not found");
     }
 
+    change(arg) {
+        clean_all_visible(".sector");
+        select_section(arg);
+    }
+    
     start(arg) {
         if (arg == "enable --now cockpit.socket") {
             this.env = 'remote';
