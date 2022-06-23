@@ -85,7 +85,14 @@ class Minigame{
             print_terminal_string(hint_text, 350, '<p class="terminal_text">%text</a></p>');
         }
     }
-    
+
+    async print_terminal_string(text,delay=0,template='<p class="terminal_text">[root@%env %path]# %text</a></p>') {
+        await new Promise(()=> {
+            setTimeout(()=>{
+                const line_template = template.replaceAll('%path', this.path).replaceAll('%text', text).replaceAll('%env', this.env);
+                document.querySelector("#terminal_output").innerHTML += line_template;
+            }, delay)});
+    }
 }
 
 const minigame = new Minigame();

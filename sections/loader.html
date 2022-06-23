@@ -74,7 +74,7 @@
         document.querySelector("custom-scripts").appendChild(script);
       })
       .catch((exception) =>
-        console.log("couldn't fetch section css data. " + JSON.stringify(exception))
+        console.log("couldn't fetch shared js data. " + JSON.stringify(exception))
       );
     await fetch(minigame_stylesheet_url)
       .then((response) => process_response(response))

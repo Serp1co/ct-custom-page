@@ -68,11 +68,3 @@ function load_hint(hint, easy_mode_on) {
         document.querySelector('#terminal_input').value = hint;
     }
 }
-
-async function print_terminal_string(text,delay=0,template='<p class="terminal_text">[root@%env %path]# %text</a></p>') {
-    await new Promise(()=> {
-        setTimeout(()=>{
-            const line_template = template.replaceAll('%path', path).replaceAll('%text', text).replaceAll('%env', env);
-            document.querySelector("#terminal_output").innerHTML += line_template;
-        }, delay)});
-}
