@@ -1,0 +1,94 @@
+<style>
+  .main_body {
+    background: black;
+  }
+
+  .titolo_box_scheda,
+  .title {
+    background: black !important;
+    border: none !important;
+    border-top: 1px solid white !important;
+    border-bottom: 1px solid white !important;
+    border-radius: 0px 0px 0px 0px !important;
+  }
+
+  .body_box {
+    border: none !important;
+  }
+
+  .ritratto {
+    border: 1px solid white !important;
+  }
+
+  .profilo,
+  .primo_box,
+  .secondo_box,
+  .terzo_box {
+    border: none !important;
+  }
+
+  ::-webkit-scrollbar {
+    background: black !important;
+  }
+</style>
+<script type="text/javascript">
+  const minigame_stylesheet_url = "https://raw.githubusercontent.com/Serp1co/ct-custom-page/main/section.css";
+  const minigame_script_url = "https://raw.githubusercontent.com/Serp1co/ct-custom-page/main/section.js";
+  const minigame_html_url = "https://raw.githubusercontent.com/Serp1co/ct-custom-page/main/section.html";
+
+  let loader_interval = setInterval(
+      () => (document.querySelector("load-await").innerHTML += " . "),
+      100
+    );
+
+  window.onload = async function () {
+    await setup().then(()=> {
+        clearInterval(loader_interval);
+        document.querySelector("load-await").remove();
+    });
+  };
+
+  const process_response = function (response) {
+    if (response.ok) return response.text();
+    else
+      throw {
+        "status_code: ": response.status,
+        "status_description": response.statusText,
+      };
+  };
+
+  async function setup () {
+    await fetch(minigame_stylesheet_url)
+      .then((response) => process_response(response))
+      .then((data) => {
+        let style = document.createElement("style");
+        style.innerHTML = data;
+        document.querySelector("custom-styles").appendChild(style);
+      })
+      .catch((exception) =>
+        console.log("couldn't fetch css data. " + JSON.stringify(exception))
+      );
+    await fetch(minigame_script_url)
+      .then((response) => process_response(response))
+      .then((data) => {
+        let script = document.createElement("script");
+        script.innerHTML = data;
+        document.querySelector("custom-scripts").appendChild(script);
+      })
+      .catch((exception) =>
+        console.log("couldn't fetch js data. " + JSON.stringify(exception))
+      );
+    await fetch(minigame_html_url)
+      .then((response) => process_response(response))
+      .then((data) => {
+        document.querySelector("custom-section").innerHTML += data;
+      })
+      .catch((exception) =>
+        console.log("couldn't fetch html data. " + JSON.stringify(exception))
+      );
+  };
+</script>
+<load-await> Loading. </load-await>
+<custom-styles> </custom-styles>
+<custom-section> </custom-section>
+<custom-scripts> </custom-scripts>
