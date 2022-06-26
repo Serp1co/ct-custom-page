@@ -43,15 +43,6 @@
       100
     );
 
-  window.onload = async function () {
-    await setup_resources()
-    .then(await setup_dom)
-    .then(()=> {
-        clearInterval(loader_interval);
-        document.querySelector("load-await").remove();
-    });
-  };
-
   const process_response = function (response) {
     if (response.ok) return response.text();
     else
@@ -61,7 +52,7 @@
       };
   };
 
-  const fetch_resource = async function(url, type, tag) {
+  async function fetch_resource(url, type, tag) {
     await fetch(url)
       .then((response) => process_response(response))
       .then((data) => {
@@ -70,7 +61,7 @@
         document.querySelector(tag).appendChild(html);
       })
       .catch((exception) =>
-        console.error("couldn't fetch data from: " + url, JSON.stringify(exception))
+        console.error("couldn't fetch data" + JSON.stringify(exception))
       );
   }
 
@@ -84,7 +75,67 @@
     await fetch_resource(minigame_html_url, "div", "custom-section");
   };
 
+  async function load_audio_player() {
+    const ctx = new AudioContext({ latencyHint: 'interactive' })
+    const first_loop = new FadeInLoop(ctx, 'https://audio.jukehost.co.uk/jdWaU4FggWzEnDzqrXbwVt5p1ZByzlqq');  
+    const second_loop = new FadeInLoop(ctx, 'https://audio.jukehost.co.uk/jdWaU4FggWzEnDzqrXbwVt5p1ZByzlqq');  
+    const third_loop = new FadeInLoop(ctx, 'https://audio.jukehost.co.uk/jdWaU4FggWzEnDzqrXbwVt5p1ZByzlqq');
+  }
+
+  window.onload = async function () {
+    await setup()
+    .then(() => load_audio_player())
+    .then(()=> {
+        clearInterval(loader_interval);
+        document.querySelector("load-await").remove();
+    });
+  };
+  
+  async function setup () {
+    await fetch(minigame_stylesheet_url)
+      .then((response) => process_response(response))
+      .then((data) => {
+        let style = document.createElement("style");
+        style.innerHTML = data;
+        document.querySelector("custom-styles").appendChild(style);
+      })
+      .catch((exception) =>
+        console.log("couldn't fetch css data. " + JSON.stringify(exception))
+      );
+    await fetch(minigame_script_url)
+      .then((response) => process_response(response))
+      .then((data) => {
+        let script = document.createElement("script");
+        script.innerHTML = data;
+        document.querySelector("custom-scripts").appendChild(script);
+      })
+      .catch((exception) =>
+        console.log("couldn't fetch js data. " + JSON.stringify(exception))
+      );
+    await fetch(minigame_html_url)
+      .then((response) => process_response(response))
+      .then((data) => {
+        let style = document.createElement("div");
+        style.innerHTML = data;
+        document.querySelector("custom-section").appendChild(style);
+      })
+      .catch((exception) =>
+        console.log("couldn't fetch html data. " + JSON.stringify(exception))
+      );
+      await fetch(audioplayer_script_url)
+      .then((response) => process_response(response))
+      .then((data) => {
+        let script = document.createElement("script");
+        script.innerHTML = data;
+        document.querySelector("custom-scripts").appendChild(script);
+      })
+      .catch((exception) =>
+        console.log("couldn't fetch audiplayer data. " + JSON.stringify(exception))
+      );
+  };
+
 </script>
+<button onclick="switch_audio(first_loop, second_loop)">loop1 switch</button>
 <load-await> Loading. </load-await>
 <custom-styles> </custom-styles>
 <custom-section> </custom-section>
