@@ -44,7 +44,9 @@
     );
 
   window.onload = async function () {
-    await setup().then(()=> {
+    await setup_resources()
+    .then(await setup_dom)
+    .then(()=> {
         clearInterval(loader_interval);
         document.querySelector("load-await").remove();
     });
@@ -72,12 +74,16 @@
       );
   }
 
-  async function setup () {
+  async function setup_resources() {
     await fetch_resource(minigame_stylesheet_url, "style", "custom-styles");
     await fetch_resource(minigame_script_url, "script", "custom-scripts");
-    await fetch_resource(minigame_html_url, "div", "custom-section");
     await fetch_resource(audioplayer_script_url, "script", "custom-scripts");
   };
+
+  async function setup_dom() {
+    await fetch_resource(minigame_html_url, "div", "custom-section");
+  };
+
 </script>
 <load-await> Loading. </load-await>
 <custom-styles> </custom-styles>
