@@ -6,7 +6,7 @@ class FadeInLoop {
   
     constructor(ctx, url) {
       this.ctx = ctx;
-      this.audioBuffer = get_audio_buffer(url);
+      this.audioBuffer = this.get_audio_buffer(url);
       this.gainNode = ctx.createGain();
       this.gainNode.connect(ctx.destination);
     }
