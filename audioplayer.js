@@ -46,15 +46,7 @@ class FadeInLoop {
         exit_loop.stop().then(() => entry_loop.start());
   }
 
-  async function load_audio_player() {
-    const ctx = new AudioContext({ latencyHint: 'interactive' })
-    const first_loop = new FadeInLoop(ctx, 'https://audio.jukehost.co.uk/jdWaU4FggWzEnDzqrXbwVt5p1ZByzlqq');  
-    const second_loop = new FadeInLoop(ctx, 'https://audio.jukehost.co.uk/jdWaU4FggWzEnDzqrXbwVt5p1ZByzlqq');  
-    const third_loop = new FadeInLoop(ctx, 'https://audio.jukehost.co.uk/jdWaU4FggWzEnDzqrXbwVt5p1ZByzlqq');
-  }
-
-  window.onload = async function () {
-    await load_audio_player().then(()=> {
-        console.log("audio loaded");
-    })
-  };
+const ctx = new AudioContext({ latencyHint: 'interactive' })
+const first_loop = new FadeInLoop(ctx, 'https://audio.jukehost.co.uk/jdWaU4FggWzEnDzqrXbwVt5p1ZByzlqq');  
+const second_loop = new FadeInLoop(ctx, 'https://audio.jukehost.co.uk/jdWaU4FggWzEnDzqrXbwVt5p1ZByzlqq');  
+const third_loop = new FadeInLoop(ctx, 'https://audio.jukehost.co.uk/jdWaU4FggWzEnDzqrXbwVt5p1ZByzlqq');
