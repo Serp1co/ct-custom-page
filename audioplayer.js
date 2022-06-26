@@ -40,16 +40,16 @@ class FadeInLoop {
         exit_loop.stop().then(() => entry_loop.start());
   }
 
-async function get_audio_buffer(url) {
-    return await fetch(url)
+function get_audio_buffer(url) {
+    return fetch(url)
         .then(response => response.arrayBuffer())
         .then(arrayBuffer => ctx.decodeAudioData(arrayBuffer));
 }
 
 const ctx = new AudioContext({ latencyHint: 'interactive' })
-const first_audio = await get_audio_buffer('https://audio.jukehost.co.uk/jdWaU4FggWzEnDzqrXbwVt5p1ZByzlqq');  
-const second_audio = await get_audio_buffer('https://audio.jukehost.co.uk/jdWaU4FggWzEnDzqrXbwVt5p1ZByzlqq');  
-const third_audio = await get_audio_buffer('https://audio.jukehost.co.uk/jdWaU4FggWzEnDzqrXbwVt5p1ZByzlqq');
+const first_audio = get_audio_buffer('https://audio.jukehost.co.uk/jdWaU4FggWzEnDzqrXbwVt5p1ZByzlqq');  
+const second_audio = get_audio_buffer('https://audio.jukehost.co.uk/jdWaU4FggWzEnDzqrXbwVt5p1ZByzlqq');  
+const third_audio = get_audio_buffer('https://audio.jukehost.co.uk/jdWaU4FggWzEnDzqrXbwVt5p1ZByzlqq');
 const first_loop = new FadeInLoop(ctx, first_audio);  
 const second_loop = new FadeInLoop(ctx, second_audio);  
 const third_loop = new FadeInLoop(ctx, third_audio);
