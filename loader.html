@@ -75,20 +75,11 @@
     await fetch_resource(minigame_html_url, "div", "custom-section");
   };
 
-  async function load_audio_player() {
-    const ctx = new AudioContext({ latencyHint: 'interactive' })
-    const first_loop = new FadeInLoop(ctx, 'https://audio.jukehost.co.uk/jdWaU4FggWzEnDzqrXbwVt5p1ZByzlqq');  
-    const second_loop = new FadeInLoop(ctx, 'https://audio.jukehost.co.uk/jdWaU4FggWzEnDzqrXbwVt5p1ZByzlqq');  
-    const third_loop = new FadeInLoop(ctx, 'https://audio.jukehost.co.uk/jdWaU4FggWzEnDzqrXbwVt5p1ZByzlqq');
-  }
-
   window.onload = async function () {
-    await setup()
-    .then(() => load_audio_player())
-    .then(()=> {
+    await setup().then(()=> {
         clearInterval(loader_interval);
         document.querySelector("load-await").remove();
-    });
+    })
   };
   
   async function setup () {
