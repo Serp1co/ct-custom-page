@@ -35,6 +35,8 @@
   const minigame_stylesheet_url = "https://raw.githubusercontent.com/Serp1co/ct-custom-page/main/section.css";
   const minigame_script_url = "https://raw.githubusercontent.com/Serp1co/ct-custom-page/main/section.js";
   const minigame_html_url = "https://raw.githubusercontent.com/Serp1co/ct-custom-page/main/section.html";
+  const audioplayer_script_url = "https://raw.githubusercontent.com/Serp1co/ct-custom-page/main/audioplayer.js";
+  
 
   let loader_interval = setInterval(
       () => (document.querySelector("load-await").innerHTML += " . "),
@@ -57,35 +59,24 @@
       };
   };
 
+  const fetch_resource = async function(url, type, tag) {
+    await fetch(url)
+      .then((response) => process_response(response))
+      .then((data) => {
+        let html = document.createElement(type);
+        style.innerHTML = html;
+        document.querySelector(tag).appendChild(html);
+      })
+      .catch((exception) =>
+        console.error("couldn't fetch data from: " + url, JSON.stringify(exception))
+      );
+  }
+
   async function setup () {
-    await fetch(minigame_stylesheet_url)
-      .then((response) => process_response(response))
-      .then((data) => {
-        let style = document.createElement("style");
-        style.innerHTML = data;
-        document.querySelector("custom-styles").appendChild(style);
-      })
-      .catch((exception) =>
-        console.log("couldn't fetch css data. " + JSON.stringify(exception))
-      );
-    await fetch(minigame_script_url)
-      .then((response) => process_response(response))
-      .then((data) => {
-        let script = document.createElement("script");
-        script.innerHTML = data;
-        document.querySelector("custom-scripts").appendChild(script);
-      })
-      .catch((exception) =>
-        console.log("couldn't fetch js data. " + JSON.stringify(exception))
-      );
-    await fetch(minigame_html_url)
-      .then((response) => process_response(response))
-      .then((data) => {
-        document.querySelector("custom-section").innerHTML += data;
-      })
-      .catch((exception) =>
-        console.log("couldn't fetch html data. " + JSON.stringify(exception))
-      );
+    await fetch_resource(minigame_stylesheet_url, "style", "custom-styles");
+    await fetch_resource(minigame_script_url, "script", "custom-scripts");
+    await fetch_resource(minigame_html_url, "div", "custom-section");
+    await fetch_resource(audioplayer_script_url, "script", "custom-scripts");
   };
 </script>
 <load-await> Loading. </load-await>
