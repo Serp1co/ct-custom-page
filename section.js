@@ -144,11 +144,9 @@ function switch_audio(exit_loop_id, entry_loop_id){
     exit_sound = document.querySelector("#"+exit_loop_id);
     entry_sound = document.querySelector("#"+entry_loop_id)
     const fade_out = setInterval(() => {
-            const fadePoint = exit_sound.duration - 5;
-            if ((exit_sound.currentTime >= fadePoint) && (exit_sound.volume !== 0)) {
-                exit_sound.volume -= 0.1
+            if (exit_sound.volume !== 0) {
+                exit_sound.volume -= 0.1;
             }
-        
             if (exit_sound.volume < 0.003) {
                 clearInterval(fade_out);
                 exit_sound.pause();
