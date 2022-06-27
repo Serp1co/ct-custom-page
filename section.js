@@ -141,7 +141,7 @@ function get_glitched_tip(e, i) {
 }
 
 function switch_audio(entry_loop_id){
-    exit_sound = document.querySelector(".audio .on");
+    exit_sound = document.querySelector(".audio.on");
     entry_sound = document.querySelector("#"+entry_loop_id)
     const fade_out = setInterval(() => {
             if (exit_sound.volume !== 0) {
