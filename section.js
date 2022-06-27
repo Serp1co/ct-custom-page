@@ -231,6 +231,7 @@ function init_glitch(imageBoard) {
   }
 
   function render(canvas, imageData, image) {
+    console.log("rendering")
     let width = canvas.width;
     let height = canvas.height;
 
@@ -326,4 +327,7 @@ function init_glitch(imageBoard) {
     },
   ];
 
-  document.querySelectorAll('[data-js="glitch-image"]').forEach(e=>e.addEventListener("mouseover", init_glitch(e)));
+  document.querySelectorAll('[data-js="glitch-image"]').forEach(e=>{
+        console.log("adding listener to " + e)
+        e.addEventListener("mouseover", init_glitch(e))}
+    );
