@@ -1,7 +1,7 @@
   <script>
     const audio_ctx = new AudioContext({ latencyHint: "interactive" });
 
-    async function stop_audio(source) {
+    function stop_audio(source) {
       gainNode = audio_ctx.createGain();
       gainNode.connect(audio_ctx.destination);
       const now = audio_ctx.currentTime;
@@ -13,11 +13,11 @@
     }
 
 
-  async function switch_audio(exit_loop_id, entry_loop_id) {
+  function switch_audio(exit_loop_id, entry_loop_id) {
     let entry_loop = document.querySelector("#"+entry_loop_id);
     let exit_loop = document.querySelector("#"+exit_loop_id);
     if (exit_loop.isPlaying && !entry_loop.isPlaying)
-      await stop_audio(exit_loop).then((i) => entry_loop.start());
+      stop_audio(exit_loop).then((i) => entry_loop.start());
   }
 
 </script>
