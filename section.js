@@ -150,9 +150,9 @@ function switch_audio(entry_loop_id){
             if (exit_sound.volume < 0.003) {
                 clearInterval(fade_out);
                 exit_sound.pause();
-                exit_sound.toggle("on").toggle("off");
+                exit_sound.classList.toggle("off").toggle("on");
                 entry_sound.play(0);
-                entry_sound.toggle("on").toggle("off");
+                entry_sound.classList.toggle("on").toggle("off");
             }
         }, 
         200);
