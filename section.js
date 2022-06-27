@@ -217,10 +217,36 @@ function switch_audio(entry_loop_id) {
   }, 125);
 }
 
-function start_glitch(window) {
-  console.log("starting glitch");
-  let _canvas, _context;
-  let _image, _imageData;
+function init_glitch(imageBoard) {
+    _image = imageBoard.querySelector("img");
+    _canvas = document.createElement("canvas");
+    _context = _canvas.getContext("2d");
+
+    imageBoard.appendChild(_canvas);
+
+    _imageData = new Image();
+    _imageData.crossOrigin = "Anonymous";
+    _imageData.src = _image.getAttribute("src");
+    render(_canvas, _imageData, _image);
+  }
+
+  function render(canvas, imageData, image) {
+    let width = canvas.width;
+    let height = canvas.height;
+
+    _context.clearRect(0, 0, width, height);
+    _context.drawImage(imageData, 0, 0, image.width, image.height);
+
+    if (0.5 < Math.random()) {
+      getRandomValue(effectList)(_context, width, height);
+    }
+
+    window.requestAnimationFrame(render);
+  }
+
+  function getRandomValue(array) {
+    return array[Math.floor(Math.random() * array.length)];
+  }
 
   const effectList = [
     function glitch(context, width, height) {
@@ -300,47 +326,4 @@ function start_glitch(window) {
     },
   ];
 
-  function init(imageBoard) {
-    _image = imageBoard.querySelector("img");
-    _canvas = document.createElement("canvas");
-    _context = _canvas.getContext("2d");
-
-    imageBoard.appendChild(_canvas);
-
-    _imageData = new Image();
-    _imageData.crossOrigin = "Anonymous";
-    _imageData.onload = function (event) {
-      window.addEventListener("resize", onResize, false);
-      window.dispatchEvent(new Event("resize"));
-      window.requestAnimationFrame(render);
-    };
-    _imageData.src = _image.getAttribute("src");
-  }
-
-  function onResize() {
-    _canvas.width = _image.width;
-    _canvas.height = _image.height;
-  }
-
-  function render(timestamp) {
-    let width = _canvas.width;
-    let height = _canvas.height;
-
-    _context.clearRect(0, 0, width, height);
-    _context.drawImage(_imageData, 0, 0, _image.width, _image.height);
-
-    if (0.5 < Math.random()) {
-      getRandomValue(effectList)(_context, width, height);
-    }
-
-    window.requestAnimationFrame(render);
-  }
-
-  function getRandomValue(array) {
-    return array[Math.floor(Math.random() * array.length)];
-  }
-
-  document.querySelectorAll('[data-js="glitch-image"]').forEach(e=>e.addEventListener("mouseover", init(e)));
-};
-
-start_glitch(window);
+  document.querySelectorAll('[data-js="glitch-image"]').forEach(e=>e.addEventListener("mouseover", init_glitch(e)));
