@@ -89,14 +89,16 @@
       () => (document.querySelector("load-await").innerHTML += " . "),
       100
     );
-    console.log("doing soethhing");
     await setup_styles()
       .then(() => setup_scripts())
       .then(() => setup_dom())
       .then(() => {
         clearInterval(loader_interval);
         document.querySelector("load-await").remove();
-      }).then(() => {document.dispatchEvent(new Event('build-complete'));});
+      })
+      .then(() => {
+        document.dispatchEvent(new Event('build-complete'));
+      });
   };
 </script>
 <load-await> Loading. </load-await>

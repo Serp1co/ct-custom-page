@@ -27,4 +27,7 @@ function switch_audio(entry_loop_id) {
   }
 }
 
-document.addEventListener('build-complete', function (e) {document.querySelector("#loop_1").play()}, false);
+document.addEventListener('build-complete', function (e) {
+    console.log("audioplayer start from event");
+    document.querySelector("#loop_1").play();
+}, false);
