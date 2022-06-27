@@ -143,3 +143,17 @@ function get_glitched_tip(e, i) {
   }
   return glitched_hint_html_fn(e, offset_x, offset_y);
 }
+
+function create_tip(text) {
+  return '<a'
+    .concat('" class="tip')
+    .concat('">%text</a> ')
+    .replaceAll("%text", text)
+}
+function create_hint(text) {
+  return '<a'
+    .concat('" class="hint')
+    .concat(" hint-easy")
+    .concat('">%text</a> ')
+    .replaceAll("%text", text)
+}
