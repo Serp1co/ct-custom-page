@@ -1,6 +1,12 @@
 function switch_audio(entry_loop_id) {
-    exit_sound = document.querySelector(".audio.on");
-    entry_sound = document.querySelector("#" + entry_loop_id);
+  exit_sound = document.querySelector(".audio.on");
+  entry_sound = document.querySelector("#" + entry_loop_id);
+  if (exit_sound == null) {
+    entry_sound.currentTime = 0;
+    entry_sound.play();
+    entry_sound.classList.toggle("on");
+    entry_sound.classList.toggle("off");
+  } else {
     const fade_out = setInterval(() => {
       if (exit_sound.volume !== 0) {
         exit_sound.volume -= 0.1;
@@ -19,3 +25,4 @@ function switch_audio(entry_loop_id) {
       }
     }, 125);
   }
+}

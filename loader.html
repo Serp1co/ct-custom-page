@@ -1,4 +1,9 @@
 <style>
+  body {
+    background: black;
+    color: white;
+  }
+
   .main_body {
     background: black;
   }
@@ -32,17 +37,22 @@
   }
 </style>
 <script type="text/javascript">
-  const minigame_stylesheet_url = "https://raw.githubusercontent.com/Serp1co/ct-custom-page/develop/components/sections/section.css";
-  const minigame_script_url = "https://raw.githubusercontent.com/Serp1co/ct-custom-page/develop/components/sections/section.js";
-  const minigame_html_url = "https://raw.githubusercontent.com/Serp1co/ct-custom-page/develop/components/sections/section.html";
-  const audioplayer_script_url = "https://raw.githubusercontent.com/Serp1co/ct-custom-page/develop/components/audioplayer/audioplayer.js";
-  const audioplayer_html_url = "https://raw.githubusercontent.com/Serp1co/ct-custom-page/develop/components/audioplayer/audioplayer.html";
-  
+  const minigame_stylesheet_url =
+    "https://raw.githubusercontent.com/Serp1co/ct-custom-page/develop/components/sections/section.css";
+  const minigame_script_url =
+    "https://raw.githubusercontent.com/Serp1co/ct-custom-page/develop/components/sections/section.js";
+  const minigame_html_url =
+    "https://raw.githubusercontent.com/Serp1co/ct-custom-page/develop/components/sections/section.html";
+  const audioplayer_script_url =
+    "https://raw.githubusercontent.com/Serp1co/ct-custom-page/develop/components/audioplayer/audioplayer.js";
+  const audioplayer_html_url =
+    "https://raw.githubusercontent.com/Serp1co/ct-custom-page/develop/components/audioplayer/audioplayer.html";
+
   const process_response = function (response) {
     if (response.ok) return response.text();
     else
       throw {
-        "status_code: ": response.status,
+        "status_code": response.status,
         "status_description": response.statusText,
       };
   };
@@ -52,11 +62,11 @@
       .then((response) => process_response(response))
       .then((data) => {
         let html = document.createElement(type);
-        style.innerHTML = html;
+        html.innerHTML = data;
         document.querySelector(tag).appendChild(html);
       })
       .catch((exception) =>
-        console.error("couldn't fetch data" + JSON.stringify(exception))
+        console.error(exception)
       );
   }
 
@@ -67,27 +77,27 @@
   async function setup_scripts() {
     await fetch_resource(minigame_script_url, "script", "custom-scripts");
     await fetch_resource(audioplayer_script_url, "script", "custom-scripts");
-  };
+  }
 
   async function setup_dom() {
     await fetch_resource(minigame_html_url, "div", "custom-section");
     await fetch_resource(audioplayer_html_url, "div", "custom-section");
-  };
+  }
 
-  (async function() {
-  let loader_interval = setInterval(
+  window.onload = async function () {
+    let loader_interval = setInterval(
       () => (document.querySelector("load-await").innerHTML += " . "),
       100
-  );
-  await setup_styles()
-    .then(()=>setup_scripts())
-    .then(()=>setup_dom())
-    .then(()=> {
+    );
+    console.log("doing soethhing");
+    await setup_styles()
+      .then(() => setup_scripts())
+      .then(() => setup_dom())
+      .then(() => {
         clearInterval(loader_interval);
         document.querySelector("load-await").remove();
-    })
-  });
-
+      });
+  };
 </script>
 <load-await> Loading. </load-await>
 <custom-styles> </custom-styles>
