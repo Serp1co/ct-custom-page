@@ -140,8 +140,8 @@ function get_glitched_tip(e, i) {
     return glitched_hint_html_fn(e, offset_x, offset_y);
 }
 
-function switch_audio(exit_loop_id, entry_loop_id){
-    exit_sound = document.querySelector("#"+exit_loop_id);
+function switch_audio(entry_loop_id){
+    exit_sound = document.querySelector(".audio .on");
     entry_sound = document.querySelector("#"+entry_loop_id)
     const fade_out = setInterval(() => {
             if (exit_sound.volume !== 0) {
@@ -150,7 +150,9 @@ function switch_audio(exit_loop_id, entry_loop_id){
             if (exit_sound.volume < 0.003) {
                 clearInterval(fade_out);
                 exit_sound.pause();
+                exit_sound.toggle("on").toggle("off");
                 entry_sound.play(0);
+                entry_sound.toggle("on").toggle("off");
             }
         }, 
         200);
