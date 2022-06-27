@@ -95,7 +95,7 @@ function help() {
 function view(arg) {
   if (arg == "-fs") {
     print_terminal_string("view file system...");
-    fake_fs_arr.forEach((e, i) => print_diary_string(e));
+    fake_fs_arr.forEach((e, i) => print_terminal_string(e));
   } else {
     print_terminal_string("Not allowed");
   }
