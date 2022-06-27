@@ -134,13 +134,8 @@ function load_tip(tip) {
   document.querySelector(".overlay").innerHTML = tip_html;
 }
 function get_glitched_tip(e, i) {
-  if (!easy_mode_on) {
-    offset_x = i * getRandomInt(10, 640 / (i + 1));
-    offset_y = getRandomInt(10, 490);
-  } else {
-    offset_x = 175 + i * 50;
-    offset_y = 220;
-  }
+  offset_x = i * getRandomInt(10, 640 / (i + 1));
+  offset_y = getRandomInt(10, 490);
   return glitched_hint_html_fn(e, offset_x, offset_y);
 }
 
