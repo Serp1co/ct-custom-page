@@ -148,7 +148,7 @@ div .login {
     position: absolute;
     height: 10px;
     background: #ffffff;
-    background: linear-gradient(45deg, #5a0000 0%, #ff0015 37%, #ffffff 94%);
+    background: linear-gradient(45deg, #222222 0%, #8b8b8b 37%, #ffffff 94%);
     bottom: 100%;
     left: 5px;
     right: -5px;
@@ -165,7 +165,7 @@ div .login {
     right: 0;
     bottom: 0;
     background: #ffffff;
-    background: linear-gradient(60deg, #5a0000 0%, #ff0015 37%, #ffffff 94%);
+    background: linear-gradient(60deg, #222222 0%, #8b8b8b 37%, #ffffff 94%);
   }
   .block-cube .bg-right {
     position: absolute;
