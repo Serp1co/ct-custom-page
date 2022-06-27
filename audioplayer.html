@@ -1,26 +1,6 @@
-  <script>
-    const audio_ctx = new AudioContext({ latencyHint: "interactive" });
-
-    function stop_audio(source) {
-      gainNode = audio_ctx.createGain();
-      gainNode.connect(audio_ctx.destination);
-      const now = audio_ctx.currentTime;
-      gainNode.gain.setValueAtTime(Number.EPSILON, now);
-      gainNode.gain.exponentialRampToValueAtTime(0, now + 0.155);
-      isPlaying = false;
-      source?.stop();
-      return "stop";
-    }
-
-
-  function switch_audio(exit_loop_id, entry_loop_id) {
-    let entry_loop = document.querySelector("#"+entry_loop_id);
-    let exit_loop = document.querySelector("#"+exit_loop_id);
-    if (exit_loop.isPlaying && !entry_loop.isPlaying)
-      stop_audio(exit_loop).then((i) => entry_loop.start());
-  }
-
-</script>
+<style>
+  
+</style>
 <div>
   <button onclick="switch_audio('loop_1', 'loop_2')">switch audio</button>
   <audio id="loop_1" autoplay="" preload="">
@@ -33,6 +13,26 @@
     <source src="https://audio.jukehost.co.uk/wCUNMulbMuR4u7hwMvnd5FjarS1mELvZ" />
   </audio>
 </div>
-<style>
-  
-</style>
+<script>
+  const audio_ctx = new AudioContext({ latencyHint: "interactive" });
+
+  function stop_audio(source) {
+    gainNode = audio_ctx.createGain();
+    gainNode.connect(audio_ctx.destination);
+    const now = audio_ctx.currentTime;
+    gainNode.gain.setValueAtTime(Number.EPSILON, now);
+    gainNode.gain.exponentialRampToValueAtTime(0, now + 0.155);
+    isPlaying = false;
+    source?.stop();
+    return "stop";
+  }
+
+
+function switch_audio(exit_loop_id, entry_loop_id) {
+  let entry_loop = document.querySelector("#"+entry_loop_id);
+  let exit_loop = document.querySelector("#"+exit_loop_id);
+  if (exit_loop.isPlaying && !entry_loop.isPlaying)
+    stop_audio(exit_loop).then((i) => entry_loop.start());
+}
+
+</script>
