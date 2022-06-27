@@ -200,7 +200,7 @@ function switch_audio(entry_loop_id) {
   entry_sound = document.querySelector("#" + entry_loop_id);
   const fade_out = setInterval(() => {
     if (exit_sound.volume !== 0) {
-      exit_sound.volume -= 0.15;
+      exit_sound.volume -= 0.1;
     }
     if (exit_sound.volume < 0.003) {
       clearInterval(fade_out);
