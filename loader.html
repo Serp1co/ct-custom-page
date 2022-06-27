@@ -32,12 +32,12 @@
   }
 </style>
 <script type="text/javascript">
-  const minigame_stylesheet_url = "https://raw.githubusercontent.com/Serp1co/ct-custom-page/main/section.css";
-  const minigame_script_url = "https://raw.githubusercontent.com/Serp1co/ct-custom-page/main/section.js";
-  const minigame_html_url = "https://raw.githubusercontent.com/Serp1co/ct-custom-page/main/section.html";
-
-
-
+  const minigame_stylesheet_url = "https://raw.githubusercontent.com/Serp1co/ct-custom-page/develop/components/sections/section.css";
+  const minigame_script_url = "https://raw.githubusercontent.com/Serp1co/ct-custom-page/develop/components/sections/section.js";
+  const minigame_html_url = "https://raw.githubusercontent.com/Serp1co/ct-custom-page/develop/components/sections/section.html";
+  const audioplayer_script_url = "https://raw.githubusercontent.com/Serp1co/ct-custom-page/develop/components/audioplayer/audioplayer.js";
+  const audioplayer_html_url = "https://raw.githubusercontent.com/Serp1co/ct-custom-page/develop/components/audioplayer/audioplayer.html";
+  
   const process_response = function (response) {
     if (response.ok) return response.text();
     else
@@ -60,56 +60,29 @@
       );
   }
 
-  async function setup_resources() {
+  async function setup_styles() {
     await fetch_resource(minigame_stylesheet_url, "style", "custom-styles");
+  }
+
+  async function setup_scripts() {
     await fetch_resource(minigame_script_url, "script", "custom-scripts");
     await fetch_resource(audioplayer_script_url, "script", "custom-scripts");
   };
 
   async function setup_dom() {
     await fetch_resource(minigame_html_url, "div", "custom-section");
+    await fetch_resource(audioplayer_html_url, "div", "custom-section");
   };
 
-  
-  async function setup () {
-    await fetch(minigame_stylesheet_url)
-      .then((response) => process_response(response))
-      .then((data) => {
-        let style = document.createElement("style");
-        style.innerHTML = data;
-        document.querySelector("custom-styles").appendChild(style);
-      })
-      .catch((exception) =>
-        console.log("couldn't fetch css data. " + JSON.stringify(exception))
-      );
-    await fetch(minigame_script_url)
-      .then((response) => process_response(response))
-      .then((data) => {
-        let script = document.createElement("script");
-        script.innerHTML = data;
-        document.querySelector("custom-scripts").appendChild(script);
-      })
-      .catch((exception) =>
-        console.log("couldn't fetch js data. " + JSON.stringify(exception))
-      );
-    await fetch(minigame_html_url)
-      .then((response) => process_response(response))
-      .then((data) => {
-        let style = document.createElement("div");
-        style.innerHTML = data;
-        document.querySelector("custom-section").appendChild(style);
-      })
-      .catch((exception) =>
-        console.log("couldn't fetch html data. " + JSON.stringify(exception))
-      );
-  };
-
-(async function() {
+  (async function() {
   let loader_interval = setInterval(
       () => (document.querySelector("load-await").innerHTML += " . "),
       100
   );
-  await setup().then(()=> {
+  await setup_styles()
+    .then(()=>setup_scripts())
+    .then(()=>setup_dom())
+    .then(()=> {
         clearInterval(loader_interval);
         document.querySelector("load-await").remove();
     })
