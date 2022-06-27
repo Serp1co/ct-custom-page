@@ -220,6 +220,7 @@ function switch_audio(entry_loop_id) {
 function start_glitch(window) {
   "use strict";
 
+  console.log("starting glitch")
   let _canvas, _context;
   let _image, _imageData;
 
@@ -345,4 +346,4 @@ function start_glitch(window) {
   document.addEventListener("DOMContentLoaded", init);
 };
 
-start_glitch();
+start_glitch(window);
