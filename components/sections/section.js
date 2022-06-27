@@ -194,25 +194,3 @@ function get_glitched_tip(e, i) {
   }
   return glitched_hint_html_fn(e, offset_x, offset_y);
 }
-
-function switch_audio(entry_loop_id) {
-  exit_sound = document.querySelector(".audio.on");
-  entry_sound = document.querySelector("#" + entry_loop_id);
-  const fade_out = setInterval(() => {
-    if (exit_sound.volume !== 0) {
-      exit_sound.volume -= 0.1;
-    }
-    if (exit_sound.volume < 0.003) {
-      clearInterval(fade_out);
-      exit_sound.pause();
-      exit_sound.classList.toggle("off");
-      exit_sound.classList.toggle("on");
-      exit_sound.volume = 0;
-      entry_sound.volume = 1;
-      entry_sound.currentTime = 0;
-      entry_sound.play();
-      entry_sound.classList.toggle("on");
-      entry_sound.classList.toggle("off");
-    }
-  }, 125);
-}
