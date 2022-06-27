@@ -110,6 +110,7 @@ div.sector {
 
 .sector_img {
     align-self: center;
+    width: inherit;
 }
 
 p.terminal_text {

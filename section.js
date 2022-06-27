@@ -300,8 +300,7 @@ function start_glitch(window) {
     },
   ];
 
-  function init() {
-    const imageBoard = document.querySelector('[data-js="glitch-image"]');
+  function init(imageBoard) {
     _image = imageBoard.querySelector("img");
     _canvas = document.createElement("canvas");
     _context = _canvas.getContext("2d");
@@ -341,7 +340,7 @@ function start_glitch(window) {
     return array[Math.floor(Math.random() * array.length)];
   }
 
-  document.addEventListener("DOMContentLoaded", init);
+  document.querySelectorAll('[data-js="glitch-image"]').forEach(e=>e.addEventListener("mouseover", init(e)));
 };
 
 start_glitch(window);
