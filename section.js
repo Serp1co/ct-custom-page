@@ -139,3 +139,23 @@ function get_glitched_tip(e, i) {
     }
     return glitched_hint_html_fn(e, offset_x, offset_y);
 }
+
+function stop_audio(source) {
+  gainNode = audio_ctx.createGain();
+  gainNode.connect(audio_ctx.destination);
+  const now = audio_ctx.currentTime;
+  gainNode.gain.setValueAtTime(Number.EPSILON, now);
+  gainNode.gain.exponentialRampToValueAtTime(0, now + 0.155);
+  isPlaying = false;
+  source?.stop();
+  return "stop";
+}
+
+function switch_audio(exit_loop_id, entry_loop_id) {
+let entry_loop = document.querySelector("#"+entry_loop_id);
+let exit_loop = document.querySelector("#"+exit_loop_id);
+if (exit_loop.isPlaying && !entry_loop.isPlaying)
+  stop_audio(exit_loop).then((i) => entry_loop.start());
+}
+
+const audio_ctx = new AudioContext({ latencyHint: "interactive" });
