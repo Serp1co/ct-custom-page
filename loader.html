@@ -37,26 +37,19 @@
   }
 </style>
 <script type="text/javascript">
-  /*const minigame_stylesheet_url =
-    "https://raw.githubusercontent.com/Serp1co/ct-custom-page/develop/components/sections/section.css";
+  const resource_target = "http://localhost/static";
+  //const resource_target = "https://raw.githubusercontent.com/Serp1co/ct-custom-page/develop";
+
+  const minigame_stylesheet_url =
+    "/components/sections/section.css";
   const minigame_script_url =
-    "https://raw.githubusercontent.com/Serp1co/ct-custom-page/develop/components/sections/section.js";
+    "/components/sections/section.js";
   const minigame_html_url =
-    "https://raw.githubusercontent.com/Serp1co/ct-custom-page/develop/components/sections/section.html";
+    "/components/sections/section.html";
   const audioplayer_script_url =
-    "https://raw.githubusercontent.com/Serp1co/ct-custom-page/develop/components/audioplayer/audioplayer.js";
+    "/components/audioplayer/audioplayer.js";
   const audioplayer_html_url =
-    "https://raw.githubusercontent.com/Serp1co/ct-custom-page/develop/components/audioplayer/audioplayer.html";*/
-    const minigame_stylesheet_url =
-    "http://localhost/static/components/sections/section.css";
-  const minigame_script_url =
-    "http://localhost/static/components/sections/section.js";
-  const minigame_html_url =
-    "http://localhost/static/components/sections/section.html";
-  const audioplayer_script_url =
-    "http://localhost/static/components/audioplayer/audioplayer.js";
-  const audioplayer_html_url =
-    "http://localhost/static/components/audioplayer/audioplayer.html";
+    "/components/audioplayer/audioplayer.html";
 
 
   const process_response = function (response) {
@@ -69,7 +62,7 @@
   };
 
   async function fetch_resource(url, type, tag) {
-    await fetch(url, {
+    await fetch(resource_target + url, {
       method: 'GET', // *GET, POST, PUT, DELETE, etc.
       mode: 'cors', // no-cors, *cors, same-origin
       cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
@@ -105,8 +98,8 @@
       100
     );
     await setup_styles()
-      .then(() => setup_scripts())
       .then(() => setup_dom())
+      .then(() => setup_scripts())
       .then(() => {
         clearInterval(loader_interval);
         document.querySelector("load-await").remove();

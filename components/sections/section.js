@@ -36,9 +36,29 @@ function glitched_tip_html_fn(letter, offset_x, offset_y) {
     .replaceAll("%s2", offset_x);
 }
 
-async function play() {}
-
 async function change(arg) {
   clean_all_visible(".sector");
   select_section(arg);
 }
+
+function play() {
+  document.querySelector("#login_section").classList.toggle("visible");
+  document.querySelector("#login_section").classList.toggle("hidden");
+  setTimeout(()=> {
+    document.querySelector("#login_section").style.display = 'none';
+    document.querySelector("#welcome_section").classList.toggle("visible");
+    document.querySelector("#welcome_section").classList.toggle("hidden");
+  }, 400);
+  setTimeout(()=> {
+    document.querySelector("#welcome_section").classList.toggle("visible");
+    document.querySelector("#welcome_section").classList.toggle("hidden");
+  }, 2400);
+  setTimeout(()=> {
+    switch_audio("loop_1")
+  }, 2800);
+}
+
+
+document.querySelector("#login_button").addEventListener('click', function(e) {
+  play();
+},false)

@@ -24,6 +24,10 @@
   opacity: 0.75;
 }
 
+.glitch_fast {
+  animation: glitch 375ms infinite;
+}
+
 .tip {
   animation: glitch 375ms infinite;
 }
@@ -94,7 +98,7 @@
 }
 
 div .monitor {
-  border: 1px whitesmoke dashed;
+  border: 1px #1f1f1f solid;
   height: 600px;
   width: 567px;
   padding-top: 5px;
@@ -143,8 +147,8 @@ div .login {
   .block-cube .bg-top {
     position: absolute;
     height: 10px;
-    background: #020024;
-    background: linear-gradient(90deg, #020024 0%, #340979 37%, #00d4ff 94%);
+    background: #ffffff;
+    background: linear-gradient(45deg, #5a0000 0%, #ff0015 37%, #ffffff 94%);
     bottom: 100%;
     left: 5px;
     right: -5px;
@@ -160,13 +164,13 @@ div .login {
     top: 0;
     right: 0;
     bottom: 0;
-    background: #020024;
-    background: linear-gradient(90deg, #020024 0%, #340979 37%, #00d4ff 94%);
+    background: #ffffff;
+    background: linear-gradient(60deg, #5a0000 0%, #ff0015 37%, #ffffff 94%);
   }
   .block-cube .bg-right {
     position: absolute;
-    background: #020024;
-    background: #00d4ff;
+    background: #ffffff;
+    background: #ffffff;
     top: -5px;
     z-index: 0;
     bottom: 5px;
@@ -181,7 +185,7 @@ div .login {
     transition: all 0.2s ease-in-out;
   }
   .block-cube .bg-inner {
-    background: #212121;
+    background: #1f1f1f;
     position: absolute;
     left: 2px;
     top: 2px;
@@ -219,4 +223,20 @@ div .login {
   }
   .block-cube.block-cube-hover:focus .bg .bg-inner, .block-cube.block-cube-hover:hover .bg .bg-inner {
     top: 100%;
+  }
+
+  .visible {
+    visibility: visible;
+    opacity: 1;
+    transition: visibility 1s, opacity 1s linear;
+  }
+  
+  .hidden {
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0.4s, opacity 0.4s linear;
+  }
+
+  .welcome {
+    text-align: center;
   }
