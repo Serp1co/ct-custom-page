@@ -98,3 +98,9 @@
         Source code available github@serp1co/ct-custom-page<br />
     </div>
 </div>
+<script>
+document.querySelectorAll('[data-js="glitch-image"]').forEach((e) => {
+  console.log("adding listener to " + e);
+  e.addEventListener("mouseover", init_glitch(e));
+});
+</script>
