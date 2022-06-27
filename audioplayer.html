@@ -1,0 +1,38 @@
+  <script>
+    const audio_ctx = new AudioContext({ latencyHint: "interactive" });
+
+    async function stop_audio(source) {
+      gainNode = audio_ctx.createGain();
+      gainNode.connect(audio_ctx.destination);
+      const now = audio_ctx.currentTime;
+      gainNode.gain.setValueAtTime(Number.EPSILON, now);
+      gainNode.gain.exponentialRampToValueAtTime(0, now + 0.155);
+      isPlaying = false;
+      source?.stop();
+      return "stop";
+    }
+
+
+  async function switch_audio(exit_loop_id, entry_loop_id) {
+    let entry_loop = document.querySelector("#"+entry_loop_id);
+    let exit_loop = document.querySelector("#"+exit_loop_id);
+    if (exit_loop.isPlaying && !entry_loop.isPlaying)
+      await stop_audio(exit_loop).then((i) => entry_loop.start());
+  }
+
+</script>
+<div>
+  <button onclick="switch_audio('loop1', 'loop2')">switch audio</button>
+  <audio id="loop1" autoplay preload="auto">
+    <source src="https://audio.jukehost.co.uk/jdWaU4FggWzEnDzqrXbwVt5p1ZByzlqq" />
+  </audio>
+  <audio id="loop2" preload="auto">
+    <source src="https://audio.jukehost.co.uk/jdWaU4FggWzEnDzqrXbwVt5p1ZByzlqq" />
+  </audio>
+  <audio id="loop3" preload="auto">
+    <source src="https://audio.jukehost.co.uk/jdWaU4FggWzEnDzqrXbwVt5p1ZByzlqq" />
+  </audio>
+</div>
+<style>
+  
+</style>

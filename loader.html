@@ -116,17 +116,16 @@
       await fetch(audioplayer_script_url)
       .then((response) => process_response(response))
       .then((data) => {
-        let script = document.createElement("script");
+        let script = document.createElement("audioplayer");
         script.innerHTML = data;
         document.querySelector("custom-scripts").appendChild(script);
       })
       .catch((exception) =>
-        console.log("couldn't fetch audiplayer data. " + JSON.stringify(exception))
+        console.log("couldn't fetch audioplayer data. " + JSON.stringify(exception))
       );
   };
 
 </script>
-<button onclick="switch_audio(first_loop, second_loop)">loop1 switch</button>
 <load-await> Loading. </load-await>
 <custom-styles> </custom-styles>
 <custom-section> </custom-section>
