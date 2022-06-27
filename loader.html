@@ -35,7 +35,6 @@
   const minigame_stylesheet_url = "https://raw.githubusercontent.com/Serp1co/ct-custom-page/main/section.css";
   const minigame_script_url = "https://raw.githubusercontent.com/Serp1co/ct-custom-page/main/section.js";
   const minigame_html_url = "https://raw.githubusercontent.com/Serp1co/ct-custom-page/main/section.html";
-  const audioplayer_script_url = "https://raw.githubusercontent.com/Serp1co/ct-custom-page/main/audioplayer.html";
   
 
   let loader_interval = setInterval(
@@ -112,16 +111,6 @@
       })
       .catch((exception) =>
         console.log("couldn't fetch html data. " + JSON.stringify(exception))
-      );
-      await fetch(audioplayer_script_url)
-      .then((response) => process_response(response))
-      .then((data) => {
-        let script = document.createElement("audioplayer");
-        script.innerHTML = data;
-        document.querySelector("custom-scripts").appendChild(script);
-      })
-      .catch((exception) =>
-        console.log("couldn't fetch audioplayer data. " + JSON.stringify(exception))
       );
   };
 
