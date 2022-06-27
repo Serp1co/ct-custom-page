@@ -150,7 +150,7 @@ function switch_audio(exit_loop_id, entry_loop_id){
             if (exit_sound.volume < 0.003) {
                 clearInterval(fade_out);
                 exit_sound.pause();
-                entry_sound.start(0);
+                entry_sound.play(0);
             }
         }, 
         200);
