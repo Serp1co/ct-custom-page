@@ -96,7 +96,7 @@
       .then(() => {
         clearInterval(loader_interval);
         document.querySelector("load-await").remove();
-      }).then(() => {document.dispatchEvent(new Event('build'));});
+      }).then(() => {document.dispatchEvent(new Event('build-complete'));});
   };
 </script>
 <load-await> Loading. </load-await>

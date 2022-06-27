@@ -26,4 +26,5 @@ function switch_audio(entry_loop_id) {
     }, 125);
   }
 }
-document.addEventListener('build', function (e) { console.log("custom event")}, false);
+
+document.addEventListener('build-complete', function (e) {document.querySelector("#loop_1").play()}, false);
