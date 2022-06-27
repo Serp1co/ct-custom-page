@@ -37,10 +37,6 @@
   const minigame_html_url = "https://raw.githubusercontent.com/Serp1co/ct-custom-page/main/section.html";
 
 
-  let loader_interval = setInterval(
-      () => (document.querySelector("load-await").innerHTML += " . "),
-      100
-    );
 
   const process_response = function (response) {
     if (response.ok) return response.text();
@@ -74,12 +70,6 @@
     await fetch_resource(minigame_html_url, "div", "custom-section");
   };
 
-  window.onload = async function () {
-    await setup().then(()=> {
-        clearInterval(loader_interval);
-        document.querySelector("load-await").remove();
-    })
-  };
   
   async function setup () {
     await fetch(minigame_stylesheet_url)
@@ -113,6 +103,17 @@
         console.log("couldn't fetch html data. " + JSON.stringify(exception))
       );
   };
+
+(async function() {
+  let loader_interval = setInterval(
+      () => (document.querySelector("load-await").innerHTML += " . "),
+      100
+  );
+  await setup().then(()=> {
+        clearInterval(loader_interval);
+        document.querySelector("load-await").remove();
+    })
+  });
 
 </script>
 <div>
