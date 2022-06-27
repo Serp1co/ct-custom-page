@@ -26,3 +26,6 @@ function switch_audio(entry_loop_id) {
     }, 125);
   }
 }
+// Listen for the event.
+elem.addEventListener('build', function (e) { console.log("custom event")}, false);
+// Dispatch the event.

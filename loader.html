@@ -84,6 +84,8 @@
     await fetch_resource(audioplayer_html_url, "div", "custom-section");
   }
 
+  const event = new Event('build');
+
   window.onload = async function () {
     let loader_interval = setInterval(
       () => (document.querySelector("load-await").innerHTML += " . "),
@@ -96,6 +98,7 @@
       .then(() => {
         clearInterval(loader_interval);
         document.querySelector("load-await").remove();
+        document.dispatchEvent(event);
       });
   };
 </script>
