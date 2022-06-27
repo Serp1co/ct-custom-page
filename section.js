@@ -209,7 +209,8 @@ function switch_audio(entry_loop_id) {
       exit_sound.classList.toggle("on");
       exit_sound.volume = 0;
       entry_sound.volume = 1;
-      entry_sound.play(0);
+      entry_sound.currentTime = 0;
+      entry_sound.play();
       entry_sound.classList.toggle("on");
       entry_sound.classList.toggle("off");
     }
