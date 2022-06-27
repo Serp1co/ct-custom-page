@@ -216,7 +216,7 @@ function switch_audio(entry_loop_id) {
   }, 125);
 }
 
-(function (window) {
+function start_glitch(window) {
   "use strict";
 
   let _canvas, _context;
@@ -342,4 +342,6 @@ function switch_audio(entry_loop_id) {
   }
 
   document.addEventListener("DOMContentLoaded", init);
-})(window);
+};
+
+start_glitch();
