@@ -48,7 +48,6 @@ function play() {
     document.querySelector("#login_section").style.display = 'none';
     document.querySelector("#welcome_section").classList.toggle("visible");
     document.querySelector("#welcome_section").classList.toggle("hidden");
-    
   }, 400);
   setTimeout(()=> {
     document.querySelector("#welcome_section").classList.toggle("visible");
