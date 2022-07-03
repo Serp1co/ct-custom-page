@@ -42,23 +42,24 @@ async function change(arg) {
 }
 
 function play() {
-  document.querySelector("#login_section").classList.toggle("visible");
-  document.querySelector("#login_section").classList.toggle("hidden");
-  setTimeout(()=> {
-    document.querySelector("#login_section").style.display = 'none';
-    document.querySelector("#welcome_section").classList.toggle("visible");
-    document.querySelector("#welcome_section").classList.toggle("hidden");
-  }, 400);
-  setTimeout(()=> {
-    document.querySelector("#welcome_section").classList.toggle("visible");
-    document.querySelector("#welcome_section").classList.toggle("hidden");
-  }, 2400);
-  setTimeout(()=> {
-    switch_audio("loop_1")
-  }, 2800);
+  return new Promise(function() { 
+    document.querySelector("#login_section").classList.toggle("visible");
+    document.querySelector("#login_section").classList.toggle("hidden");
+    setTimeout(()=> {
+      document.querySelector("#login_section").style.display = 'none';
+      document.querySelector("#welcome_section").classList.toggle("visible");
+      document.querySelector("#welcome_section").classList.toggle("hidden");
+    }, 400);
+    setTimeout(()=> {
+      switch_audio("loop_1")
+    }, 400);
+  })
 }
-
 
 document.querySelector("#login_button").addEventListener('click', function(e) {
   play();
 },false)
+
+document.querySelector('#toggle').addEventListener('click', _ => {
+  document.querySelector('#sidebar').classList.toggle('collapsed');
+});

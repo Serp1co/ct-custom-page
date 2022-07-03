@@ -1,6 +1,7 @@
 <div class="container monitor" id="monitor">
   <div class="overlay" id="overlay"></div>
   <div id="login_section" class="visible">
+    <div class="login_container">
     <div class="row login">
       <div class="col control block-cube block-input">
         <input
@@ -59,17 +60,22 @@
         <div class="text">Login</div>
       </button>
     </div>
+    </div>
   </div>
-  <div id="welcome_section" class="hidden">
-    <div class="row welcome">
+  <div id="welcome_section" class="container row hidden">
+    <div class="col collapsed" id="sidebar">
+      <div id=""></div>
+    </div>
+    <div class="content col welcome">
+      <button id="toggle" class="navbtn">Hide / Show sidebar</button>
       <h1 class="welcome glitch_fast">W E L C O M E</h1>
     </div>
   </div>
 </div>
 <div class="col server_footer" id="server_footer_div">
-    <div class="row">
+    <div class="server_footer">
       This server is property of Ash Williams, any connection and access will be reported, all actions are under strict auditing.</div>
-      <div class="row">
+      <div class="server_footer">
        Malicious actions <a class="tip">w i l l</a> be persecuted.
     </div>
   </div>
