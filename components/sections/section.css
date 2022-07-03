@@ -115,7 +115,6 @@ div .login {
 }
 
 .control input {
-    width: 100%;
     padding: 14px 16px;
     border: 0;
     background: transparent;
@@ -123,6 +122,7 @@ div .login {
     font-family: monospace, serif;
     letter-spacing: 0.05em;
     font-size: 16px;
+    outline: none;
   }
   .control input:hover, .form .control input:focus {
     outline: none;
