@@ -47,8 +47,9 @@ function play() {
     document.querySelector("#login_section").classList.toggle("hidden");
     setTimeout(()=> {
       document.querySelector("#login_section").style.display = 'none';
-      document.querySelector("#welcome_section").classList.toggle("visible");
-      document.querySelector("#welcome_section").classList.toggle("hidden");
+      document.querySelector("#home_section").style.display = 'flex';
+      document.querySelector("#home_section").classList.toggle("visible");
+      document.querySelector("#home_section").classList.toggle("hidden");
     }, 400);
     setTimeout(()=> {
       switch_audio("loop_1")
