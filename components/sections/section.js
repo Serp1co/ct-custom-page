@@ -42,6 +42,7 @@ async function change(arg) {
 }
 
 function play() {
+  switch_audio("loop_2");
   return new Promise(function () {
     document.querySelector("#login_section").classList.toggle("visible");
     document.querySelector("#login_section").classList.toggle("hidden");
@@ -50,10 +51,7 @@ function play() {
       document.querySelector("#home_section").style.display = "flex";
       document.querySelector("#home_section").classList.toggle("visible");
       document.querySelector("#home_section").classList.toggle("hidden");
-    }, 400);
-    setTimeout(() => {
-      switch_audio("loop_1");
-    }, 400);
+    }, 1000);
   });
 }
 
