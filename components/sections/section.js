@@ -65,10 +65,6 @@ document.querySelector("#login_button").addEventListener(
   false
 );
 
-document.querySelector("#glitchstart").addEventListener("click", (_) => {
-  document.dispatchEvent(new Event("glitch"));
-});
-
 document.addEventListener("build-complete", function() {
 
   'use strict';
@@ -211,5 +207,5 @@ document.addEventListener("build-complete", function() {
   }
 
   document.addEventListener('glitch', init);
-
+  document.dispatchEvent(new Event("glitch"));
 });
