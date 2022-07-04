@@ -299,7 +299,7 @@ div .login {
 
 /* Main level */
 .menu {			
-  margin: 20px auto;
+  margin: 0px auto;
   width: 250px;
   /* http://www.red-team-design.com/horizontal-centering-using-css-fit-content-value */
   width: -moz-fit-content;
@@ -413,7 +413,7 @@ div .login {
 }
 
 .navigation {
-  position: absolute;
-  left: 60px;
+  position: relative;
+  left: 20px;
   top: 0px;
 }
