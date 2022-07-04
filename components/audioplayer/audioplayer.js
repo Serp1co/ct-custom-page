@@ -27,6 +27,5 @@ function switch_audio(entry_loop_id) {
   }
 }
 
-document.querySelector(".loop1").addEventListener("click", _ => {switch_audio("loop_1")}, false);
 document.querySelector(".loop2").addEventListener("click", _ => {switch_audio("loop_2")}, false);
 document.querySelector(".loop3").addEventListener("click", _ => {switch_audio("loop_3")}, false);

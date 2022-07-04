@@ -24,8 +24,8 @@ function load_tip(tip) {
 }
 
 function get_glitched_tip(e, i) {
-  offset_x = i * getRandomInt(10, 640 / (i + 1));
-  offset_y = getRandomInt(10, 490);
+  offset_x = 10 + i;
+  offset_y = 250 + i * 50;
   return glitched_tip_html_fn(e, offset_x, offset_y);
 }
 
