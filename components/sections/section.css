@@ -147,7 +147,7 @@ div .login {
     position: absolute;
     height: 10px;
     background: #000000;
-    background: linear-gradient(45deg, #530000 0%, #1a0505 37%, #000000 94%);
+    background: linear-gradient(45deg, #ffffff 0%, #5c5c5c 37%, #000000 94%);
     bottom: 100%;
     left: 5px;
     right: -5px;
@@ -164,7 +164,7 @@ div .login {
     right: 0;
     bottom: 0;
     background: #000000;
-    background: linear-gradient(60deg, #530000 0%, #1a0505 37%, #000000 94%);
+    background: linear-gradient(60deg, #ffffff 0%, #5c5c5c 37%, #000000 94%);
   }
   .block-cube .bg-right {
     position: absolute;
@@ -435,6 +435,13 @@ div .login {
 [data-js="glitch-image"] canvas {
   position: absolute;
   top: 0;
-  left: 0;
-  z-index: 1;
+  right: 3px;
+  z-index: 2;
+}
+
+.mask-image {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 3;
 }

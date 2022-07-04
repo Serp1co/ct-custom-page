@@ -207,3 +207,14 @@ document.addEventListener("build-complete", function() {
   document.addEventListener('glitch', init);
   document.dispatchEvent(new Event("glitch"));
 });
+
+function add_glitch_mask() {
+  let mask_img = document.createElement('img');
+  mask_img.src = 'https://i.ibb.co/4j5MZyX/mask-bio.png';
+  mask_img.classList.add('mask-image');
+  let mask_img2 = document.createElement('img');
+  mask_img2.src = 'https://i.ibb.co/4j5MZyX/mask-bio.png';
+  mask_img2.classList.add('mask-image');
+  document.querySelector('[data-js="glitch-image"]').appendChild(mask_img);
+  document.querySelector('[data-js="glitch-image"]').appendChild(mask_img2);
+}
