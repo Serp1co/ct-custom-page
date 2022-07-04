@@ -250,12 +250,11 @@ div .login {
     font-weight: bold;
     font-family: monospace;
     font-size: 12px; 
-    padding: 4 4 4 4 !important; 
+    padding: 4px 4px 4px 4px !important; 
   }
   
   #home_section {
     height: 100%;
-    padding: 3 3 3 3 !important;
   }
 
   #login_container {
