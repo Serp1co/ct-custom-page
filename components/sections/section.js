@@ -194,7 +194,7 @@ document.addEventListener("build-complete", function() {
       getRandomValue(effectList)(_context, width, height);
     }
 
-    window.requestAnimationFrame(render);
+    setTimeout(() => window.requestAnimationFrame(render), 45);
 
   }
 
