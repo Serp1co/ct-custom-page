@@ -77,11 +77,6 @@
 .container {
     display: flex;
     flex-direction: column;
-    text-decoration: none;
-    letter-spacing: 0.1em;
-    font-weight: bold;
-    font-family: monospace;
-    font-size: 12px;  
 }
 
 .row {
@@ -254,6 +249,11 @@ div .login {
     float: left;
     transition: width .35s;
     align-items: center;
+    text-decoration: none;
+    letter-spacing: 0.1em;
+    font-weight: bold;
+    font-family: monospace;
+    font-size: 12px;  
   }
   
   #home_section {
