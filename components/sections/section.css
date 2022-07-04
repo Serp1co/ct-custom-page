@@ -248,7 +248,7 @@ div .login {
     overflow: auto;
     float: left;
     transition: width .35s;
-    align-items: flex-end;
+    align-items: center;
   }
   
   #home_section {
