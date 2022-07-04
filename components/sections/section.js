@@ -52,7 +52,7 @@ function play() {
       document.querySelector("#home_section").classList.toggle("hidden");
     }, 400);
     setTimeout(()=> {
-      switch_audio("loop_1")
+      //switch_audio("loop_1")
     }, 400);
   })
 }
