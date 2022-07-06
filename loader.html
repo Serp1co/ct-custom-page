@@ -35,37 +35,103 @@
   ::-webkit-scrollbar {
     background: black !important;
   }
+  .container__progressbars {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    min-width: 270px;
+    width: 100%;
+    min-height: 100%;
+  }
+
+  .progressbar {
+    position: relative;
+    width: 170px;
+    height: 170px;
+    margin: 1em;
+    transform: rotate(-90deg);
+  }
+
+  .progressbar__svg {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+
+  .progressbar__svg-circle {
+    width: 100%;
+    height: 100%;
+    fill: none;
+    stroke-width: 10;
+    stroke-dasharray: 440;
+    stroke-dashoffset: 440;
+    stroke: white;
+    stroke-linecap: round;
+    transform: translate(5px, 5px);
+  }
+  .shadow-html {
+    filter: drop-shadow(0 0 5px #15ff00);
+  }
+  .circle-html {
+    -webkit-animation: anim_circle-html 1s ease-in-out infinite;
+    animation: anim_circle-html 1s ease-in-out infinite;
+  }
+  .progressbar__text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    padding: 0.25em 0.5em;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    border-radius: 0.25em;
+    transform: translate(-50%, -50%) rotate(90deg);
+  }
+
+  @-webkit-keyframes anim_circle-html {
+    to {
+      stroke-dashoffset: 0;
+    }
+  }
+
+  @keyframes anim_circle-html {
+    to {
+      stroke-dashoffset: 0;
+    }
+  }
+
+  .loader-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: rgba(0, 0, 0, 0.4);
+  }
 </style>
 <script type="text/javascript">
   const resource_target = "http://localhost/static";
   //const resource_target = "https://raw.githubusercontent.com/Serp1co/ct-custom-page/develop";
 
-  const minigame_stylesheet_url =
-    "/components/sections/section.css";
-  const minigame_script_url =
-    "/components/sections/section.js";
-  const minigame_html_url =
-    "/components/sections/section.html";
-  const audioplayer_script_url =
-    "/components/audioplayer/audioplayer.js";
-  const audioplayer_html_url =
-    "/components/audioplayer/audioplayer.html";
-
+  const minigame_stylesheet_url = "/components/sections/section.css";
+  const minigame_script_url = "/components/sections/section.js";
+  const minigame_html_url = "/components/sections/section.html";
+  const audioplayer_script_url = "/components/audioplayer/audioplayer.js";
+  const audioplayer_html_url = "/components/audioplayer/audioplayer.html";
 
   const process_response = function (response) {
     if (response.ok) return response.text();
     else
       throw {
-        "status_code": response.status,
-        "status_description": response.statusText,
+        status_code: response.status,
+        status_description: response.statusText,
       };
   };
 
   async function fetch_resource(url, type, tag) {
     await fetch(resource_target + url, {
-      method: 'GET', // *GET, POST, PUT, DELETE, etc.
-      mode: 'cors', // no-cors, *cors, same-origin
-      cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+      method: "GET", // *GET, POST, PUT, DELETE, etc.
+      mode: "cors", // no-cors, *cors, same-origin
+      cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
     })
       .then((response) => process_response(response))
       .then((data) => {
@@ -73,9 +139,7 @@
         html.innerHTML = data;
         document.querySelector(tag).appendChild(html);
       })
-      .catch((exception) =>
-        console.error(exception)
-      );
+      .catch((exception) => console.error(exception));
   }
 
   async function setup_styles() {
@@ -94,7 +158,7 @@
 
   window.onload = async function () {
     let loader_interval = setInterval(
-      () => (document.querySelector("load-await").innerHTML += " . "),
+      () => (document.querySelector("#load-await").innerHTML += " . "),
       100
     );
     await setup_styles()
@@ -102,20 +166,42 @@
       .then(() => setup_scripts())
       .finally(() => {
         clearInterval(loader_interval);
-        document.querySelector("load-await").remove();
-        document.dispatchEvent(new Event('build-complete'));
+        document.querySelector("#load-await").remove();
+        document.dispatchEvent(new Event("build-complete"));
       });
   };
 </script>
-<load-await> Loading. </load-await>
+<div
+  id="load-await"
+  style="position: absolute; top: 0; left: 0; width: 100%; height: 100%"
+>
+  <div class="loader-container">
+    <div class="container__progressbars">
+      <div class="progressbar">
+        <svg class="progressbar__svg">
+          <circle
+            cx="80"
+            cy="80"
+            r="70"
+            class="progressbar__svg-circle circle-html shadow-html"
+          ></circle>
+        </svg>
+        <span class="progressbar__text shadow-html">RESOURCES</span>
+      </div>
+    </div>
+  </div>
+</div>
 <custom-styles> </custom-styles>
 <custom-section> </custom-section>
 <custom-scripts> </custom-scripts>
 
 <hr / style="width: 100%;">
 <br />
-<div class="container" style="font-size:13px">
+<div class="container" style="font-size: 13px">
   Apache 2.0 Open source license, feel free to use, pls report any bugs.<br />
-  Source code available <a href="https://github.com/Serp1co/ct-custom-page" style="color: green;">github@serp1co/ct-custom-page</a><br />
+  Source code available
+  <a href="https://github.com/Serp1co/ct-custom-page" style="color: green"
+    >github@serp1co/ct-custom-page</a
+  ><br />
   Branch: Develop
 </div>
