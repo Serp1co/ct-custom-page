@@ -231,10 +231,13 @@ div .login {
   }
   
   .hidden {
-    display: none;
     visibility: hidden;
     opacity: 0;
     transition: visibility 0.4s, opacity 0.4s linear;
+  }
+
+  .none {
+    display: none !important;
   }
 
   .server_footer {

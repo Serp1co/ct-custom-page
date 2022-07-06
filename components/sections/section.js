@@ -41,24 +41,29 @@ async function change(arg) {
   select_section(arg);
 }
 
-function play() {
-  switch_audio("loop_2");
+function login() {
   return new Promise(function () {
     document.querySelector("#login_section").classList.toggle("visible");
     document.querySelector("#login_section").classList.toggle("hidden");
+    document.querySelector(".ritratto_avatar_immagine").classList.toggle("hidden");
     setTimeout(() => {
-      document.querySelector("#login_section").style.display = "none";
-      document.querySelector("#home_section").style.display = "flex";
+    document.querySelector("#home_section").classList.toggle("none");
+    },400)
+    setTimeout(() => {
+      document.querySelector(".ritratto_avatar_immagine").src = "https://i.postimg.cc/yd2PVk5H/ashwill3-v2.png";
+      document.querySelector("#login_section").classList.toggle("none");
       document.querySelector("#home_section").classList.toggle("visible");
+      document.querySelector(".ritratto_avatar_immagine").classList.toggle("hidden");
+      document.querySelector(".ritratto_avatar_immagine").classList.toggle("visible");
       document.querySelector("#home_section").classList.toggle("hidden");
-    }, 1000);
+    },1000);
   });
 }
 
 document.querySelector("#login_button").addEventListener(
   "click",
   function (e) {
-    play();
+    login();
   },
   false
 );

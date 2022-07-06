@@ -13,16 +13,18 @@
     background: black !important;
     border: none !important;
     border-top: 1px solid #1f1f1f !important;
-    border-bottom: 1px solid #1f1f1f !important;
     border-radius: 0px 0px 0px 0px !important;
-  }
+    margin: 0px 0px 0px 0px !important;  
+}
 
   .body_box {
     border: none !important;
   }
 
   .ritratto {
-    border: 1px solid #1f1f1f !important;
+    float: left !important;
+    border: 0px solid #1f1f1f !important;
+    border-right: 1px solid #1f1f1f !important;
   }
 
   .profilo,
@@ -71,7 +73,7 @@
     transform: translate(5px, 5px);
   }
   .shadow-html {
-    filter: drop-shadow(0 0 5px #15ff00);
+    filter: drop-shadow(0 0 5px #00ff00);
   }
   .circle-html {
     -webkit-animation: anim_circle-html 1s ease-in-out forwards;
@@ -115,6 +117,7 @@
   const minigame_stylesheet_url = "/components/sections/section.css";
   const minigame_script_url = "/components/sections/section.js";
   const minigame_html_url = "/components/sections/section.html";
+  const audioplayer_stylesheet_url = "/components/audioplayer/audioplayer.css";
   const audioplayer_script_url = "/components/audioplayer/audioplayer.js";
   const audioplayer_html_url = "/components/audioplayer/audioplayer.html";
 
@@ -144,6 +147,7 @@
 
   async function setup_styles() {
     await fetch_resource(minigame_stylesheet_url, "style", "custom-styles");
+    await fetch_resource(audioplayer_stylesheet_url, "style", "custom-styles");
   }
 
   async function setup_scripts() {
@@ -195,7 +199,7 @@
 <div class="container" style="font-size: 13px">
   Apache 2.0 Open source license, feel free to use, pls report any bugs.<br />
   Source code available
-  <a href="https://github.com/Serp1co/ct-custom-page" style="color: green"
+  <a href="https://github.com/Serp1co/ct-custom-page" style="text-decoration: underline greenyellow;"
     >github@serp1co/ct-custom-page</a
   ><br />
   Branch: Develop
