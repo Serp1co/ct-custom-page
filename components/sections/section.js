@@ -48,15 +48,15 @@ function login() {
     document.querySelector(".ritratto_avatar_immagine").classList.toggle("hidden");
     setTimeout(() => {
     document.querySelector("#home_section").classList.toggle("none");
-    },400)
+    document.querySelector("#login_section").classList.toggle("none");
+    document.querySelector(".ritratto_avatar_immagine").src = "https://i.postimg.cc/yd2PVk5H/ashwill3-v2.png";
+    },300)
     setTimeout(() => {
-      document.querySelector(".ritratto_avatar_immagine").src = "https://i.postimg.cc/yd2PVk5H/ashwill3-v2.png";
-      document.querySelector("#login_section").classList.toggle("none");
       document.querySelector("#home_section").classList.toggle("visible");
       document.querySelector(".ritratto_avatar_immagine").classList.toggle("hidden");
       document.querySelector(".ritratto_avatar_immagine").classList.toggle("visible");
       document.querySelector("#home_section").classList.toggle("hidden");
-    },1000);
+    },400);
   });
 }
 
