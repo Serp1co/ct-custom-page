@@ -74,8 +74,8 @@
     filter: drop-shadow(0 0 5px #15ff00);
   }
   .circle-html {
-    -webkit-animation: anim_circle-html 1s ease-in-out infinite;
-    animation: anim_circle-html 1s ease-in-out infinite;
+    -webkit-animation: anim_circle-html 1s ease-in-out forwards;
+    animation: anim_circle-html 1s ease-in-out forwards;
   }
   .progressbar__text {
     position: absolute;
@@ -157,15 +157,10 @@
   }
 
   window.onload = async function () {
-    let loader_interval = setInterval(
-      () => (document.querySelector("#load-await").innerHTML += " . "),
-      100
-    );
     await setup_styles()
       .then(() => setup_dom())
       .then(() => setup_scripts())
       .finally(() => {
-        clearInterval(loader_interval);
         document.querySelector("#load-await").remove();
         document.dispatchEvent(new Event("build-complete"));
       });
@@ -173,7 +168,7 @@
 </script>
 <div
   id="load-await"
-  style="position: absolute; top: 0; left: 0; width: 100%; height: 100%"
+  style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none;"
 >
   <div class="loader-container">
     <div class="container__progressbars">
@@ -186,7 +181,7 @@
             class="progressbar__svg-circle circle-html shadow-html"
           ></circle>
         </svg>
-        <span class="progressbar__text shadow-html">RESOURCES</span>
+        <span class="progressbar__text shadow-html">LOADING</span>
       </div>
     </div>
   </div>
