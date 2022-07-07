@@ -68,150 +68,142 @@ document.querySelector("#login_button").addEventListener(
   false
 );
 
-document.addEventListener("build-complete", function() {
+function glitch(context, width, height) {
 
-  'use strict';
+  const imageData = context.getImageData(0, 0, width, height);
+  const data = imageData.data;
+  const length = width * height;
+  const factor = Math.random() * 10;
 
-  let _canvas, _context;
-  let _image, _imageData;
+  let randR = Math.floor(Math.random() * factor);
+  let randG = Math.floor(Math.random() * factor) * 3;
+  let randB = Math.floor(Math.random() * factor);
 
-  const effectList = [
-  function glitch(context, width, height) {
+  for (let i = 0; i < length; i++) {
 
-    const imageData = context.getImageData(0, 0, width, height);
-    const data = imageData.data;
-    const length = width * height;
-    const factor = Math.random() * 10;
+    let r = data[(i + randR) * 4];
+    let g = data[(i + randG) * 4 + 1];
+    let b = data[(i + randB) * 4 + 2];
+    if (r + g + b == 0) r = g = b = 255;
 
-    let randR = Math.floor(Math.random() * factor);
-    let randG = Math.floor(Math.random() * factor) * 3;
-    let randB = Math.floor(Math.random() * factor);
-
-    for (let i = 0; i < length; i++) {
-
-      let r = data[(i + randR) * 4];
-      let g = data[(i + randG) * 4 + 1];
-      let b = data[(i + randB) * 4 + 2];
-      if (r + g + b == 0) r = g = b = 255;
-
-      data[i * 4] = r;
-      data[i * 4 + 1] = g;
-      data[i * 4 + 2] = b;
-      //data[i * 4 + 3] = 255;
-
-    }
-
-    context.putImageData(imageData, 0, 0);
-
-  },
-  function glitchWave(context, width, height) {
-
-    const renderLineHeight = Math.random() * height;
-    const cuttingHeight = 5;
-    const imageData = context.getImageData(0, renderLineHeight, width, cuttingHeight);
-    context.putImageData(imageData, 0, renderLineHeight - 10);
-
-  },
-  function glitchSlip(context, width, height) {
-
-    const waveDistance = 100;
-    const startHeight = height * Math.random();
-    const endHeight = startHeight + 30 + Math.random() * 40;
-    for (let h = startHeight; h < endHeight; h++) {
-
-      if (Math.random() < .1) h++;
-      let imageData = context.getImageData(0, h, width, 1);
-      context.putImageData(imageData, Math.random() * waveDistance - waveDistance * .5, h);
-
-    }
-
-  },
-  function glitchColor(context, width, height) {
-
-    const waveDistance = 30;
-    const startHeight = height * Math.random();
-    const endHeight = startHeight + 30 + Math.random() * 40;
-    const imageData = context.getImageData(0, startHeight, width, endHeight);
-    const length = width * height;
-    let data = imageData.data;
-
-    let r = 0;
-    let g = 0;
-    let b = 0;
-
-    for (let i = 0; i < length; i++) {
-
-      if (i % width === 0) {
-        r = i + Math.floor((Math.random() - .5) * waveDistance);
-        g = i + Math.floor((Math.random() - .5) * waveDistance);
-        b = i + Math.floor((Math.random() - .5) * waveDistance);
-      }
-
-      data[i * 4] = data[r * 4];
-      data[i * 4 + 1] = data[g * 4 + 1];
-      data[i * 4 + 2] = data[b * 4 + 2];
-
-    }
-
-    context.putImageData(imageData, 0, startHeight);
-
-  }];
-
-
-  function init() {
-
-    const imageBoard = document.querySelector('[data-js="glitch-image"]');
-    _image = imageBoard.querySelector('img');
-    _canvas = document.createElement('canvas');
-    _context = _canvas.getContext('2d');
-
-    imageBoard.appendChild(_canvas);
-
-    _imageData = new Image();
-    _imageData.crossOrigin = "Anonymous";
-    _imageData.onload = function (event) {
-
-      window.addEventListener('resize', onResize, false);
-      window.dispatchEvent(new Event('resize'));
-      window.requestAnimationFrame(render);
-
-    };
-    _imageData.src = _image.getAttribute('src');
+    data[i * 4] = r;
+    data[i * 4 + 1] = g;
+    data[i * 4 + 2] = b;
+    //data[i * 4 + 3] = 255;
 
   }
 
-  function onResize() {
+  context.putImageData(imageData, 0, 0);
 
-    _canvas.width = _image.width;
-    _canvas.height = _image.height;
+}
+
+function glitchWave(context, width, height) {
+
+  const renderLineHeight = Math.random() * height;
+  const cuttingHeight = 5;
+  const imageData = context.getImageData(0, renderLineHeight, width, cuttingHeight);
+  context.putImageData(imageData, 0, renderLineHeight - 10);
+
+}
+
+function glitchSlip(context, width, height) {
+
+  const waveDistance = 100;
+  const startHeight = height * Math.random();
+  const endHeight = startHeight + 30 + Math.random() * 40;
+  for (let h = startHeight; h < endHeight; h++) {
+
+    if (Math.random() < .1) h++;
+    let imageData = context.getImageData(0, h, width, 1);
+    context.putImageData(imageData, Math.random() * waveDistance - waveDistance * .5, h);
 
   }
 
-  function render(timestamp) {
+}
 
-    let width = _canvas.width;
-    let height = _canvas.height;
+function glitchColor(context, width, height) {
 
-    _context.clearRect(0, 0, width, height);
-    _context.drawImage(_imageData, 0, 0, _image.width, _image.height);
+  const waveDistance = 30;
+  const startHeight = height * Math.random();
+  const endHeight = startHeight + 30 + Math.random() * 40;
+  const imageData = context.getImageData(0, startHeight, width, endHeight);
+  const length = width * height;
+  let data = imageData.data;
 
+  let r = 0;
+  let g = 0;
+  let b = 0;
+
+  for (let i = 0; i < length; i++) {
+
+    if (i % width === 0) {
+      r = i + Math.floor((Math.random() - .5) * waveDistance);
+      g = i + Math.floor((Math.random() - .5) * waveDistance);
+      b = i + Math.floor((Math.random() - .5) * waveDistance);
+    }
+
+    data[i * 4] = data[r * 4];
+    data[i * 4 + 1] = data[g * 4 + 1];
+    data[i * 4 + 2] = data[b * 4 + 2];
+
+  }
+
+  context.putImageData(imageData, 0, startHeight);
+
+}
+
+
+class GlitchedImage {
+
+  effectList = [glitch, glitchWave, glitchSlip, glitchColor];
+
+  constructor(id, delay){
+    const imageBoard = document.querySelector(id);
+    let image = imageBoard.querySelector('img');
+    let canvas = document.createElement('canvas');
+    let context = canvas.getContext('2d');
+    imageBoard.appendChild(canvas);
+
+    this._imageBoard = imageBoard;
+    this._context = context;
+    this._image = image;
+    this._canvas = canvas;
+    this._delay = delay;
+  }
+
+  onResize() {
+    this._canvas.width = this._image.width;
+    this._canvas.height = this._image.height;
+  }
+  
+  render() {
+    let width = this._canvas.width;
+    let height = this._canvas.height;
+    this._context.clearRect(0, 0, width, height);
+    this._context.drawImage(this._imageData, 0, 0, this._image.width, this._image.height);
     if (.5 < Math.random()) {
-      getRandomValue(effectList)(_context, width, height);
+      this.getRandomValue(this.effectList)(this._context, width, height);
     }
-
-    setTimeout(() => window.requestAnimationFrame(render), 45);
-
+    setTimeout(() => window.requestAnimationFrame(this.render.bind(this)), this._delay);
   }
 
-  function getRandomValue(array) {
-
+  getRandomValue(array) {
     return array[Math.floor(Math.random() * array.length)];
-
   }
 
-  document.addEventListener('glitch', init);
-  document.dispatchEvent(new Event("glitch"));
-});
+  buildImageData(){
+    let imageData = new Image();
+    imageData.crossOrigin = "Anonymous";
+    imageData.src = image.getAttribute('src');
+    imageData.onload = function (event) {
+      window.addEventListener('resize', this.onResize.bind(this), false);
+      window.dispatchEvent(new Event('resize'));
+      window.requestAnimationFrame(this.render.bind(this));
+    };
+    this._imageData = imageData;
+  }
+
+}
 
 function add_glitch_mask() {
   let mask_img = document.createElement('img');
@@ -223,3 +215,11 @@ function add_glitch_mask() {
   document.querySelector('[data-js="glitch-image"]').appendChild(mask_img);
   document.querySelector('[data-js="glitch-image"]').appendChild(mask_img2);
 }
+
+
+document.addEventListener('glitch', function(){
+  let img = new GlitchedImage("#bluepill", 0);
+  img.buildImageData();
+});
+
+document.dispatchEvent(new Event("glitch"));

@@ -418,10 +418,10 @@ div .login {
 }
 
 .navigation {
-  position: relative;
-  left: 25px;
-  top: 0px;
-  width: 0px;
+  position: absolute;
+  flex-direction: row;
+  display: flex;
+  margin: 10px 10px 10px 10px; 
 }
 
 .section_text {
@@ -447,4 +447,13 @@ div .login {
   top: 0;
   right: 0;
   z-index: 3;
+}
+
+.menuimg {
+  margin: 2px 5px 2px 5px;
+}
+
+.bigtxt {
+  font-size: 15px;
+  margin-top: 6px;
 }
