@@ -27,13 +27,30 @@ function switch_audio(entry_loop_id) {
   }
 }
 
-document.querySelector(".loop1").addEventListener("click", _ => {
-  setTimeout(function () {switch_audio("loop_1")}, 400)}
-  , false);
-  document.querySelector(".loop2").addEventListener("click", _ => {
-    setTimeout(function () {switch_audio("loop_2")}, 200)}
-    , false);
-    document.querySelector(".loop2").addEventListener("click", _ => {
-      setTimeout(function () {switch_audio("loop_3")}, 200)}
-      , false);
-      
+document.querySelector(".loop1").addEventListener(
+  "click",
+  (_) => {
+    setTimeout(function () {
+      switch_audio("loop_1");
+    }, 400);
+  },
+  false
+);
+document.querySelector(".loop2").addEventListener(
+  "click",
+  (_) => {
+    setTimeout(function () {
+      switch_audio("loop_2");
+    }, 200);
+  },
+  false
+);
+document.querySelector(".loop3").addEventListener(
+  "click",
+  (_) => {
+    setTimeout(function () {
+      switch_audio("loop_3");
+    }, 200);
+  },
+  false
+);
