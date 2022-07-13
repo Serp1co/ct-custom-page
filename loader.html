@@ -16,7 +16,6 @@
                       .title {
                         background: black !important;
                         border: none !important;
-                        border-top: 1px solid #1f1f1f !important;
                         border-radius: 0px 0px 0px 0px !important;
                         margin: 0px 0px 0px 0px !important;  
                     }
@@ -113,6 +112,9 @@
                         min-height: 100vh;
                         background-color: rgba(0, 0, 0, 0.4);
                       }
+                      div.menu_scheda a {
+                        border: none !important;
+                      }
                     </style>
                     <script type="text/javascript">
                       //const resource_target = "http://localhost/static";
@@ -124,9 +126,11 @@
                       const audioplayer_stylesheet_url = "/components/audioplayer/audioplayer.css";
                       const audioplayer_script_url = "/components/audioplayer/audioplayer.js";
                       const audioplayer_html_url = "/components/audioplayer/audioplayer.html";
-                      const crt_style_url = "/components/crt/crt.css";
+                      const crt_stylesheet_url = "/components/crt/crt.css";
                       const crt_html_url = "/components/crt/crt.html";
-                    
+                      const aftermath_stylesheet_url = "/components/crt/crt.css";
+                      const aftermath_html_url = "/components/crt/crt.html";
+
                       const process_response = function (response) {
                         if (response.ok) return response.text();
                         else
@@ -154,7 +158,7 @@
                       async function setup_styles() {
                         await fetch_resource(minigame_stylesheet_url, "style", "custom-styles");
                         await fetch_resource(audioplayer_stylesheet_url, "style", "custom-styles");
-                        await fetch_resource(crt_style_url, "style", "custom-styles");
+                        await fetch_resource(crt_stylesheet_url, "style", "custom-styles");
                       }
                     
                       async function setup_scripts() {
