@@ -121,7 +121,7 @@
                       const audioplayer_stylesheet_url = "/components/audioplayer/audioplayer.css";
                       const audioplayer_script_url = "/components/audioplayer/audioplayer.js";
                       const audioplayer_html_url = "/components/audioplayer/audioplayer.html";
-                      const crt_style_url = "/components/crt/crt.js";
+                      const crt_style_url = "/components/crt/crt.css";
                       const crt_html_url = "/components/crt/crt.html";
                     
                       const process_response = function (response) {
@@ -145,7 +145,7 @@
                             html.innerHTML = data;
                             document.querySelector(tag).appendChild(html);
                           })
-                          .catch((exception) => console.error(exception));
+                          .catch((exception) => console.error(JSON.parse(exception)));
                       }
                     
                       async function setup_styles() {
