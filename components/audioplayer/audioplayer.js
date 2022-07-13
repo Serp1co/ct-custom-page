@@ -2,10 +2,12 @@ function switch_audio(entry_loop_id) {
   exit_sound = document.querySelector(".audio.on");
   entry_sound = document.querySelector("#" + entry_loop_id);
   if (exit_sound == null) {
-    entry_sound.currentTime = 0;
-    entry_sound.play();
-    entry_sound.classList.toggle("on");
-    entry_sound.classList.toggle("off");
+    if(entry_sound.paused){
+      entry_sound.currentTime = 0;
+      entry_sound.play();
+      entry_sound.classList.toggle("on");
+      entry_sound.classList.toggle("off");
+    }
   } else {
     const fade_out = setInterval(() => {
       if (exit_sound.volume !== 0) {
@@ -27,30 +29,24 @@ function switch_audio(entry_loop_id) {
   }
 }
 
-document.querySelector(".loop1").addEventListener(
+document.querySelectorAll(".loop1").forEach(e=>{e.addEventListener(
   "click",
   (_) => {
-    setTimeout(function () {
-      switch_audio("loop_1");
-    }, 400);
+    setTimeout(switch_audio("loop_1"), 400);
   },
   false
-);
+)});
 document.querySelector(".loop2").addEventListener(
   "click",
   (_) => {
-    setTimeout(function () {
-      switch_audio("loop_2");
-    }, 200);
+    setTimeout(switch_audio("loop_2"), 200);
   },
   false
 );
 document.querySelector(".loop3").addEventListener(
   "click",
   (_) => {
-    setTimeout(function () {
-      switch_audio("loop_3");
-    }, 200);
+    setTimeout(switch_audio("loop_3"), 200);
   },
   false
 );

@@ -194,11 +194,13 @@ class GlitchedImage {
   buildImageData(){
     let imageData = new Image();
     imageData.crossOrigin = "Anonymous";
-    imageData.src = image.getAttribute('src');
+    imageData.src = this._image.getAttribute('src');
+    let resizeFn = this.onResize.bind(this);
+    let renderFn = this.render.bind(this);
     imageData.onload = function (event) {
-      window.addEventListener('resize', this.onResize.bind(this), false);
+      window.addEventListener('resize', resizeFn, false);
       window.dispatchEvent(new Event('resize'));
-      window.requestAnimationFrame(this.render.bind(this));
+      window.requestAnimationFrame(renderFn);
     };
     this._imageData = imageData;
   }
@@ -209,17 +211,13 @@ function add_glitch_mask() {
   let mask_img = document.createElement('img');
   mask_img.src = 'https://i.ibb.co/4j5MZyX/mask-bio.png';
   mask_img.classList.add('mask-image');
-  let mask_img2 = document.createElement('img');
-  mask_img2.src = 'https://i.ibb.co/4j5MZyX/mask-bio.png';
-  mask_img2.classList.add('mask-image');
   document.querySelector('[data-js="glitch-image"]').appendChild(mask_img);
-  document.querySelector('[data-js="glitch-image"]').appendChild(mask_img2);
 }
 
 
 document.addEventListener('glitch', function(){
-  let img = new GlitchedImage("#bluepill", 0);
-  img.buildImageData();
+  let img1 = new GlitchedImage("#bottomimg", 70);
+  img1.buildImageData();
 });
 
 document.dispatchEvent(new Event("glitch"));
