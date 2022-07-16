@@ -28,15 +28,6 @@
   animation: glitch 375ms infinite;
 }
 
-.tip {
-  animation: glitch 375ms infinite;
-}
-
-.tip:hover {
-  color: greenyellow;
-  background-color: black;
-}
-
 @keyframes glitch {
   0% {
     text-shadow: 0.05em 0 0 #00fffc, -0.03em -0.04em 0 #fc00ff,
@@ -87,21 +78,4 @@
 .col {
     display: flex;
     flex-direction: column;
-}
-
-
-.mask-image {
-  position: absolute;
-  top: 0;
-  right: 0;
-  z-index: 3;
-}
-
-.menuimg {
-  margin: 2px 5px 2px 5px;
-}
-
-.bigtxt {
-  font-size: 15px;
-  margin-top: 6px;
 }

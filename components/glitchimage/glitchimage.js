@@ -106,6 +106,7 @@ class GlitchedImage {
             window.requestAnimationFrame(renderFn);
         };
         this._imageData = imageData;
+        this._image.remove();
     }
 
 }
