@@ -1,3 +1,5 @@
+
+
 function switch_audio(entry_loop_id) {
   exit_sound = document.querySelector(".audio.on");
   entry_sound = document.querySelector("#" + entry_loop_id);
