@@ -5,7 +5,7 @@ class AudioManager {
         newVolume,
         duration = 1000,
         interval = 13,
-        easing = Audioplayer.swing,
+        easing = AudioManager.swing,
     ) {
         return new Promise(resolve => {
             const originalVolume = element.volume;
@@ -55,7 +55,6 @@ class AudioManager {
 
     initCanvas() {
         this.tick = 0;
-        this.dimensions = {};
         this.resize();
     }
 
@@ -93,14 +92,14 @@ class AudioManager {
         this.volume = 1;
         this.baseURL = "https://audio.jukehost.co.uk/";
         this.fileNames = [
-            "mI1aacZuN0qjbyhcfRY16WPe2Y6ic8x4",
             "DmiVCHVOiJ7HF63YCD1LZW9xE3nxQuze",
+            "mI1aacZuN0qjbyhcfRY16WPe2Y6ic8x4",
             "8jri18G4pLGNn1omwFYKpX7YaiGZFK3A"
         ];
 
         this.songTitles = [
-            "Noyz Narcos - Aspetta la Notte",
             "Pop Smoke - Invincible",
+            "Noyz Narcos - Aspetta la Notte",
             "Kavinsky - Nightcall"
         ];
 
