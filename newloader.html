@@ -111,13 +111,13 @@
     class App {
         constructor() {
             this.section = new Component("section", COMPONENT_PATH);
-            this.audioplayer = new Component("audioplayer", COMPONENT_PATH);
+            this.audiomanager = new Component("audiomanager", COMPONENT_PATH);
             this.cookiecutter = new Component("cookiecutter", COMPONENT_PATH);
         }
 
         async initApp(){
             await this.section.initComponent();
-            await this.audioplayer.initComponent();
+            await this.audiomanager.initComponent();
             await this.cookiecutter.initComponent();
         }
     }
@@ -129,7 +129,7 @@
         let app = new App();
         app.initApp().then(() => {
             Component.renderComponent(app.section, template, "section");
-            Component.renderComponent(app.audioplayer, template, "audioplayer");
+            Component.renderComponent(app.audiomanager, template, "audiomanager");
             Component.renderComponent(app.cookiecutter, template, "cookiecutter");
             let audiomanager = new AudioManager();
         })

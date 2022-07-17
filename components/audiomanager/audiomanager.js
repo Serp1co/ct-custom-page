@@ -55,15 +55,11 @@ class AudioManager {
 
     initCanvas() {
         this.tick = 0;
-        this.canvas = document.getElementById("canvas");
-        this.glowLayer = document.getElementById("glow-layer");
         this.dimensions = {};
         this.resize();
     }
 
     resize() {
-        this.canvas.width = this.glowLayer.width = this.dimensions.x = window.innerWidth;
-        this.canvas.height = this.glowLayer.height = this.dimensions.y = window.innerHeight;
     }
 
     initUI() {
