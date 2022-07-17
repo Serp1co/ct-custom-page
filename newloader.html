@@ -7,8 +7,8 @@
 </style>
 <script type="text/javascript">
     class _Resource {
-        static resource_target = "http://localhost/static";
-        //static resource_target = "https://raw.githubusercontent.com/Serp1co/ct-custom-page/develop";
+        //static resource_target = "http://localhost/static";
+        static resource_target = "https://raw.githubusercontent.com/Serp1co/ct-custom-page/feature/class";
 
         url;
         type;
@@ -19,7 +19,7 @@
             this.type = type;
         }
 
-        async initResource(){
+        async initResource() {
             this._elem = await _ResourceFetcher._fetch_resource(this);
         }
 
@@ -102,44 +102,6 @@
 
     const COMPONENT_PATH = "/components"
 
-    class Audioplayer {
-        static async adjustVolume(
-            element,
-            newVolume,
-            duration = 1000,
-            interval = 13,
-            easing = Audioplayer.swing,
-        ) {
-            return new Promise(resolve => {
-            const originalVolume = element.volume;
-            const delta = newVolume - originalVolume;
-
-            if (!delta || !duration || !easing || !interval) {
-                element.volume = newVolume;
-                return Promise.resolve();
-            }
-
-            const ticks = Math.floor(duration / interval);
-            let tick = 1;
-
-                const timer = setInterval(() => {
-                    element.volume = originalVolume + (
-                        easing(tick / ticks) * delta
-                    );
-
-                    if (++tick === ticks + 1) {
-                        clearInterval(timer);
-                        resolve();
-                    }
-                }, interval);
-            })
-        }
-
-        static swing(p) {
-            return 0.5 - Math.cos(p * Math.PI) / 2;
-        }
-    }
-
     window.onload = function () {
         let section = new Component("section", COMPONENT_PATH);
         let audioplayer = new Component("audioplayer", COMPONENT_PATH);
@@ -149,9 +111,12 @@
         });
         audioplayer.initComponent().then(() => {
             Component.renderComponent(audioplayer, document.body, "audioplayer");
-            document.querySelector("#switchaudio").addEventListener("click", function (e){
-                Audioplayer.adjustVolume(document.querySelector("#loop_1"), 0)
-                    .then(() => Audioplayer.adjustVolume(document.querySelector("#loop_2"), 1))
+            document.querySelector("#switchaudio").addEventListener("click", async function (e) {
+                await Audioplayer.adjustVolume(document.querySelector("#loop_1"), 0)
+                    .then(() => {
+                        document.querySelector("#loop_2").play();
+                        Audioplayer.adjustVolume(document.querySelector("#loop_2"), 1);
+                    })
 
             }, false)
         });

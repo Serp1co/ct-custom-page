@@ -1,0 +1,58 @@
+#audioplayer .btn {
+    position: relative;
+    margin: 0 10px;
+    cursor: pointer;
+    transition: opacity 0.5s ease-in-out;
+}
+
+#audioplayer .btn .fa {
+    width: 16px;
+    pointer-events: none;
+}
+
+#audioplayer .btn .fa.off {
+    color: #efefef;
+    opacity: 0.4;
+}
+#audioplayer .btn .fa {
+    color: #efefef;
+    opacity: 0.4;
+}
+
+.fa-volume-off:before {
+    content: "\f026";
+}
+.fa-volume-up:before {
+    content: "\f028";
+}
+#audioplayer .btn:active {
+    transform: scale(0.9);
+}
+
+#audioplayer .btn.disabled {
+    pointer-events: none;
+    opacity: 0.2;
+}
+
+#audioplayer #audiotitle {
+
+}
+
+musicplayer {
+    position: fixed;
+    z-index: 100;
+    width: 100%;
+    padding: 20px;
+    color: #69cdd7;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column;
+    box-sizing: border-box;
+}
+
+#audiotitle {
+    font-family: "Josefin Sans", sans-serif;
+    font-size: 1.2em;
+    text-align: center;
+}
