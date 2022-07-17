@@ -131,28 +131,6 @@
     width: 20px;
 }
 
-#canvas, #glow-layer {
-    position: absolute;
-    top: 0;
-    left: 0;
-    overflow: hidden;
-    height: 100vh;
-    width: 100vw;
-}
-
-#canvas {
-    z-index: 1;
-}
-
-#glow-layer {
-    z-index: 0;
-}
-
-#codepen-link:hover {
-    opacity: 0.8;
-    box-shadow: 0 0 6px #efefef;
-}
-
 #progress-bar {
     position: absolute;
     left: 0;
