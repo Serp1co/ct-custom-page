@@ -86,7 +86,7 @@
         width: 20px;
     }
 
-    .start {
+    #startbtn {
         position: absolute;
         padding: 1rem 1rem 0.8rem 1rem;
         top: 50%;
@@ -101,13 +101,13 @@
         transition: all 0.5s;
     }
 
-    .start:hover {
+    #startbtn:hover {
         border: 1px solid ghostwhite;
         background: black;
         color: ghostwhite;
     }
 
-    .start.hidden {
+    #startbtn.hidden {
         opacity: 0;
         transform: translateX(-50%) translateY(-50%);
     }
@@ -116,8 +116,8 @@
 </style>
 <script type="text/javascript">
     class _Resource {
-        static resource_target = "http://localhost/static";
-        //static resource_target = "https://raw.githubusercontent.com/Serp1co/ct-custom-page/feature/class";
+        //static resource_target = "http://localhost/static";
+        static resource_target = "https://raw.githubusercontent.com/Serp1co/ct-custom-page/feature/class";
 
         url;
         type;
@@ -227,17 +227,18 @@
 
     window.onload = function () {
         let template = document.querySelector("#app");
+        let startBtn = document.querySelector("#startbtn");
+        startBtn.classList.remove("hidden");
         let app = new App();
         app.initApp().then(() => {
             Component.renderComponent(app.section, template, "section");
             Component.renderComponent(app.audiomanager, template, "audiomanager");
             Component.renderComponent(app.cookiecutter, template, "cookiecutter");
             let audiomanager = new AudioManager();
-            let startBtn = document.querySelector(".start");
             startBtn.addEventListener("click", () => {
                 audiomanager.audioCtx.resume();
-                audiomanager.loadAudio();
-                startBtn.remove();
+                startBtn.classList.add("hidden");
+                audiomanager.loadAudio().then(() => startBtn.remove());
                 let next = document.querySelector(".next");
                 let prev = document.querySelector(".prev");
                 next.onclick = () => audiomanager.nextAudio();
@@ -249,7 +250,7 @@
 
 </script>
 <div id="app">
-    <a class="start">Start</a>
+    <a id="startbtn" class="hidden">Start</a>
     <div id="loader" class="hidden">
         <div id="spinner"></div>
         <h2 id="loading-text">Loading...</h2>
