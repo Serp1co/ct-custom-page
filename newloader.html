@@ -239,7 +239,10 @@
             startBtn.addEventListener("click", () => {
                 audiomanager.audioCtx.resume();
                 startBtn.classList.add("hidden");
-                audiomanager.loadAudio().then(() => startBtn.remove());
+                audiomanager.loadAudio().then(() => {
+                    startBtn.remove();
+                    document.querySelector("#section").classList.remove("hidden");
+                });
                 let next = document.querySelector(".next");
                 let prev = document.querySelector(".prev");
                 next.onclick = () => audiomanager.nextAudio();
