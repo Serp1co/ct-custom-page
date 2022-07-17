@@ -67,6 +67,7 @@ class AudioManager {
             volume: document.querySelector("#btn-volume")
         };
         this.controls.volume.onclick = () => {
+            console.log("click")
             let i = this.controls.volume.getElementsByTagName("i")[0];
             this.volume = this.volume > 0 ? 0 : 1;
             switch (this.volume) {
