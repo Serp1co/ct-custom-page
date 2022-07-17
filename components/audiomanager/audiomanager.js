@@ -120,6 +120,8 @@ class AudioManager {
 
     async loadAudio() {
         this.loader.classList.remove("hidden");
+        this.title.classList.add("hidden");
+        await AudioManager.adjustVolume(this.audio, 0);
         return await fetch(this.baseURL + this.fileNames[this.currentSong - 1], {
             method: "GET", // *GET, POST, PUT, DELETE, etc.
             mode: "cors", // no-cors, *cors, same-origin
@@ -132,11 +134,13 @@ class AudioManager {
             .catch((exception) => console.error(exception))
     }
 
-    playAudio(data) {
+    async playAudio(data) {
         this.loader.classList.add("hidden");
+        this.title.classList.remove("hidden");
         this.title.innerHTML = this.songTitles[this.currentSong - 1];
         this.audio.src = window.URL.createObjectURL(data);
         this.audio.play();
+        await AudioManager.adjustVolume(this.audio, 1);
     }
 
     async previousAudio() {

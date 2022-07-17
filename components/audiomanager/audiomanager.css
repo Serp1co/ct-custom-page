@@ -20,7 +20,8 @@
     font-size: 1em;
     text-align: right;
     padding: 0;
-    margin: 0
+    margin: 0;
+    transition: opacity 0.5s ease-in-out;
 }
 
 #controls {
