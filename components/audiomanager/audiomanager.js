@@ -119,19 +119,18 @@ class AudioManager {
         this.freqData = new Uint8Array(this.analyser.frequencyBinCount);
     }
 
-    loadAudio() {
-        let request = new XMLHttpRequest();
-        request.open(
-            "GET",
-            this.baseURL + this.fileNames[this.currentSong - 1],
-            true);
-        this.loader.classList.remove("hidden");
-        request.responseType = "blob";
-        request.onprogress = () => {
-            if (request.response)
-                this.playAudio(request.response);
-        };
-        request.send();
+    async loadAudio() {
+        return await fetch(this.baseURL + this.fileNames[this.currentSong - 1], {
+            method: "GET", // *GET, POST, PUT, DELETE, etc.
+            mode: "cors", // no-cors, *cors, same-origin
+            cache: "default", // *default, no-cache, reload, force-cache, only-if-cached
+        })
+            .then((response) => response.blob())
+            .then((data) => {
+                this.loader.classList.remove("hidden");
+                this.playAudio(data);
+            })
+            .catch((exception) => console.error(exception))
     }
 
     playAudio(data) {
@@ -141,6 +140,19 @@ class AudioManager {
         this.audio.play();
     }
 
+    async nextAudio() {
+        this.currentSong = this.currentSong > 1 ?
+            this.currentSong - 1 :
+            this.fileNames.length;
+        await this.loadAudio();
+    }
+
+    async previousAudio() {
+        this.currentSong = this.currentSong < this.fileNames.length ?
+            this.currentSong + 1 :
+            1;
+        await this.loadAudio();
+    }
     update() {
 
     }

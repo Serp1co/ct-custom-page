@@ -137,6 +137,10 @@
                 audiomanager.audioCtx.resume();
                 audiomanager.loadAudio();
                 startBtn.remove();
+                let next = document.querySelector(".next");
+                let prev = document.querySelector(".prev");
+                next.onclick = () => audiomanager.nextAudio();
+                prev.onclick = () => () => audiomanager.previousAudio();
             });
         })
     }
