@@ -1,58 +1,206 @@
-#audioplayer .btn {
+#audiomanager {
+    position: absolute;
+    z-index: 10;
+    padding: 0;
+    margin: 0;
+    bottom: 0;
+    right: 0;
+    color: ghostwhite;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    flex-direction: row;
+    box-sizing: border-box;
+    opacity: 0.7;
+}
+
+#audiotitle {
+    font-family: 'Consolas', sans-serif;
+    font-size: 1em;
+    text-align: right;
+    padding: 0 0 3px;
+    margin: 0;
+}
+
+#controls {
+    display: flex;
+    padding: 3px;
+}
+
+#controls .btn {
     position: relative;
     margin: 0 10px;
     cursor: pointer;
     transition: opacity 0.5s ease-in-out;
 }
 
-#audioplayer .btn .fa {
+#controls .btn .fa {
     width: 16px;
     pointer-events: none;
 }
 
-#audioplayer .btn .fa.off {
-    color: #efefef;
-    opacity: 0.4;
-}
-#audioplayer .btn .fa {
+#controls .btn .fa.off {
     color: #efefef;
     opacity: 0.4;
 }
 
-.fa-volume-off:before {
-    content: "\f026";
-}
-.fa-volume-up:before {
-    content: "\f028";
-}
-#audioplayer .btn:active {
+#controls .btn:active {
     transform: scale(0.9);
 }
 
-#audioplayer .btn.disabled {
+#controls .btn.disabled {
     pointer-events: none;
     opacity: 0.2;
 }
 
-#audioplayer #audiotitle {
-
+#flex-pad {
+    flex: 1;
 }
 
-musicplayer {
-    position: fixed;
-    z-index: 100;
-    width: 100%;
-    padding: 20px;
-    color: #69cdd7;
+#loader .active {
+    opacity: 1;
+}
+
+#loader #spinner {
+    -webkit-animation: spinner-anim 2s ease-out infinite;
+    animation: spinner-anim 2s ease-out infinite;
+}
+
+#loader #spinner::before {
+    -webkit-animation: spinner-anim 2s ease-out infinite;
+    animation: spinner-anim 2s ease-out infinite;
+}
+
+#loader #spinner::after {
+    -webkit-animation: spinner-anim 1s ease-out infinite;
+    animation: spinner-anim 1s ease-out infinite;
+}
+
+#loader {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: 11;
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    flex-direction: column;
-    box-sizing: border-box;
+    justify-content: flex-start;
+    width: 100vw;
+    opacity: 0.5;
+    transition: opacity 0.5s ease-in-out;
+}
+.hidden{
+    opacity: 0 !important;
+}
+#loader #loading-text {
+    font-size: 1.8em;
+    font-family: "Consolas", sans-serif;
+    color: ghostwhite;
+    transition: all 0.5s ease-in-out;
 }
 
-#audiotitle {
+#loader #spinner {
+    height: 40px;
+    width: 40px;
+    border: 2px solid whitesmoke;
+    border-color: transparent transparent ghostwhite ghostwhite;
+    border-radius: 50%;
+    margin-right: 10px;
+    transform: rotate(0deg);
+}
+
+#loader #spinner::before, #loader #spinner::after {
+    position: absolute;
+    content: "";
+    display: block;
+    border: 2px solid whitesmoke;
+    border-color: transparent transparent ghostwhite ghostwhite;
+    border-radius: 50%;
+}
+
+#loader #spinner::before {
+    top: 3px;
+    left: 3px;
+    height: 30px;
+    width: 30px;
+}
+
+#loader #spinner::after {
+    top: 8px;
+    left: 8px;
+    height: 20px;
+    width: 20px;
+}
+
+#canvas, #glow-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    height: 100vh;
+    width: 100vw;
+}
+
+#canvas {
+    z-index: 1;
+}
+
+#glow-layer {
+    z-index: 0;
+}
+
+#codepen-link:hover {
+    opacity: 0.8;
+    box-shadow: 0 0 6px #efefef;
+}
+
+#progress-bar {
+    position: absolute;
+    left: 0;
+    top: 4px;
+    z-index: 13;
+    width: 100%;
+    height: 4px;
+    background: whitesmoke;
+    transform: scaleX(0);
+    transform-origin: center left;
+    transition: transform 0.5s linear;
+}
+
+.start {
+    position: absolute;
+    padding: 1rem 1rem 0.8rem 1rem;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    z-index: 4;
+    border: 1px solid grey;
+    color: dimgrey;
     font-family: "Josefin Sans", sans-serif;
     font-size: 1.2em;
-    text-align: center;
+    cursor: pointer;
+    transition: all 0.5s;
+}
+
+.start:hover {
+    border: 1px solid ghostwhite;
+    background: black;
+    color: ghostwhite;
+}
+
+.start.hidden {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-50%);
+}
+
+
+@-webkit-keyframes spinner-anim {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes spinner-anim {
+    to {
+        transform: rotate(360deg);
+    }
 }

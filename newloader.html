@@ -1,14 +1,22 @@
 <!---- START CUSTOM SECTION -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
 <style>
     body {
         background: black;
         color: white;
     }
+
+    #app {
+        height: 600px;
+        width: 547px;
+        position: relative;
+        display: block;
+    }
 </style>
 <script type="text/javascript">
     class _Resource {
-        //static resource_target = "http://localhost/static";
-        static resource_target = "https://raw.githubusercontent.com/Serp1co/ct-custom-page/feature/class";
+        static resource_target = "http://localhost/static";
+        //static resource_target = "https://raw.githubusercontent.com/Serp1co/ct-custom-page/feature/class";
 
         url;
         type;
@@ -100,36 +108,35 @@
         }
     }
 
+    class App {
+        constructor() {
+            this.section = new Component("section", COMPONENT_PATH);
+            this.audioplayer = new Component("audioplayer", COMPONENT_PATH);
+            this.cookiecutter = new Component("cookiecutter", COMPONENT_PATH);
+        }
+
+        async initApp(){
+            await this.section.initComponent();
+            await this.audioplayer.initComponent();
+            await this.cookiecutter.initComponent();
+        }
+    }
+
     const COMPONENT_PATH = "/components"
 
     window.onload = function () {
-        let section = new Component("section", COMPONENT_PATH);
-        let audioplayer = new Component("audioplayer", COMPONENT_PATH);
-        let cookiecutter = new Component("cookiecutter", COMPONENT_PATH);
-        section.initComponent().then(() => {
-            Component.renderComponent(section, document.body, "section");
-        });
-        audioplayer.initComponent().then(() => {
-            Component.renderComponent(audioplayer, document.body, "audioplayer");
-            document.querySelector("#switchaudio").addEventListener("click", async function (e) {
-                await Audioplayer.adjustVolume(document.querySelector("#loop_1"), 0)
-                    .then(() => {
-                        document.querySelector("#loop_2").play();
-                        Audioplayer.adjustVolume(document.querySelector("#loop_2"), 1);
-                    })
-
-            }, false)
-        });
-        cookiecutter.initComponent().then(() => {
-            Component.renderComponent(cookiecutter, document.body, "cookiecutter");
-        });
-
+        let template = document.querySelector("#app");
+        let app = new App();
+        app.initApp().then(() => {
+            Component.renderComponent(app.section, template, "section");
+            Component.renderComponent(app.audioplayer, template, "audioplayer");
+            Component.renderComponent(app.cookiecutter, template, "cookiecutter");
+            let audiomanager = new AudioManager();
+        })
     }
 
 
 </script>
-<div class="starting container">
-    <div id="myimg"></div>
-    <button id="switchaudio">audio2</button>
+<div id="app">
 </div>
 <!---- END CUSTOM SECTION -->
