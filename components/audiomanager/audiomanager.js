@@ -60,7 +60,6 @@ class AudioManager {
             volume: document.querySelector("#btn-volume")
         };
         this.controls.volume.onclick = () => {
-            console.log("click")
             let i = this.controls.volume.getElementsByTagName("i")[0];
             this.volume = this.volume > 0 ? 0 : 1;
             switch (this.volume) {
@@ -140,14 +139,14 @@ class AudioManager {
         this.audio.play();
     }
 
-    async nextAudio() {
+    async previousAudio() {
         this.currentSong = this.currentSong > 1 ?
             this.currentSong - 1 :
             this.fileNames.length;
         await this.loadAudio();
     }
 
-    async previousAudio() {
+    async nextAudio() {
         this.currentSong = this.currentSong < this.fileNames.length ?
             this.currentSong + 1 :
             1;
