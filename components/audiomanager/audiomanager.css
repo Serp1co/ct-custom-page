@@ -24,6 +24,10 @@
     transition: opacity 0.5s ease-in-out;
 }
 
+#audiotitle.hidden {
+    opacity: 0 !important;
+}
+
 #controls {
     display: flex;
     padding: 3px;

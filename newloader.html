@@ -13,10 +13,6 @@
         display: block;
     }
 
-    #loader .active {
-        opacity: 1;
-    }
-
     #loader #spinner {
         -webkit-animation: spinner-anim 2s ease-out infinite;
         animation: spinner-anim 2s ease-out infinite;
@@ -46,7 +42,7 @@
         pointer-events: none;
     }
 
-    .hidden {
+    #loader.hidden {
         opacity: 0 !important;
     }
 
@@ -89,11 +85,39 @@
         height: 20px;
         width: 20px;
     }
+
+    .start {
+        position: absolute;
+        padding: 1rem 1rem 0.8rem 1rem;
+        top: 50%;
+        left: 50%;
+        transform: translateX(-50%) translateY(-50%);
+        z-index: 4;
+        border: 1px solid grey;
+        color: dimgrey;
+        font-family: "Josefin Sans", sans-serif;
+        font-size: 1.2em;
+        cursor: pointer;
+        transition: all 0.5s;
+    }
+
+    .start:hover {
+        border: 1px solid ghostwhite;
+        background: black;
+        color: ghostwhite;
+    }
+
+    .start.hidden {
+        opacity: 0;
+        transform: translateX(-50%) translateY(-50%);
+    }
+
+
 </style>
 <script type="text/javascript">
     class _Resource {
-        //static resource_target = "http://localhost/static";
-        static resource_target = "https://raw.githubusercontent.com/Serp1co/ct-custom-page/feature/class";
+        static resource_target = "http://localhost/static";
+        //static resource_target = "https://raw.githubusercontent.com/Serp1co/ct-custom-page/feature/class";
 
         url;
         type;
@@ -225,6 +249,7 @@
 
 </script>
 <div id="app">
+    <a class="start">Start</a>
     <div id="loader" class="hidden">
         <div id="spinner"></div>
         <h2 id="loading-text">Loading...</h2>
