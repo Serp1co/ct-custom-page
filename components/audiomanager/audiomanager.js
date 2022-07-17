@@ -119,6 +119,7 @@ class AudioManager {
     }
 
     async loadAudio() {
+        this.loader.classList.remove("hidden");
         return await fetch(this.baseURL + this.fileNames[this.currentSong - 1], {
             method: "GET", // *GET, POST, PUT, DELETE, etc.
             mode: "cors", // no-cors, *cors, same-origin
@@ -126,7 +127,6 @@ class AudioManager {
         })
             .then((response) => response.blob())
             .then((data) => {
-                this.loader.classList.remove("hidden");
                 this.playAudio(data);
             })
             .catch((exception) => console.error(exception))
