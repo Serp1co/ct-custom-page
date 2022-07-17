@@ -40,13 +40,6 @@ class AudioManager {
         this.initCanvas();
         this.initUI();
         this.initAudio();
-        console.log("starting");
-        this.startBtn = document.querySelector(".start");
-        this.startBtn.addEventListener("click", () => {
-            this.audioCtx.resume();
-            this.loadAudio();
-            this.startBtn.classList.add("hidden");
-        });
         this.render();
         window.onresize = () => {
             this.resize();

@@ -132,6 +132,12 @@
             Component.renderComponent(app.audiomanager, template, "audiomanager");
             Component.renderComponent(app.cookiecutter, template, "cookiecutter");
             let audiomanager = new AudioManager();
+            let startBtn = document.querySelector(".start");
+            startBtn.addEventListener("click", () => {
+                audiomanager.audioCtx.resume();
+                audiomanager.loadAudio();
+                startBtn.remove();
+            });
         })
     }
 
