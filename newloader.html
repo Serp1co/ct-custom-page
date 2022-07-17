@@ -116,8 +116,8 @@
 </style>
 <script type="text/javascript">
     class _Resource {
-        //static resource_target = "http://localhost/static";
-        static resource_target = "https://raw.githubusercontent.com/Serp1co/ct-custom-page/feature/class";
+        static resource_target = "http://localhost/static";
+        //static resource_target = "https://raw.githubusercontent.com/Serp1co/ct-custom-page/feature/class";
 
         url;
         type;
@@ -198,9 +198,10 @@
             document.dispatchEvent(new Event("component-" + this.name + "-init-done"));
         }
 
-        static renderComponent(component, parent, id) {
+        static renderComponent(component, parent, id, classlist=[]) {
             let item = component.html.getElem();
             item.id = id;
+            item.classList.add(...classlist)
             Component.COMPONENTS[id] = parent.appendChild(item);
         }
 
@@ -231,7 +232,7 @@
         startBtn.classList.remove("hidden");
         let app = new App();
         app.initApp().then(() => {
-            Component.renderComponent(app.section, template, "section");
+            Component.renderComponent(app.section, template, "section", ["hidden"]);
             Component.renderComponent(app.audiomanager, template, "audiomanager");
             Component.renderComponent(app.cookiecutter, template, "cookiecutter");
             let audiomanager = new AudioManager();

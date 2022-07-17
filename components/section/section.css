@@ -73,3 +73,7 @@
 
 .next {
 }
+
+.hidden{
+    opacity: 0!important;
+}
