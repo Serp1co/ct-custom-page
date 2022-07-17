@@ -1,0 +1,170 @@
+<!---- START CUSTOM SECTION -->
+<style>
+    body {
+        background: black;
+        color: white;
+    }
+</style>
+<script type="text/javascript">
+    class _Resource {
+        static resource_target = "http://localhost/static";
+        //static resource_target = "https://raw.githubusercontent.com/Serp1co/ct-custom-page/develop";
+
+        url;
+        type;
+        _elem;
+
+        constructor(url, type) {
+            this.url = _Resource.resource_target + url;
+            this.type = type;
+        }
+
+        async initResource(){
+            this._elem = await _ResourceFetcher._fetch_resource(this);
+        }
+
+        getElem() {
+            return this._elem.cloneNode(true);
+        }
+    }
+
+    class _ResourceFetcher {
+        static async _fetch_resource(resource) {
+            return await fetch(resource.url, {
+                method: "GET", // *GET, POST, PUT, DELETE, etc.
+                mode: "cors", // no-cors, *cors, same-origin
+                cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+            })
+                .then((response) => _ResourceFetcher._process_response(response))
+                .then((data) => {
+                    let html = document.createElement(resource.type);
+                    html.innerHTML = data;
+                    return html;
+                })
+                .catch((exception) => console.error(exception))
+        }
+
+        static async _process_response(response) {
+            if (response.ok) return response.text();
+            else
+                throw {
+                    status_code: response.status,
+                    status_description: response.statusText,
+                };
+        };
+    }
+
+    class Component {
+        static COMPONENTS = {};
+
+        name;
+        html;
+        _style;
+        _script;
+
+        constructor(name, path) {
+            this.name = name;
+            this._style = new _Resource(path + "/" + name + "/" + name + ".css", "style");
+            this._script = new _Resource(path + "/" + name + "/" + name + ".js", "script");
+            this.html = new _Resource(path + "/" + name + "/" + name + ".html", "div");
+        }
+
+        async initComponent() {
+            await this._fetch_elements()
+                .then((_) => {
+                    document.head.appendChild(this._style.getElem());
+                    document.body.appendChild(this._script.getElem());
+                })
+                .then((_) => this._propagate_init_event())
+                .catch((exception) => console.error(JSON.parse(exception)))
+        }
+
+        async _fetch_elements() {
+            await this._style.initResource();
+            await this._script.initResource();
+            await this.html.initResource();
+        }
+
+        _propagate_init_event() {
+            document.dispatchEvent(new Event("component-" + this.name + "-init-done"));
+        }
+
+        static renderComponent(component, parent, id) {
+            let item = component.html.getElem();
+            item.id = id;
+            Component.COMPONENTS[id] = parent.appendChild(item);
+        }
+
+        static removeComponent(id) {
+            Component.COMPONENTS[id].remove();
+        }
+    }
+
+    const COMPONENT_PATH = "/components"
+
+    class Audioplayer {
+        static async adjustVolume(
+            element,
+            newVolume,
+            duration = 1000,
+            interval = 13,
+            easing = Audioplayer.swing,
+        ) {
+            return new Promise(resolve => {
+            const originalVolume = element.volume;
+            const delta = newVolume - originalVolume;
+
+            if (!delta || !duration || !easing || !interval) {
+                element.volume = newVolume;
+                return Promise.resolve();
+            }
+
+            const ticks = Math.floor(duration / interval);
+            let tick = 1;
+
+                const timer = setInterval(() => {
+                    element.volume = originalVolume + (
+                        easing(tick / ticks) * delta
+                    );
+
+                    if (++tick === ticks + 1) {
+                        clearInterval(timer);
+                        resolve();
+                    }
+                }, interval);
+            })
+        }
+
+        static swing(p) {
+            return 0.5 - Math.cos(p * Math.PI) / 2;
+        }
+    }
+
+    window.onload = function () {
+        let section = new Component("section", COMPONENT_PATH);
+        let audioplayer = new Component("audioplayer", COMPONENT_PATH);
+        let cookiecutter = new Component("cookiecutter", COMPONENT_PATH);
+        section.initComponent().then(() => {
+            Component.renderComponent(section, document.body, "section");
+        });
+        audioplayer.initComponent().then(() => {
+            Component.renderComponent(audioplayer, document.body, "audioplayer");
+            document.querySelector("#switchaudio").addEventListener("click", function (e){
+                Audioplayer.adjustVolume(document.querySelector("#loop_1"), 0)
+                    .then(() => Audioplayer.adjustVolume(document.querySelector("#loop_2"), 1))
+
+            }, false)
+        });
+        cookiecutter.initComponent().then(() => {
+            Component.renderComponent(cookiecutter, document.body, "cookiecutter");
+        });
+
+    }
+
+
+</script>
+<div class="starting container">
+    <div id="myimg"></div>
+    <button id="switchaudio">audio2</button>
+</div>
+<!---- END CUSTOM SECTION -->

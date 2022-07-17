@@ -1,0 +1,27 @@
+.cookiecutter {
+    display: block;
+    position: fixed;
+    height: 100%;
+    top: 0;
+    left: 0px;
+    bottom: 0;
+    right: 0px;
+    background: black;
+    opacity: 0;
+    z-index: 9;
+    pointer-events: none;
+  }
+
+.cookiecutter::after {
+    display: block;
+    position: fixed;
+    height: 100%;
+    top: 0;
+    left: 0px;
+    bottom: 0;
+    right: 0px;
+    background: black;
+    opacity: 1;
+    z-index: 9;
+    pointer-events: none;
+  }
