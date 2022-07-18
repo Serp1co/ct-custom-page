@@ -41,17 +41,10 @@ class AudioManager {
         this.initUI();
         this.initAudio();
         this.render();
-        window.onresize = () => {
-            this.resize();
-        };
     }
 
     initCanvas() {
         this.tick = 0;
-        this.resize();
-    }
-
-    resize() {
     }
 
     initUI() {

@@ -132,8 +132,8 @@
 </style>
 <script type="text/javascript">
     class _Resource {
-        //static resource_target = "http://localhost/static";
-        static resource_target = "https://raw.githubusercontent.com/Serp1co/ct-custom-page/feature/class/static/";
+        static resource_target = "http://localhost/static";
+        //static resource_target = "https://raw.githubusercontent.com/Serp1co/ct-custom-page/feature/class/static/";
 
         url;
         type;
@@ -231,12 +231,14 @@
             this.section = new Component("section", COMPONENT_PATH);
             this.audiomanager = new Component("audiomanager", COMPONENT_PATH);
             this.cookiecutter = new Component("cookiecutter", COMPONENT_PATH);
+            this.background = new Component("background", COMPONENT_PATH);
         }
 
         async initApp() {
             await this.section.initComponent();
             await this.audiomanager.initComponent();
             await this.cookiecutter.initComponent();
+            await this.background.initComponent();
         }
     }
 
@@ -252,6 +254,7 @@
                 Component.renderComponent(app.section, template, "section", ["hidden"]);
                 Component.renderComponent(app.audiomanager, template, "audiomanager");
                 Component.renderComponent(app.cookiecutter, template, "cookiecutter");
+                Component.renderComponent(app.background, template, "background");
                 let audiomanager = new AudioManager();
                 startBtn.addEventListener("click", () => {
                     audiomanager.audioCtx.resume();
@@ -259,6 +262,8 @@
                     audiomanager.loadAudio().then(() => {
                         startBtn.remove();
                         document.querySelector("#section").classList.remove("hidden");
+                        let background = new Background(document.querySelector("#backgroundcanvas"), 567, 600);
+                        background.loop();
                     });
                     let next = document.querySelector(".next");
                     let prev = document.querySelector(".prev");
