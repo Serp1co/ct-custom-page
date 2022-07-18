@@ -95,7 +95,7 @@
         z-index: 4;
         border: 1px solid grey;
         color: dimgrey;
-        font-family: "Josefin Sans", sans-serif;
+        font-family: "Consolas", sans-serif;
         font-size: 1.2em;
         cursor: pointer;
         transition: all 0.5s;
@@ -116,11 +116,24 @@
         transition: opacity 0.5s ease-in-out;
     }
 
+    #initloader {
+        position: absolute;
+        padding: 1rem 1rem 0.8rem 1rem;
+        top: 50%;
+        left: 50%;
+        transform: translateX(-50%) translateY(-50%);
+        z-index: 4;
+        color: dimgrey;
+        font-family: "Consolas", sans-serif;
+        font-size: 1.2em;
+        cursor: pointer;
+        transition: all 0.5s;
+    }
 </style>
 <script type="text/javascript">
     class _Resource {
         //static resource_target = "http://localhost/static";
-        static resource_target = "https://raw.githubusercontent.com/Serp1co/ct-custom-page/feature/class";
+        static resource_target = "https://raw.githubusercontent.com/Serp1co/ct-custom-page/feature/class/static/";
 
         url;
         type;
@@ -232,6 +245,7 @@
     window.onload = function () {
         let template = document.querySelector("#app");
         let startBtn = document.querySelector("#startbtn");
+        let initLoader = document.querySelector("#initloader");
         let app = new App();
         app.initApp()
             .then(() => {
@@ -252,7 +266,10 @@
                     prev.onclick = () => () => audiomanager.previousAudio();
                 });
             })
-            .finally(() => startBtn.classList.remove("hidden"));
+            .finally(() => {
+                initLoader.remove();
+                startBtn.classList.remove("hidden");
+            });
     }
 
 
@@ -263,7 +280,7 @@
         <div id="spinner"></div>
         <h2 id="loading-text">Loading...</h2>
     </div>
-    <div id="loading" class="visible">
+    <div id="initloader" class="visible">
         <h2>Loading...</h2>
     </div>
 </div>
