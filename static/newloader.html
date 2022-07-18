@@ -119,8 +119,8 @@
 </style>
 <script type="text/javascript">
     class _Resource {
-        static resource_target = "http://localhost/static";
-        //static resource_target = "https://raw.githubusercontent.com/Serp1co/ct-custom-page/feature/class";
+        //static resource_target = "http://localhost/static";
+        static resource_target = "https://raw.githubusercontent.com/Serp1co/ct-custom-page/feature/class";
 
         url;
         type;
@@ -201,7 +201,7 @@
             document.dispatchEvent(new Event("component-" + this.name + "-init-done"));
         }
 
-        static renderComponent(component, parent, id, classlist=[]) {
+        static renderComponent(component, parent, id, classlist = []) {
             let item = component.html.getElem();
             item.id = id;
             item.classList.add(...classlist)
@@ -232,26 +232,27 @@
     window.onload = function () {
         let template = document.querySelector("#app");
         let startBtn = document.querySelector("#startbtn");
-        startBtn.classList.remove("hidden");
         let app = new App();
-        app.initApp().then(() => {
-            Component.renderComponent(app.section, template, "section", ["hidden"]);
-            Component.renderComponent(app.audiomanager, template, "audiomanager");
-            Component.renderComponent(app.cookiecutter, template, "cookiecutter");
-            let audiomanager = new AudioManager();
-            startBtn.addEventListener("click", () => {
-                audiomanager.audioCtx.resume();
-                startBtn.classList.add("hidden");
-                audiomanager.loadAudio().then(() => {
-                    startBtn.remove();
-                    document.querySelector("#section").classList.remove("hidden");
+        app.initApp()
+            .then(() => {
+                Component.renderComponent(app.section, template, "section", ["hidden"]);
+                Component.renderComponent(app.audiomanager, template, "audiomanager");
+                Component.renderComponent(app.cookiecutter, template, "cookiecutter");
+                let audiomanager = new AudioManager();
+                startBtn.addEventListener("click", () => {
+                    audiomanager.audioCtx.resume();
+                    startBtn.classList.add("hidden");
+                    audiomanager.loadAudio().then(() => {
+                        startBtn.remove();
+                        document.querySelector("#section").classList.remove("hidden");
+                    });
+                    let next = document.querySelector(".next");
+                    let prev = document.querySelector(".prev");
+                    next.onclick = () => audiomanager.nextAudio();
+                    prev.onclick = () => () => audiomanager.previousAudio();
                 });
-                let next = document.querySelector(".next");
-                let prev = document.querySelector(".prev");
-                next.onclick = () => audiomanager.nextAudio();
-                prev.onclick = () => () => audiomanager.previousAudio();
-            });
-        })
+            })
+            .finally(() => startBtn.classList.remove("hidden"));
     }
 
 
@@ -261,6 +262,9 @@
     <div id="loader" class="hidden">
         <div id="spinner"></div>
         <h2 id="loading-text">Loading...</h2>
+    </div>
+    <div id="loading" class="visible">
+        <h2>Loading...</h2>
     </div>
 </div>
 <!---- END CUSTOM SECTION -->
