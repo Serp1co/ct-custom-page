@@ -7,7 +7,7 @@
     }
 
     #app {
-        height: 600px;
+        height: fit-content;
         width: 567px;
         position: relative;
         display: block;
@@ -116,6 +116,10 @@
         transition: opacity 0.5s ease-in-out;
     }
 
+    #section.hidden {
+        opacity: 0 !important;
+    }
+
     #initloader {
         position: absolute;
         padding: 1rem 1rem 0.8rem 1rem;
@@ -217,7 +221,7 @@
         static renderComponent(component, parent, id, classlist = []) {
             let item = component.html.getElem();
             item.id = id;
-            item.classList.add(...classlist)
+            item.classList.add(...classlist);
             Component.COMPONENTS[id] = parent.appendChild(item);
         }
 
@@ -256,14 +260,14 @@
                 Component.renderComponent(app.cookiecutter, template, "cookiecutter");
                 Component.renderComponent(app.background, template, "background");
                 let audiomanager = new AudioManager();
+                let background = new Background(document.querySelector("#backgroundcanvas"), 567, 600);
                 startBtn.addEventListener("click", () => {
+                    background.loop();
                     audiomanager.audioCtx.resume();
                     startBtn.classList.add("hidden");
                     audiomanager.loadAudio().then(() => {
                         startBtn.remove();
                         document.querySelector("#section").classList.remove("hidden");
-                        let background = new Background(document.querySelector("#backgroundcanvas"), 567, 600);
-                        background.loop();
                     });
                     let next = document.querySelector(".next");
                     let prev = document.querySelector(".prev");
@@ -276,8 +280,6 @@
                 startBtn.classList.remove("hidden");
             });
     }
-
-
 </script>
 <div id="app">
     <a id="startbtn" class="hidden">Start</a>
@@ -290,6 +292,15 @@
     </div>
 </div>
 <!---- END CUSTOM SECTION -->
+<div class="col server_footer" id="server_footer_div">
+    <div class="server_footer">
+        This server is property of Ash Williams, any connection and access will be
+        reported, all actions are under strict auditing.
+    </div>
+    <div class="server_footer">
+        Malicious actions <a class="tip">w i l l</a> be persecuted.
+    </div>
+</div>
 <div>
     Source code available under Apache 2.0 License: <a href="https://github.com/Serp1co/ct-custom-page">github@serp1c0/ct-custom-page</a>
 </div>
