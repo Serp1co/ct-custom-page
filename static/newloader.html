@@ -258,15 +258,15 @@
         constructor() {
             this.section = new Component("section", COMPONENT_PATH);
             this.audiomanager = new Component("audiomanager", COMPONENT_PATH);
-            this.cookiecutter = new Component("cookiecutter", COMPONENT_PATH);
             this.background = new Component("background", COMPONENT_PATH);
+            this.glitchimage = new Component("glitchimage", COMPONENT_PATH);
         }
 
         async initApp() {
             await this.section.initComponent();
             await this.audiomanager.initComponent();
-            await this.cookiecutter.initComponent();
             await this.background.initComponent();
+            await this.glitchimage.initComponent();
         }
     }
 
@@ -276,21 +276,25 @@
         let template = document.querySelector("#app");
         let startBtn = document.querySelector("#startbtn");
         let initLoader = document.querySelector("#initloader");
+        let loginForm = document.querySelector("#loginform");
         let app = new App();
         app.initApp()
             .then(() => {
                 Component.renderComponent(app.section, template, "section", ["hidden"]);
                 Component.renderComponent(app.audiomanager, template, "audiomanager");
                 Component.renderComponent(app.background, template, "background");
+                let glitch = new GlitchedImage(document.querySelector("#bottomimg"), 180);
                 let audiomanager = new AudioManager();
                 let background = new Background(document.querySelector("#backgroundcanvas"), 567, 600);
                 startBtn.addEventListener("click", () => {
                     background.loop();
+                    glitch.init();
                     audiomanager.audioCtx.resume();
-                    startBtn.classList.add("hidden");
+                    loginForm.classList.add("hidden");
                     audiomanager.loadAudio().then(() => {
-                        startBtn.remove();
+                        loginForm.remove();
                         document.querySelector("#section").classList.remove("hidden");
+                        glitch.render();
                     });
                     let next = document.querySelector(".next");
                     let prev = document.querySelector(".prev");
@@ -301,17 +305,16 @@
             })
             .finally(() => {
                 initLoader.remove();
-                startBtn.classList.remove("hidden");
+                loginForm.classList.remove("hidden");
                 let username = CookieCutter.getCookie("lastlogin");
-                document.querySelector(".inittext").classList.remove("hidden");
                 document.querySelector(".inittext").innerHTML = "Welcome, " + username + ".<br>Remember: I See You.<br>";
             });
     }
 </script>
 <div id="app">
-    <div id="loginform">
-        <p><a id="startext" class="inittext hidden"></a></p>
-        <p style="text-align: center;padding: 10px 0 0 0;"><a id="startbtn" class="hidden">Login</a></p>
+    <div id="loginform" class="hidden">
+        <p><a id="startext" class="inittext"></a></p>
+        <p style="text-align: center;padding: 10px 0 0 0;"><a id="startbtn">Login</a></p>
     </div>
     <div id="loader" class="hidden">
         <div id="spinner"></div>
