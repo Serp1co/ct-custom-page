@@ -45,10 +45,6 @@
         pointer-events: none;
     }
 
-    #loader.hidden {
-        opacity: 0 !important;
-    }
-
     #loader #loading-text {
         font-size: 1.8em;
         font-family: "Consolas", sans-serif;
@@ -89,19 +85,29 @@
         width: 20px;
     }
 
-    #startbtn {
-        position: absolute;
-        padding: 1rem 1rem 0.8rem 1rem;
-        top: 50%;
-        left: 50%;
-        transform: translateX(-50%) translateY(-50%);
-        z-index: 4;
+    #loginform {
         border: 1px solid grey;
         color: dimgrey;
         font-family: "Consolas", sans-serif;
         font-size: 1.2em;
         cursor: pointer;
         transition: all 0.5s;
+        position: absolute;
+        padding: 1rem 1rem 0.8rem 1rem;
+        top: 50%;
+        left: 50%;
+        transform: translateX(-50%) translateY(-50%);
+        z-index: 4;
+    }
+
+    #startbtn {
+        border: 1px solid grey;
+        color: dimgrey;
+        font-family: "Consolas", sans-serif;
+        font-size: 1em;
+        cursor: pointer;
+        transition: all 0.5s;
+        padding: 1rem 1rem 0.8rem 1rem;
     }
 
     #startbtn:hover {
@@ -110,16 +116,11 @@
         color: ghostwhite;
     }
 
-    #startbtn.hidden {
-        opacity: 0;
-        transform: translateX(-50%) translateY(-50%);
-    }
-
     #section {
         transition: opacity 0.5s ease-in-out;
     }
 
-    #section.hidden {
+    .hidden {
         opacity: 0 !important;
     }
 
@@ -138,6 +139,26 @@
     }
 </style>
 <script type="text/javascript">
+    class CookieCutter {
+        static getCookie(cname) {
+            let name = cname + "=";
+            let decodedCookie = document.cookie;
+            console.log(decodedCookie);
+            let ca = decodedCookie.split(";");
+            for (let i = 0; i < ca.length; i++) {
+                let c = ca[i];
+                while (c.charAt(0) === " ") {
+                    c = c.substring(1);
+                    console.log(c);
+                }
+                if (c.indexOf(name) === 0) {
+                    console.log(c.substring(name.length, c.length));
+                    return c.substring(name.length, c.length);
+                }
+            }
+            return "";
+        }
+    }
     class _Resource {
         static resource_target = "http://localhost/static";
         //static resource_target = "https://raw.githubusercontent.com/Serp1co/ct-custom-page/feature/class/static/";
@@ -260,7 +281,6 @@
             .then(() => {
                 Component.renderComponent(app.section, template, "section", ["hidden"]);
                 Component.renderComponent(app.audiomanager, template, "audiomanager");
-                Component.renderComponent(app.cookiecutter, template, "cookiecutter");
                 Component.renderComponent(app.background, template, "background");
                 let audiomanager = new AudioManager();
                 let background = new Background(document.querySelector("#backgroundcanvas"), 567, 600);
@@ -276,16 +296,23 @@
                     let prev = document.querySelector(".prev");
                     next.onclick = () => audiomanager.nextAudio();
                     prev.onclick = () => () => audiomanager.previousAudio();
+                    document.querySelector(".inittext").remove();
                 });
             })
             .finally(() => {
                 initLoader.remove();
                 startBtn.classList.remove("hidden");
+                let username = CookieCutter.getCookie("lastlogin");
+                document.querySelector(".inittext").classList.remove("hidden");
+                document.querySelector(".inittext").innerHTML = "Welcome, " + username + ".<br>Remember: I See You.<br>";
             });
     }
 </script>
 <div id="app">
-    <a id="startbtn" class="hidden">Login</a>
+    <div id="loginform">
+        <p><a id="startext" class="inittext hidden"></a></p>
+        <p style="text-align: center;padding: 10px 0 0 0;"><a id="startbtn" class="hidden">Login</a></p>
+    </div>
     <div id="loader" class="hidden">
         <div id="spinner"></div>
         <h2 id="loading-text">Loading...</h2>
