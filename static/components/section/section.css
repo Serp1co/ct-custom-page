@@ -108,7 +108,7 @@ div .monitor {
     text-decoration: none;
     letter-spacing: 0.1em;
     font-weight: bold;
-    font-family: monospace;
+    font-family: "Consolas", sans-serif;
     font-size: 12px;
     padding: 0 !important;
     overflow: hidden;
