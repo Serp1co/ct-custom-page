@@ -260,6 +260,7 @@
             this.audiomanager = new Component("audiomanager", COMPONENT_PATH);
             this.background = new Component("background", COMPONENT_PATH);
             this.glitchimage = new Component("glitchimage", COMPONENT_PATH);
+            this.crt = new Component("crt", COMPONENT_PATH);
         }
 
         async initApp() {
@@ -267,6 +268,7 @@
             await this.audiomanager.initComponent();
             await this.background.initComponent();
             await this.glitchimage.initComponent();
+            await this.crt.initComponent();
         }
     }
 
@@ -283,6 +285,7 @@
                 Component.renderComponent(app.section, template, "section", ["hidden"]);
                 Component.renderComponent(app.audiomanager, template, "audiomanager");
                 Component.renderComponent(app.background, template, "background");
+                Component.renderComponent(app.crt, template, "crt", ["crt"]);
                 let glitch = new GlitchedImage(document.querySelector("#bottomimg"), 180);
                 let audiomanager = new AudioManager();
                 let background = new Background(document.querySelector("#backgroundcanvas"), 567, 600);
@@ -296,7 +299,6 @@
                         document.querySelector("#section").classList.remove("hidden");
                         glitch.render();
                     });
-                    document.querySelector(".inittext").remove();
                 });
             })
             .finally(() => {
