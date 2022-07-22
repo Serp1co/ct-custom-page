@@ -67,13 +67,13 @@ class AudioManager {
         this.baseURL = "https://audio.jukehost.co.uk/";
         this.fileNames = [
             "DmiVCHVOiJ7HF63YCD1LZW9xE3nxQuze",
-            "mI1aacZuN0qjbyhcfRY16WPe2Y6ic8x4",
+            "YYP2oRL56y8FgxQkATVyNxJ0RfK9Jnay",
             "8jri18G4pLGNn1omwFYKpX7YaiGZFK3A"
         ];
 
         this.songTitles = [
             "Pop Smoke - Invincible",
-            "Noyz Narcos - Aspetta la Notte",
+            "Ketama126, Noyz Narcos - Animale",
             "Kavinsky - Nightcall"
         ];
 
