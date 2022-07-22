@@ -50,25 +50,13 @@ class AudioManager {
     initUI() {
         this.progressBar = document.querySelector("#progress-bar");
         this.controls = {
-            volume: document.querySelector("#btn-volume")
+            volume: document.querySelector("#btn-volume"),
+            next: document.querySelector("#btn-music-next"),
+            prev: document.querySelector("#btn-music-prev"),
         };
-        this.controls.volume.onclick = () => {
-            let i = this.controls.volume.getElementsByTagName("i")[0];
-            this.volume = this.volume > 0 ? 0 : 1;
-            switch (this.volume) {
-                case 1:
-                    i.classList.remove("fa-volume-off");
-                    i.classList.add("fa-volume-up");
-                    break;
-                case 0:
-                    i.classList.remove("fa-volume-up");
-                    i.classList.add("fa-volume-off");
-                    break;
-                default:
-                    break;
-            }
-            this.gainNode.gain.value = this.volume;
-        };
+        this.controls.volume.onclick = this.switchVolume.bind(this);
+        this.controls.prev.onclick = this.previousAudio.bind(this);
+        this.controls.next.onclick = this.nextAudio.bind(this);
         this.title = document.getElementById("audiotitle");
         this.loader = document.getElementById("loader");
     }
@@ -149,6 +137,24 @@ class AudioManager {
             1;
         await this.loadAudio();
     }
+
+    switchVolume() {
+        let i = this.controls.volume.getElementsByTagName("i")[0];
+        this.volume = this.volume > 0 ? 0 : 1;
+        switch (this.volume) {
+            case 1:
+                i.classList.remove("fa-volume-off");
+                i.classList.add("fa-volume-up");
+                break;
+            case 0:
+                i.classList.remove("fa-volume-up");
+                i.classList.add("fa-volume-off");
+                break;
+            default:
+                break;
+        }
+        this.gainNode.gain.value = this.volume;
+    };
 
     update() {
 
