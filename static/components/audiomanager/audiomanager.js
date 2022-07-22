@@ -68,13 +68,13 @@ class AudioManager {
         this.fileNames = [
             "DmiVCHVOiJ7HF63YCD1LZW9xE3nxQuze",
             "YYP2oRL56y8FgxQkATVyNxJ0RfK9Jnay",
-            "eMYLFVNc99L0mb1oGwBuRMJa52TKC8MI"
+            "6sT1DrwJOOvSqfC0DUhBvBuFpLBh1waH"
         ];
 
         this.songTitles = [
             "Pop Smoke - Invincible",
             "Ketama126, Noyz Narcos - Animale",
-            "Aesop Rock - Zero Dark Thirty"
+            "CHERIIMOYA, Sierra Kidd - Living Life, In the Night"
         ];
 
         this.audio = document.getElementById("audio");
