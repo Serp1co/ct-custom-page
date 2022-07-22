@@ -68,13 +68,13 @@ class AudioManager {
         this.fileNames = [
             "DmiVCHVOiJ7HF63YCD1LZW9xE3nxQuze",
             "YYP2oRL56y8FgxQkATVyNxJ0RfK9Jnay",
-            "8jri18G4pLGNn1omwFYKpX7YaiGZFK3A"
+            "eMYLFVNc99L0mb1oGwBuRMJa52TKC8MI"
         ];
 
         this.songTitles = [
             "Pop Smoke - Invincible",
             "Ketama126, Noyz Narcos - Animale",
-            "Kavinsky - Nightcall"
+            "Aesop Rock - Zero Dark Thirty"
         ];
 
         this.audio = document.getElementById("audio");
