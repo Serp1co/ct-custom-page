@@ -90,9 +90,7 @@
 }
 
 div .monitor {
-    border: 1px #1f1f1f solid;
-    height: 600px;
-    width: 567px;
+    height: inherit;
     flex-direction: column;
     padding: 0 0 0 0;
 }
@@ -112,11 +110,4 @@ div .monitor {
     font-size: 12px;
     padding: 0 !important;
     overflow: hidden;
-}
-
-#section {
-    width: 100%;
-    height: 100%;
-    align-items: center;
-    justify-content: center;
 }

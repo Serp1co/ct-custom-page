@@ -10,10 +10,11 @@
     }
 
     #app {
-        height: fit-content;
-        width: 567px;
+        height: 600px;
+        width: 564px;
         position: relative;
         display: block;
+        border: 1px dimgray solid;
     }
 
     #loader #spinner {
@@ -117,6 +118,7 @@
     }
 
     #section {
+        height: 600px;
         transition: opacity 0.5s ease-in-out;
     }
 
@@ -125,12 +127,6 @@
     }
 
     #initloader {
-        position: absolute;
-        padding: 1rem 1rem 0.8rem 1rem;
-        top: 50%;
-        left: 50%;
-        transform: translateX(-50%) translateY(-50%);
-        z-index: 4;
         color: dimgrey;
         font-family: "Consolas", sans-serif;
         font-size: 1.2em;
@@ -288,7 +284,7 @@
                 Component.renderComponent(app.crt, template, "crt", ["crt"]);
                 let glitch = new GlitchedImage(document.querySelector("#bottomimg"), 180);
                 let audiomanager = new AudioManager();
-                let background = new Background(document.querySelector("#backgroundcanvas"), 567, 600);
+                let background = new Background(document.querySelector("#backgroundcanvas"), 564, 600);
                 startBtn.addEventListener("click", () => {
                     background.loop();
                     glitch.init();
