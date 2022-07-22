@@ -88,7 +88,7 @@ class Line {
             x = this.addedX * wave,
             y = this.addedY * wave;
         background.ctx.shadowBlur = prop * background.opts.shadowToTimePropMult;
-        background.ctx.fillStyle = background.ctx.shadowColor = this.color.replace('light', background.opts.baseLight + background.opts.addedLight * Math.sin(this.cumulativeTime * this.lightInputMultiplier));
+        background.ctx.fillStyle = background.ctx.shadowColor = this.color.replace('light', background.opts.baseLight /*+ background.opts.addedLight * Math.sin(this.cumulativeTime * this.lightInputMultiplier)*/);
         background.ctx.fillRect(background.opts.cx + (this.x + x) * background.opts.len, background.opts.cy + (this.y + y) * background.opts.len, 2, 2);
         if (Math.random() < background.opts.sparkChance)
             background.ctx.fillRect(background.opts.cx + (this.x + x) * background.opts.len + Math.random() * background.opts.sparkDist * (Math.random() < .5 ? 1 : -1) - background.opts.sparkSize / 2,
