@@ -68,13 +68,15 @@ class AudioManager {
         this.fileNames = [
             "DmiVCHVOiJ7HF63YCD1LZW9xE3nxQuze",
             "YYP2oRL56y8FgxQkATVyNxJ0RfK9Jnay",
-            "6sT1DrwJOOvSqfC0DUhBvBuFpLBh1waH"
+            "6sT1DrwJOOvSqfC0DUhBvBuFpLBh1waH",
+            "QskM0E8A8ewtTOok16LgvGEPkjduXUbL"
         ];
 
         this.songTitles = [
             "Pop Smoke - Invincible",
             "Ketama126, Noyz Narcos - Animale",
-            "CHERIIMOYA, Sierra Kidd - Living Life, In the Night"
+            "CHERIIMOYA, Sierra Kidd - Living Life, In the Night",
+            "Ketama126 - Benedizione"
         ];
 
         this.audio = document.getElementById("audio");
