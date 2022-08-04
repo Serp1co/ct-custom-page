@@ -1,11 +1,11 @@
-class AudioManager {
+class MusicManager {
 
     static async adjustVolume(
         element,
         newVolume,
         duration = 1000,
         interval = 13,
-        easing = AudioManager.swing,
+        easing = MusicManager.swing,
     ) {
         return new Promise(resolve => {
             const originalVolume = element.volume;
@@ -68,7 +68,6 @@ class AudioManager {
         this.fileNames = [
             "DmiVCHVOiJ7HF63YCD1LZW9xE3nxQuze",
             "YYP2oRL56y8FgxQkATVyNxJ0RfK9Jnay",
-            "0KoClDs2ebO3x6qPlryzRB2Jh6WUpJan",
             "QskM0E8A8ewtTOok16LgvGEPkjduXUbL",
             "98ZhqFRuc5zKyOXBIb3vtjF1RnnQTRTg"
         ];
@@ -76,7 +75,6 @@ class AudioManager {
         this.songTitles = [
             "Pop Smoke - Invincible",
             "Ketama126, Noyz Narcos - Animale",
-            "Run The Jewels, Pharrell Williams, Zack de la Rocha - JU$T",
             "Ketama126 - Benedizione",
             "Noyz Narcos, prod. The Night Skinny - Dope Games"
         ];
@@ -91,22 +89,16 @@ class AudioManager {
         this.audioCtx = new AudioContext();
         this.source = this.audioCtx.createMediaElementSource(this.audio);
         this.gainNode = this.audioCtx.createGain();
-        this.analyser = this.audioCtx.createAnalyser();
-        this.analyser.smoothingTimeConstant = 0.92;
-        this.analyser.fftSize = 2048;
-        this.analyser.minDecibels = -125;
-        this.analyser.maxDecibels = -10;
         this.source.connect(this.gainNode);
-        this.gainNode.connect(this.analyser);
-        this.analyser.connect(this.audioCtx.destination);
         this.gainNode.gain.value = this.volume;
-        this.freqData = new Uint8Array(this.analyser.frequencyBinCount);
     }
 
     async loadAudio() {
+        this.controls.next.disabled = true;
+        this.controls.prev.disabled = true;
         this.loader.classList.remove("hidden");
         this.title.classList.add("hidden");
-        await AudioManager.adjustVolume(this.audio, 0);
+        await MusicManager.adjustVolume(this.audio, 0);
         return await fetch(this.baseURL + this.fileNames[this.currentSong - 1], {
             method: "GET", // *GET, POST, PUT, DELETE, etc.
             mode: "cors", // no-cors, *cors, same-origin
@@ -117,6 +109,10 @@ class AudioManager {
                 this.playAudio(data);
             })
             .catch((exception) => console.error(exception))
+            .finally(_ => {
+                this.controls.next.disabled = false;
+                this.controls.prev.disabled = false;
+            })
     }
 
     async playAudio(data) {
@@ -125,7 +121,7 @@ class AudioManager {
         this.title.innerHTML = this.songTitles[this.currentSong - 1];
         this.audio.src = window.URL.createObjectURL(data);
         this.audio.play();
-        await AudioManager.adjustVolume(this.audio, 1);
+        await MusicManager.adjustVolume(this.audio, 1);
     }
 
     async previousAudio() {
@@ -166,13 +162,51 @@ class AudioManager {
 
     render() {
         this.tick++;
-        this.analyser.getByteFrequencyData(this.freqData);
         this.update();
         window.requestAnimationFrame(this.render.bind(this));
     }
 }
 
+class EffectManager {
 
+    constructor() {
+        this.audio =
+        this.baseURL = "https://audio.jukehost.co.uk/";
+        this.fileNames = {
+            "nav": "W2JoUy9O64oAknescbUVFAL2TD1qfJb5",
+            "ok":"jGZW2eMVRvXjZVuAbEDTKgFMwtD7Lu9d",
+            "back":"2A8rf57R8yfgMPIOTUCkDjs4o8gw6TKo",
+        }
+        this.data = {};
+        this.audio = document.querySelector("#effectplayer");
+    }
+
+    async init(){
+        for (const [key, value] of Object.entries(this.fileNames)) {
+            this.data[key] = await fetch(this.baseURL + value, {
+                method: "GET", // *GET, POST, PUT, DELETE, etc.
+                mode: "cors", // no-cors, *cors, same-origin
+                cache: "default", // *default, no-cache, reload, force-cache, only-if-cached
+            })
+                .then((response) => response.blob())
+                .catch((exception) => console.error(exception))
+        }
+    }
+
+    playAudio(key) {
+        this.audio.src = window.URL.createObjectURL(this.data[key]);
+        this.audio.play();
+    }
+
+}
+
+class AudioManager {
+    constructor() {
+        this.effectManager = new EffectManager();
+        this.effectManager.init().catch((exception) => console.error(exception))
+        this.musicManager = new MusicManager();
+    }
+}
 window.requestAnimationFrame = (() => {
     return (
         window.requestAnimationFrame ||

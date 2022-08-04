@@ -179,7 +179,7 @@
             return await fetch(resource.url, {
                 method: "GET", // *GET, POST, PUT, DELETE, etc.
                 mode: "cors", // no-cors, *cors, same-origin
-                cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+                cache: "default", // *default, no-cache, reload, force-cache, only-if-cached
             })
                 .then((response) => _ResourceFetcher._process_response(response))
                 .then((data) => {
@@ -282,12 +282,16 @@
                 let glitch = new GlitchedImage(document.querySelector("#bottomimg"), 180);
                 let audiomanager = new AudioManager();
                 let background = new Background(document.querySelector("#backgroundcanvas"), 564, 600);
+                startBtn.addEventListener("mouseover", _ => {
+                    audiomanager.effectManager.playAudio("nav");
+                })
                 startBtn.addEventListener("click", () => {
                     background.loop();
                     glitch.init();
-                    audiomanager.audioCtx.resume();
+                    audiomanager.effectManager.playAudio("ok");
+                    audiomanager.musicManager.audioCtx.resume();
                     loginForm.classList.add("hidden");
-                    audiomanager.loadAudio().then(() => {
+                    audiomanager.musicManager.loadAudio().then(() => {
                         loginForm.remove();
                         document.querySelector("#section").classList.remove("hidden");
                         glitch.render();
