@@ -80,13 +80,23 @@ class MusicManager {
         ];
 
         this.audio = document.getElementById("audio");
+        this.audio.addEventListener("ended", () => {
+            this.audio.currentTime = 0;
+        });
         this.audio.addEventListener("timeupdate", () => {
             this.progressBar.style = `transform: scaleX(${this.audio.currentTime / this.audio.duration})`;
         });
         this.audioCtx = new AudioContext();
         this.source = this.audioCtx.createMediaElementSource(this.audio);
         this.gainNode = this.audioCtx.createGain();
+        this.analyser = this.audioCtx.createAnalyser();
+        this.analyser.smoothingTimeConstant = 0.92;
+        this.analyser.fftSize = 2048;
+        this.analyser.minDecibels = -125;
+        this.analyser.maxDecibels = -10;
         this.source.connect(this.gainNode);
+        this.gainNode.connect(this.analyser);
+        this.analyser.connect(this.audioCtx.destination);
         this.gainNode.gain.value = this.volume;
     }
 
