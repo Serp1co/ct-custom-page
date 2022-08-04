@@ -80,9 +80,6 @@ class MusicManager {
         ];
 
         this.audio = document.getElementById("audio");
-        this.audio.addEventListener("ended", () => {
-            this.audio.currentTime = 0;
-        });
         this.audio.addEventListener("timeupdate", () => {
             this.progressBar.style = `transform: scaleX(${this.audio.currentTime / this.audio.duration})`;
         });
@@ -102,7 +99,7 @@ class MusicManager {
         return await fetch(this.baseURL + this.fileNames[this.currentSong - 1], {
             method: "GET", // *GET, POST, PUT, DELETE, etc.
             mode: "cors", // no-cors, *cors, same-origin
-            cache: "default", // *default, no-cache, reload, force-cache, only-if-cached
+            cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
         })
             .then((response) => response.blob())
             .then((data) => {
@@ -186,7 +183,7 @@ class EffectManager {
             this.data[key] = await fetch(this.baseURL + value, {
                 method: "GET", // *GET, POST, PUT, DELETE, etc.
                 mode: "cors", // no-cors, *cors, same-origin
-                cache: "default", // *default, no-cache, reload, force-cache, only-if-cached
+                cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
             })
                 .then((response) => response.blob())
                 .catch((exception) => console.error(exception))
