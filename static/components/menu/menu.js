@@ -31,10 +31,12 @@ class Menu {
             audiomanager.effectManager.playAudio("ok");
             this.menunav.classList.add("hidden");
             document.querySelector("#section").classList.remove("hidden");
-            audiomanager.musicManager.loadAudio().then(() => {
-                background.loop();
-                document.querySelector("#section").classList.remove("hidden");
-            });
+            audiomanager.musicManager.audioCtx.resume().then(_ => {
+                audiomanager.musicManager.loadAudio().then(() => {
+                    background.loop();
+                    document.querySelector("#section").classList.remove("hidden");
+                });
+            })
         })
     }
 }

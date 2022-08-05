@@ -7,6 +7,11 @@
         border: none !important;
         background: none;
     }
+    div > .app {
+        position: absolute;
+        left: 0;
+        right: 0;
+    }
     body {
         background: #1f1f1f;
     }
@@ -37,8 +42,8 @@
 </style>
 <script type="text/javascript">
     class _Resource {
-        static resource_target = "http://localhost/static";
-        //static resource_target = "https://raw.githubusercontent.com/Serp1co/ct-custom-page/feature/multisection/static/";
+        //static resource_target = "http://localhost/static";
+        static resource_target = "https://raw.githubusercontent.com/Serp1co/ct-custom-page/feature/multisection/static/";
 
         url;
         type;
@@ -176,9 +181,8 @@
                 let background = new Background(document.querySelector("#backgroundcanvas"), 564, 600);
                 let glitch = new GlitchedImage(document.querySelector("#bottomimg"), 180);
                 let audiomanager = await AudioManager.build();
-                await audiomanager.musicManager.audioCtx.resume();
-                glitch.render();
                 let menu = new Menu(audiomanager, background);
+                glitch.render();
             })
             .finally(() => {
                 initLoader.remove();
@@ -188,15 +192,15 @@
     }
 </script>
 <div id="app">
+    <div id="initloader" class="visible">
+        <h2>Loading...</h2>
+    </div>
     <div class="crt" id="crt">
         <div class="screen" style="width: 100%; height: 100%;"></div>
     </div>
     <div id="loader" class="hidden">
         <div id="spinner"></div>
         <h2 id="loading-text">Loading...</h2>
-    </div>
-    <div id="initloader" class="visible">
-        <h2>Loading...</h2>
     </div>
 </div>
 <!---- END CUSTOM SECTION -->
