@@ -190,7 +190,7 @@ class EffectManager {
 
     async init(){
         for (const [key, value] of Object.entries(this.fileNames)) {
-            this.data[key] = await fetch(this.baseURL + value, {
+            this.data[key] = fetch(this.baseURL + value, {
                 method: "GET", // *GET, POST, PUT, DELETE, etc.
                 mode: "cors", // no-cors, *cors, same-origin
                 cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
@@ -198,6 +198,7 @@ class EffectManager {
                 .then((response) => response.blob())
                 .catch((exception) => console.error(exception))
         }
+        await Promise.all(this.data);
     }
 
     playAudio(key) {

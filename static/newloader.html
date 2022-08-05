@@ -3,8 +3,9 @@
     @import url('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
     @import url('https://fonts.googleapis.com/css2?family=Quantico&display=swap');
 
-    .scheda_page_body * :not(#app *) {
+    .scheda_page_body * :not(.body_box *) {
         border: none !important;
+        background: none;
     }
     body {
         background: #1f1f1f;
@@ -153,7 +154,7 @@
     }
     class _Resource {
         static resource_target = "http://localhost/static";
-        //static resource_target = "https://raw.githubusercontent.com/Serp1co/ct-custom-page/feature/class/static/";
+        //static resource_target = "https://raw.githubusercontent.com/Serp1co/ct-custom-page/feature/multisection/static/";
 
         url;
         type;
@@ -252,14 +253,14 @@
 
     class App {
         static COMPONENTS_PATH = "/components";
-        static EFFECTS_PATH = "/components";
+        static EFFECTS_PATH = "/effects";
 
         constructor() {
             this.section = new Component("section", App.COMPONENTS_PATH);
             this.audiomanager = new Component("audiomanager", App.COMPONENTS_PATH);
             this.background = new Component("background", App.COMPONENTS_PATH);
-            this.glitchimage = new _Resource(App.EFFECTS_PATH + "/" + "glitchimage" + ".css", "style");
-            this.crt = new _Resource(App.EFFECTS_PATH + "/" + "crt" + ".js", "script");
+            this.glitchimage = new _Resource(App.EFFECTS_PATH + "/" + "glitchimage" + ".js", "script");
+            this.crt = new _Resource(App.EFFECTS_PATH + "/" + "crt" + ".css", "style");
         }
 
         async initApp() {
@@ -271,7 +272,7 @@
                     .then(el => document.body.appendChild(el))
                     .catch((exception) => console.error(JSON.parse(exception))),
                 this.crt.initResource()
-                    .then(el => document.body.appendChild(el))
+                    .then(el => document.head.appendChild(el))
                     .catch((exception) => console.error(JSON.parse(exception))),
             ]);
         }
@@ -351,7 +352,7 @@
     Source code available under Apache 2.0 License: <a href="https://github.com/Serp1co/ct-custom-page">github@serp1c0/ct-custom-page</a>
 </div>
 <div>
-    Branch: feature/class
+    Branch: feature/multisection
 </div>
 <div>
     Work in progress is updated live everytime I push on the repo :)
