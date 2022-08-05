@@ -1,6 +1,6 @@
 #audiomanager {
     position: absolute;
-    z-index: 0;
+    z-index: 10;
     padding: 0;
     margin: 0;
     bottom: 0;

@@ -291,7 +291,7 @@
                 Component.renderComponent(app.background, template, "background");
                 let background = new Background(document.querySelector("#backgroundcanvas"), 564, 600);
                 let glitch = new GlitchedImage(document.querySelector("#bottomimg"), 180);
-                let audiomanager = new AudioManager();
+                let audiomanager = await AudioManager.build();
                 startBtn.addEventListener("mouseover", _ => {
                     if (loginForm.classList.contains("hidden"))
                         return;

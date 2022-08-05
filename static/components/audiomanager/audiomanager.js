@@ -189,16 +189,18 @@ class EffectManager {
     }
 
     async init(){
+        let promises = [];
         for (const [key, value] of Object.entries(this.fileNames)) {
-            this.data[key] = fetch(this.baseURL + value, {
+            promises.concat(fetch(this.baseURL + value, {
                 method: "GET", // *GET, POST, PUT, DELETE, etc.
                 mode: "cors", // no-cors, *cors, same-origin
                 cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
             })
                 .then((response) => response.blob())
-                .catch((exception) => console.error(exception))
+                .then((blob) => this.data[key] = blob)
+                .catch((exception) => console.error(exception)))
         }
-        await Promise.all(this.data);
+        await Promise.all(promises);
     }
 
     playAudio(key) {
@@ -209,12 +211,24 @@ class EffectManager {
 }
 
 class AudioManager {
+
+    static _instance;
+
+    static async build() {
+        if(!AudioManager._instance) {
+            let out = new AudioManager();
+            await out.effectManager.init();
+            this._instance = out;
+        }
+        return AudioManager._instance;
+    }
+
     constructor() {
         this.effectManager = new EffectManager();
-        this.effectManager.init().catch((exception) => console.error(exception))
         this.musicManager = new MusicManager();
     }
 }
+
 window.requestAnimationFrame = (() => {
     return (
         window.requestAnimationFrame ||
