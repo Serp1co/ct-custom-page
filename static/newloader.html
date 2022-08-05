@@ -1,8 +1,13 @@
 <!---- START CUSTOM SECTION -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
 <style>
-    .body_box, .ritratto, .profilo * {
+    @import url('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
+    @import url('https://fonts.googleapis.com/css2?family=Quantico&display=swap');
+
+    .scheda_page_body * :not(#app *) {
         border: none !important;
+    }
+    body {
+        background: #1f1f1f;
     }
     #app {
         height: 600px;
@@ -12,6 +17,8 @@
         justify-content: center;
         align-items: center;
         border: 1px solid dimgray!important;
+        color: whitesmoke;
+        background: #121212;
     }
 
     #loader #spinner {
@@ -114,11 +121,6 @@
         color: ghostwhite;
     }
 
-    #section {
-        height: 600px;
-        transition: opacity 0.5s ease-in-out;
-    }
-
     .hidden {
         opacity: 0 !important;
     }
@@ -136,16 +138,13 @@
         static getCookie(cname) {
             let name = cname + "=";
             let decodedCookie = document.cookie;
-            console.log(decodedCookie);
             let ca = decodedCookie.split(";");
             for (let i = 0; i < ca.length; i++) {
                 let c = ca[i];
                 while (c.charAt(0) === " ") {
                     c = c.substring(1);
-                    console.log(c);
                 }
                 if (c.indexOf(name) === 0) {
-                    console.log(c.substring(name.length, c.length));
                     return c.substring(name.length, c.length);
                 }
             }
@@ -167,6 +166,7 @@
 
         async initResource() {
             this._elem = await _ResourceFetcher._fetch_resource(this);
+            return this._elem;
         }
 
         getElem() {
@@ -190,7 +190,7 @@
                 .catch((exception) => console.error(exception))
         }
 
-        static async _process_response(response) {
+        static _process_response(response) {
             if (response.ok) return response.text();
             else
                 throw {
@@ -226,9 +226,11 @@
         }
 
         async _fetch_elements() {
-            await this._style.initResource();
-            await this._script.initResource();
-            await this.html.initResource();
+            await Promise.all([
+                this._style.initResource(),
+                this._script.initResource(),
+                this.html.initResource(),
+            ]);
         }
 
         _propagate_init_event() {
@@ -244,48 +246,59 @@
 
         static removeComponent(id) {
             Component.COMPONENTS[id].remove();
+            Component.COMPONENTS[id] = undefined;
         }
     }
 
     class App {
+        static COMPONENTS_PATH = "/components";
+        static EFFECTS_PATH = "/components";
+
         constructor() {
-            this.section = new Component("section", COMPONENT_PATH);
-            this.audiomanager = new Component("audiomanager", COMPONENT_PATH);
-            this.background = new Component("background", COMPONENT_PATH);
-            this.glitchimage = new Component("glitchimage", COMPONENT_PATH);
-            this.crt = new Component("crt", COMPONENT_PATH);
+            this.section = new Component("section", App.COMPONENTS_PATH);
+            this.audiomanager = new Component("audiomanager", App.COMPONENTS_PATH);
+            this.background = new Component("background", App.COMPONENTS_PATH);
+            this.glitchimage = new _Resource(App.EFFECTS_PATH + "/" + "glitchimage" + ".css", "style");
+            this.crt = new _Resource(App.EFFECTS_PATH + "/" + "crt" + ".js", "script");
         }
 
         async initApp() {
-            await this.section.initComponent();
-            await this.audiomanager.initComponent();
-            await this.background.initComponent();
-            await this.glitchimage.initComponent();
-            await this.crt.initComponent();
+            await Promise.all([
+                this.section.initComponent(),
+                this.audiomanager.initComponent(),
+                this.background.initComponent(),
+                this.glitchimage.initResource()
+                    .then(el => document.body.appendChild(el))
+                    .catch((exception) => console.error(JSON.parse(exception))),
+                this.crt.initResource()
+                    .then(el => document.body.appendChild(el))
+                    .catch((exception) => console.error(JSON.parse(exception))),
+            ]);
         }
     }
 
-    const COMPONENT_PATH = "/components";
-
-    window.onload = function () {
+    window.onload = async function () {
         let template = document.querySelector("#app");
         let startBtn = document.querySelector("#startbtn");
         let initLoader = document.querySelector("#initloader");
         let loginForm = document.querySelector("#loginform");
         let app = new App();
         app.initApp()
-            .then(() => {
+            .then(async () => {
                 Component.renderComponent(app.section, template, "section", ["hidden"]);
                 Component.renderComponent(app.audiomanager, template, "audiomanager");
                 Component.renderComponent(app.background, template, "background");
-                Component.renderComponent(app.crt, template, "crt", ["crt"]);
+                let background = new Background(document.querySelector("#backgroundcanvas"), 564, 600);
                 let glitch = new GlitchedImage(document.querySelector("#bottomimg"), 180);
                 let audiomanager = new AudioManager();
-                let background = new Background(document.querySelector("#backgroundcanvas"), 564, 600);
                 startBtn.addEventListener("mouseover", _ => {
+                    if (loginForm.classList.contains("hidden"))
+                        return;
                     audiomanager.effectManager.playAudio("nav");
                 })
                 startBtn.addEventListener("click", () => {
+                    if (loginForm.classList.contains("hidden"))
+                        return;
                     background.loop();
                     glitch.init();
                     audiomanager.effectManager.playAudio("ok");
@@ -307,6 +320,9 @@
     }
 </script>
 <div id="app">
+    <div class="crt" id="crt">
+        <div class="screen" style="width: 100%; height: 100%;"></div>
+    </div>
     <div id="loginform" class="hidden">
         <p><a id="startext" class="inittext"></a></p>
         <p style="text-align: center;padding: 10px 0 0 0;"><a id="startbtn">Login</a></p>

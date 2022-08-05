@@ -1,3 +1,12 @@
+#section {
+    height: 600px;
+    transition: opacity 0.5s ease-in-out;
+    position: absolute;
+    left: 0;
+    right: 0;
+    z-index: 2;
+}
+
 .glitch {
     font-size: 2rem;
     position: absolute;
