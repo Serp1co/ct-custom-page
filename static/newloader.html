@@ -22,108 +22,9 @@
         background: #121212;
     }
 
-    #loader #spinner {
-        -webkit-animation: spinner-anim 2s ease-out infinite;
-        animation: spinner-anim 2s ease-out infinite;
-    }
-
-    #loader #spinner::before {
-        -webkit-animation: spinner-anim 2s ease-out infinite;
-        animation: spinner-anim 2s ease-out infinite;
-    }
-
-    #loader #spinner::after {
-        -webkit-animation: spinner-anim 1s ease-out infinite;
-        animation: spinner-anim 1s ease-out infinite;
-    }
-
-    #loader {
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        z-index: 11;
-        display: flex;
-        align-items: center;
-        justify-content: flex-start;
-        width: 100%;
-        opacity: 0.7;
-        transition: opacity 0.5s ease-in-out;
-        pointer-events: none;
-    }
-
-    #loader #loading-text {
-        font-size: 1.8em;
-        font-family: "Consolas", sans-serif;
-        color: ghostwhite;
-        transition: all 0.5s ease-in-out;
-    }
-
-    #loader #spinner {
-        height: 40px;
-        width: 40px;
-        border: 2px solid whitesmoke;
-        border-color: transparent transparent ghostwhite ghostwhite;
-        border-radius: 50%;
-        margin-right: 10px;
-        transform: rotate(0deg);
-    }
-
-    #loader #spinner::before, #loader #spinner::after {
-        position: absolute;
-        content: "";
-        display: block;
-        border: 2px solid;
-        border-color: transparent transparent ghostwhite ghostwhite;
-        border-radius: 50%;
-    }
-
-    #loader #spinner::before {
-        top: 3px;
-        left: 3px;
-        height: 30px;
-        width: 30px;
-    }
-
-    #loader #spinner::after {
-        top: 8px;
-        left: 8px;
-        height: 20px;
-        width: 20px;
-    }
-
-    #loginform {
-        border: 1px solid grey;
-        color: dimgrey;
-        font-family: "Consolas", sans-serif;
-        font-size: 1.2em;
-        cursor: pointer;
-        transition: all 0.5s;
-        position: absolute;
-        padding: 1rem 1rem 0.8rem 1rem;
-        top: 50%;
-        left: 50%;
-        transform: translateX(-50%) translateY(-50%);
-        z-index: 4;
-    }
-
-    #startbtn {
-        border: 1px solid grey;
-        color: dimgrey;
-        font-family: "Consolas", sans-serif;
-        font-size: 1em;
-        cursor: pointer;
-        transition: all 0.5s;
-        padding: 1rem 1rem 0.8rem 1rem;
-    }
-
-    #startbtn:hover {
-        border: 1px solid ghostwhite;
-        background: black;
-        color: ghostwhite;
-    }
-
     .hidden {
         opacity: 0 !important;
+        z-index: -1 !important;
     }
 
     #initloader {
@@ -135,23 +36,6 @@
     }
 </style>
 <script type="text/javascript">
-    class CookieCutter {
-        static getCookie(cname) {
-            let name = cname + "=";
-            let decodedCookie = document.cookie;
-            let ca = decodedCookie.split(";");
-            for (let i = 0; i < ca.length; i++) {
-                let c = ca[i];
-                while (c.charAt(0) === " ") {
-                    c = c.substring(1);
-                }
-                if (c.indexOf(name) === 0) {
-                    return c.substring(name.length, c.length);
-                }
-            }
-            return "";
-        }
-    }
     class _Resource {
         static resource_target = "http://localhost/static";
         //static resource_target = "https://raw.githubusercontent.com/Serp1co/ct-custom-page/feature/multisection/static/";
@@ -188,7 +72,6 @@
                     html.innerHTML = data;
                     return html;
                 })
-                .catch((exception) => console.error(exception))
         }
 
         static _process_response(response) {
@@ -223,7 +106,6 @@
                     document.body.appendChild(this._script.getElem());
                 })
                 .then((_) => this._propagate_init_event())
-                .catch((exception) => console.error(JSON.parse(exception)));
         }
 
         async _fetch_elements() {
@@ -259,8 +141,10 @@
             this.section = new Component("section", App.COMPONENTS_PATH);
             this.audiomanager = new Component("audiomanager", App.COMPONENTS_PATH);
             this.background = new Component("background", App.COMPONENTS_PATH);
+            this.menu = new Component("menu", App.COMPONENTS_PATH);
             this.glitchimage = new _Resource(App.EFFECTS_PATH + "/" + "glitchimage" + ".js", "script");
             this.crt = new _Resource(App.EFFECTS_PATH + "/" + "crt" + ".css", "style");
+            this.loader = new _Resource(App.EFFECTS_PATH + "/" + "loader" + ".css", "style");
         }
 
         async initApp() {
@@ -268,53 +152,36 @@
                 this.section.initComponent(),
                 this.audiomanager.initComponent(),
                 this.background.initComponent(),
+                this.menu.initComponent(),
                 this.glitchimage.initResource()
-                    .then(el => document.body.appendChild(el))
-                    .catch((exception) => console.error(JSON.parse(exception))),
+                    .then(el => document.body.appendChild(el)),
                 this.crt.initResource()
-                    .then(el => document.head.appendChild(el))
-                    .catch((exception) => console.error(JSON.parse(exception))),
+                    .then(el => document.head.appendChild(el)),
+                this.loader.initResource()
+                    .then(el => document.head.appendChild(el)),
             ]);
         }
     }
 
     window.onload = async function () {
         let template = document.querySelector("#app");
-        let startBtn = document.querySelector("#startbtn");
         let initLoader = document.querySelector("#initloader");
-        let loginForm = document.querySelector("#loginform");
         let app = new App();
         app.initApp()
             .then(async () => {
                 Component.renderComponent(app.section, template, "section", ["hidden"]);
                 Component.renderComponent(app.audiomanager, template, "audiomanager");
                 Component.renderComponent(app.background, template, "background");
+                Component.renderComponent(app.menu, template, "menu");
                 let background = new Background(document.querySelector("#backgroundcanvas"), 564, 600);
                 let glitch = new GlitchedImage(document.querySelector("#bottomimg"), 180);
                 let audiomanager = await AudioManager.build();
-                startBtn.addEventListener("mouseover", _ => {
-                    if (loginForm.classList.contains("hidden"))
-                        return;
-                    audiomanager.effectManager.playAudio("nav");
-                })
-                startBtn.addEventListener("click", () => {
-                    if (loginForm.classList.contains("hidden"))
-                        return;
-                    background.loop();
-                    glitch.init();
-                    audiomanager.effectManager.playAudio("ok");
-                    audiomanager.musicManager.audioCtx.resume();
-                    loginForm.classList.add("hidden");
-                    audiomanager.musicManager.loadAudio().then(() => {
-                        loginForm.remove();
-                        document.querySelector("#section").classList.remove("hidden");
-                        glitch.render();
-                    });
-                });
+                await audiomanager.musicManager.audioCtx.resume();
+                glitch.render();
+                let menu = new Menu(audiomanager, background);
             })
             .finally(() => {
                 initLoader.remove();
-                loginForm.classList.remove("hidden");
                 let username = CookieCutter.getCookie("lastlogin");
                 document.querySelector(".inittext").innerHTML = "Welcome, " + username + ".<br>Remember: I See You.<br>";
             });
@@ -323,10 +190,6 @@
 <div id="app">
     <div class="crt" id="crt">
         <div class="screen" style="width: 100%; height: 100%;"></div>
-    </div>
-    <div id="loginform" class="hidden">
-        <p><a id="startext" class="inittext"></a></p>
-        <p style="text-align: center;padding: 10px 0 0 0;"><a id="startbtn">Login</a></p>
     </div>
     <div id="loader" class="hidden">
         <div id="spinner"></div>

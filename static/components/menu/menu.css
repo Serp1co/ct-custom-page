@@ -1,4 +1,4 @@
-.menu-container {
+.menu-nav {
     position: absolute;
     width: 100%;
     height: 100%;
@@ -7,10 +7,8 @@
     display: flex;
     left: 0;
     top: 0;
-}
-
-.menu-nav {
-    position: absolute;
+    z-index: 98;
+    transition: all 0.225s ease-out;
 }
 
 .menu.open {
@@ -25,7 +23,7 @@
 }
 
 .menu-item {
-    border: #333333 solid 1px;
+    border: #636363 solid 1px;
     background-color: #121212;
     padding: 2px;
     margin: 10px;
@@ -33,9 +31,20 @@
 
 .menu-item-btn {
     background-color: #121212;
-    border: #333333 1px solid;
+    border: #636363 1px solid;
     padding: 10px 5px 10px 5px;
     margin: 5px;
-    color: #333333;
+    color: #636363;
     width: 250px;
+    transition: all 0.175s;
+}
+
+.menu-item-btn:hover {
+    border: 1px solid ghostwhite;
+    color: ghostwhite;
+}
+
+#loginform {
+    font-family: "Consolas", sans-serif;
+    font-size: 1.2em;
 }

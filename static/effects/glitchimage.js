@@ -72,6 +72,18 @@ class GlitchedImage {
         this._image = image;
         this._canvas = canvas;
         this._delay = delay;
+        let imageData = new Image();
+        imageData.crossOrigin = "Anonymous";
+        imageData.src = this._image.getAttribute('src');
+        let resizeFn = this.onResize.bind(this);
+        let renderFn = this.render.bind(this);
+        imageData.onload = function (event) {
+            window.addEventListener('resize', resizeFn, false);
+            window.dispatchEvent(new Event('resize'));
+            window.requestAnimationFrame(renderFn);
+        };
+        this._imageData = imageData;
+        this._image.remove();
     }
 
     onResize() {
@@ -92,21 +104,6 @@ class GlitchedImage {
 
     getRandomValue(array) {
         return array[Math.floor(Math.random() * array.length)];
-    }
-
-    init() {
-        let imageData = new Image();
-        imageData.crossOrigin = "Anonymous";
-        imageData.src = this._image.getAttribute('src');
-        let resizeFn = this.onResize.bind(this);
-        let renderFn = this.render.bind(this);
-        imageData.onload = function (event) {
-            window.addEventListener('resize', resizeFn, false);
-            window.dispatchEvent(new Event('resize'));
-            window.requestAnimationFrame(renderFn);
-        };
-        this._imageData = imageData;
-        this._image.remove();
     }
 
 }
