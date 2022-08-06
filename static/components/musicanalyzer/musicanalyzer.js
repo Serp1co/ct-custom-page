@@ -12,7 +12,6 @@ class MusicAnalyzer {
         musicmanager.source.connect(this.analyser);
         this.bufferLength = this.analyser.frequencyBinCount;
         this.dataArray = new Uint8Array(this.bufferLength);
-        this.ctx.clearRect(0, 0, width, height);
     }
 
     draw(stroke = 'rgb(125, 0, 0)', line_width = 3) {

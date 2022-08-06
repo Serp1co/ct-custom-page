@@ -31,11 +31,11 @@ class Menu {
             audiomanager.effectManager.playAudio("ok");
             this.menunav.classList.add("hidden");
             document.querySelector("#section").classList.remove("hidden");
+            document.querySelector("#backgroundcanvas").classList.remove("hidden");
+            background.draw();
             audiomanager.musicManager.audioCtx.resume().then(_ => {
                 audiomanager.musicManager.loadAudio().then(() => {
-                    background.draw();
                     glitch.start();
-                    document.querySelector("#section").classList.remove("hidden");
                 });
             })
         })
