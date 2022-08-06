@@ -26,7 +26,7 @@ class MusicAnalyzer {
         let x = 0;
         for (let i = 0; i < this.bufferLength; i++) {
             const v = this.dataArray[i] / 128.0;
-            const y = v * this.h/2;
+            const y = v * this.h/1.8;
             if(i === 0) {
                 this.ctx.moveTo(x, y);
             } else {
