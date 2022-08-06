@@ -5,14 +5,17 @@ class MusicAnalyzer {
         this.ctx = canvas.getContext('2d');
         let musicmanager = audiomanager.musicManager;
         this.analyser = musicmanager.audioCtx.createAnalyser();
-        this.analyser.fftSize = 2048;
+        this.analyser.fftSize = 1024;
+        this.analyser.smoothingTimeConstant = 0.92;
+        this.analyser.minDecibels = -125;
+        this.analyser.maxDecibels = -10;
         musicmanager.source.connect(this.analyser);
         this.bufferLength = this.analyser.frequencyBinCount;
         this.dataArray = new Uint8Array(this.bufferLength);
         this.ctx.clearRect(0, 0, width, height);
     }
 
-    draw(stroke = 'rgb(125, 0, 0)', line_width = 2) {
+    draw(stroke = 'rgb(125, 0, 0)', line_width = 3) {
         let drawVisual = requestAnimationFrame(this.draw.bind(this, stroke, line_width));
         this.analyser.getByteTimeDomainData(this.dataArray);
         this.ctx.fillStyle = 'rgb(0, 0, 0)';
@@ -33,7 +36,6 @@ class MusicAnalyzer {
             x += sliceWidth;
         }
         this.ctx.stroke();
-
     }
 
 }

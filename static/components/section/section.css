@@ -89,13 +89,13 @@
 }
 
 .row {
-    flex-direction: row;
-    padding: 2px 2px 2px 2px;
+    display: flex;
+    flex-direction: column;
 }
 
 .col {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
 }
 
 div .monitor {
@@ -110,6 +110,7 @@ div .monitor {
 }
 
 .content {
+    height: inherit;
     width: 100%;
     transition: width .35s;
     text-decoration: none;
@@ -119,4 +120,8 @@ div .monitor {
     font-size: 12px;
     padding: 0 !important;
     overflow: hidden;
+}
+
+.bottom-part {
+    border-top: dimgray 1px solid;
 }

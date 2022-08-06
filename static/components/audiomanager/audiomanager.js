@@ -90,10 +90,6 @@ class MusicManager {
         this.source = this.audioCtx.createMediaElementSource(this.audio);
         this.gainNode = this.audioCtx.createGain();
         this.analyser = this.audioCtx.createAnalyser();
-        this.analyser.smoothingTimeConstant = 0.92;
-        this.analyser.fftSize = 2048;
-        this.analyser.minDecibels = -125;
-        this.analyser.maxDecibels = -10;
         this.source.connect(this.gainNode);
         this.gainNode.connect(this.analyser);
         this.analyser.connect(this.audioCtx.destination);
