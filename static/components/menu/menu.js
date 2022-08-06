@@ -33,7 +33,7 @@ class Menu {
             document.querySelector("#section").classList.remove("hidden");
             audiomanager.musicManager.audioCtx.resume().then(_ => {
                 audiomanager.musicManager.loadAudio().then(() => {
-                    background.loop();
+                    background.draw();
                     document.querySelector("#section").classList.remove("hidden");
                 });
             })

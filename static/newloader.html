@@ -19,7 +19,7 @@
         align-items: center;
         border: 1px solid dimgray!important;
         color: whitesmoke;
-        background: #121212;
+        background: black;
     }
 
     .hidden {
@@ -30,8 +30,8 @@
 </style>
 <script type="text/javascript">
     class _Resource {
-        //static resource_target = "http://localhost/static";
-        static resource_target = "https://raw.githubusercontent.com/Serp1co/ct-custom-page/feature/multisection/static/";
+        static resource_target = "http://localhost/static";
+        //static resource_target = "https://raw.githubusercontent.com/Serp1co/ct-custom-page/feature/multisection/static/";
 
         url;
         type;
@@ -165,15 +165,15 @@
                 Component.renderComponent(app.audiomanager, template, "audiomanager");
                 Component.renderComponent(app.background, template, "background");
                 Component.renderComponent(app.menu, template, "menu");
-                let background = new Background(document.querySelector("#backgroundcanvas"), 564, 600);
                 let glitch = new GlitchedImage(document.querySelector("#bottomimg"), 180);
                 let audiomanager = await AudioManager.build();
+                let background = new Background(document.querySelector("#backgroundcanvas"), 564, 600, audiomanager);
                 let menu = new Menu(audiomanager, background);
                 glitch.render();
             })
             .finally(() => {
                 let username = CookieCutter.getCookie("lastlogin");
-                document.querySelector(".inittext").innerHTML = "Welcome, " + username + ".<br>Remember: I See You.<br>";
+                document.querySelector("#startext").innerHTML = "Welcome, " + username + ".<br>Remember: I See You.<br>";
             });
     }
 </script>
