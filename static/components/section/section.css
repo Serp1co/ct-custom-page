@@ -109,7 +109,7 @@ div .monitor {
     align-items: center;
 }
 
-.content {
+.my-content {
     height: inherit;
     width: 100%;
     transition: width .35s;
