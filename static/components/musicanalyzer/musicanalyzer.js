@@ -1,4 +1,4 @@
-class Background {
+class MusicAnalyzer {
     constructor(canvas, width, height, audiomanager) {
         this.w = canvas.width = width;
         this.h = canvas.height = height;

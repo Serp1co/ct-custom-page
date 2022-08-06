@@ -133,7 +133,7 @@
         constructor() {
             this.section = new Component("section", App.COMPONENTS_PATH);
             this.audiomanager = new Component("audiomanager", App.COMPONENTS_PATH);
-            this.background = new Component("background", App.COMPONENTS_PATH);
+            this.background = new Component("musicanalyzer", App.COMPONENTS_PATH);
             this.menu = new Component("menu", App.COMPONENTS_PATH);
             this.glitchimage = new _Resource(App.EFFECTS_PATH + "/" + "glitchimage" + ".js", "script");
             this.crt = new _Resource(App.EFFECTS_PATH + "/" + "crt" + ".css", "style");
@@ -167,7 +167,7 @@
                 Component.renderComponent(app.menu, template, "menu");
                 let glitch = new GlitchedImage(document.querySelector("#bottomimg"), 180);
                 let audiomanager = await AudioManager.build();
-                let background = new Background(document.querySelector("#backgroundcanvas"), 564, 600, audiomanager);
+                let background = new MusicAnalyzer(document.querySelector("#backgroundcanvas"), 564, 600, audiomanager);
                 let menu = new Menu(audiomanager, background);
                 glitch.render();
             })
