@@ -75,14 +75,15 @@ class GlitchedImage {
         let imageData = new Image();
         imageData.crossOrigin = "Anonymous";
         imageData.src = this._image.getAttribute('src');
+        this._imageData = imageData;
+        this.isPlaying = false;
         let resizeFn = this.onResize.bind(this);
-        let renderFn = this.render.bind(this);
-        imageData.onload = function (event) {
+        let renderFn = this._render.bind(this);
+        this._imageData.onload = function (event) {
             window.addEventListener('resize', resizeFn, false);
             window.dispatchEvent(new Event('resize'));
             window.requestAnimationFrame(renderFn);
         };
-        this._imageData = imageData;
         this._image.remove();
     }
 
@@ -91,15 +92,26 @@ class GlitchedImage {
         this._canvas.height = this._image.height;
     }
 
-    render() {
+    start() {
+        this.isPlaying = true;
+        this._render();
+    }
+
+    stop() {
+        this.isPlaying = false;
+    }
+
+    _render() {
         let width = this._canvas.width;
         let height = this._canvas.height;
         this._context.clearRect(0, 0, width, height);
         this._context.drawImage(this._imageData, 0, 0, this._image.width, this._image.height);
-        if (.5 < Math.random()) {
-            this.getRandomValue(this.effectList)(this._context, width, height);
+        if(this.isPlaying) {
+            if (.5 < Math.random()) {
+                this.getRandomValue(this.effectList)(this._context, width, height);
+            }
+            setTimeout(() => window.requestAnimationFrame(this._render.bind(this)), this._delay);
         }
-        setTimeout(() => window.requestAnimationFrame(this.render.bind(this)), this._delay);
     }
 
     getRandomValue(array) {

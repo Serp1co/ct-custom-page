@@ -168,8 +168,7 @@
                 let glitch = new GlitchedImage(document.querySelector("#bottomimg"), 180);
                 let audiomanager = await AudioManager.build();
                 let background = new MusicAnalyzer(document.querySelector("#backgroundcanvas"), 564, 600, audiomanager);
-                let menu = new Menu(audiomanager, background);
-                glitch.render();
+                let menu = new Menu(audiomanager, background, glitch);
             })
             .finally(() => {
                 let username = CookieCutter.getCookie("lastlogin");

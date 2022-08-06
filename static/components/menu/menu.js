@@ -17,7 +17,7 @@ class CookieCutter {
 }
 
 class Menu {
-    constructor(audiomanager, background) {
+    constructor(audiomanager, background, glitch) {
         this.startBtn = document.querySelector("#startbtn");
         this.menunav = document.querySelector("#menu-nav");
         this.startBtn.addEventListener("mouseover", _ => {
@@ -34,6 +34,7 @@ class Menu {
             audiomanager.musicManager.audioCtx.resume().then(_ => {
                 audiomanager.musicManager.loadAudio().then(() => {
                     background.draw();
+                    glitch.start();
                     document.querySelector("#section").classList.remove("hidden");
                 });
             })
