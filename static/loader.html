@@ -1,4 +1,5 @@
 <!---- START CUSTOM SECTION -->
+<script src="https://threejs.org/build/three.js"></script>
 <style>
     @import url('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
     @import url('https://fonts.googleapis.com/css2?family=Quantico&display=swap');
@@ -133,7 +134,7 @@
         static EFFECTS_PATH = "/effects";
 
         constructor() {
-            this.section = new Component("section", App.COMPONENTS_PATH);
+            this.section = new Component("ashley", App.COMPONENTS_PATH);
             this.audiomanager = new Component("audiomanager", App.COMPONENTS_PATH);
             this.background = new Component("musicanalyzer", App.COMPONENTS_PATH);
             this.menu = new Component("menu", App.COMPONENTS_PATH);
@@ -163,14 +164,14 @@
         let app = new App();
         app.initApp()
             .then(async () => {
-                Component.renderComponent(app.section, template, "section", ["hidden"]);
+                Component.renderComponent(app.section, template, "ashley", ["hidden"]);
                 Component.renderComponent(app.audiomanager, template, "audiomanager");
                 Component.renderComponent(app.background, template, "background");
                 Component.renderComponent(app.menu, template, "menu");
+                let audiomanager = await AudioManager.getInstance();
                 let glitch = new GlitchedImage(document.querySelector("#bottomimg"), 180);
-                let audiomanager = await AudioManager.build();
-                let background = new MusicAnalyzer(document.querySelector("#backgroundcanvas"), 564, 600, audiomanager);
-                let menu = new Menu(audiomanager, background, glitch);
+                let background = new MusicAnalyzer(document.querySelector("#backgroundcanvas"), 564, 600, audiomanager.musicManager);
+                let menu = new Menu(background, glitch, audiomanager.effectManager, audiomanager.musicManager);
             })
             .finally(() => {
                 let username = CookieCutter.getCookie("lastlogin");

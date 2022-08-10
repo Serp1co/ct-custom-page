@@ -210,7 +210,7 @@ class AudioManager {
 
     static _instance;
 
-    static async build() {
+    static async getInstance() {
         if(!AudioManager._instance) {
             let out = new AudioManager();
             await out.effectManager.init();

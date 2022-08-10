@@ -1,15 +1,14 @@
 class MusicAnalyzer {
-    constructor(canvas, width, height, audiomanager) {
+    constructor(canvas, width, height, musicManager) {
         this.w = canvas.width = width;
         this.h = canvas.height = height;
         this.ctx = canvas.getContext('2d');
-        let musicmanager = audiomanager.musicManager;
-        this.analyser = musicmanager.audioCtx.createAnalyser();
+        this.analyser = musicManager.audioCtx.createAnalyser();
         this.analyser.fftSize = 1024;
         this.analyser.smoothingTimeConstant = 0.92;
         this.analyser.minDecibels = -125;
         this.analyser.maxDecibels = -10;
-        musicmanager.source.connect(this.analyser);
+        musicManager.source.connect(this.analyser);
         this.bufferLength = this.analyser.frequencyBinCount;
         this.dataArray = new Uint8Array(this.bufferLength);
     }

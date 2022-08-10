@@ -17,24 +17,36 @@ class CookieCutter {
 }
 
 class Menu {
-    constructor(audiomanager, background, glitch) {
-        this.startBtn = document.querySelector("#startbtn");
-        this.menunav = document.querySelector("#menu-nav");
-        this.startBtn.addEventListener("mouseover", _ => {
-            if (this.menunav.classList.contains("hidden"))
-                return;
-            audiomanager.effectManager.playAudio("nav");
+    static _can_play = true;
+    static _muted = false;
+    static _instance;
+
+    constructor(background, glitch, effectManager, musicManager) {
+        this.btnList = document.querySelectorAll(".menu-item-btn");
+        this.btnList.forEach(e => {
+            e.addEventListener("mouseover", _ => {
+                if (!Menu._can_play)
+                    return;
+                effectManager.playAudio("nav");
+            });
+            e.addEventListener("click", _ => {
+                if (!Menu._muted)
+                    return;
+                effectManager.playAudio("ok");
+                Menu._can_play = false;
+            });
         })
-        this.startBtn.addEventListener("click", () => {
+        this.ashleyBtn = document.querySelector("#aslheybtn");
+        this.menunav = document.querySelector("#menu-nav");
+        this.ashleyBtn.addEventListener("click", () => {
             if (this.menunav.classList.contains("hidden"))
                 return;
-            audiomanager.effectManager.playAudio("ok");
             this.menunav.classList.add("hidden");
-            document.querySelector("#section").classList.remove("hidden");
+            document.querySelector("#ashley").classList.remove("hidden");
             document.querySelector("#backgroundcanvas").classList.remove("hidden");
             background.draw();
-            audiomanager.musicManager.audioCtx.resume().then(_ => {
-                audiomanager.musicManager.loadAudio().then(() => {
+            musicManager.audioCtx.resume().then(_ => {
+                musicManager.loadAudio().then(() => {
                     glitch.start();
                 });
             })

@@ -3,15 +3,15 @@ class GlitchedImage {
         const imageData = context.getImageData(0, 0, width, height);
         const data = imageData.data;
         const length = width * height;
-        const factor = Math.random() * 10;
+        const factor = Math.random() * 12;
 
         let randR = Math.floor(Math.random() * factor);
         let randG = Math.floor(Math.random() * factor) * 3;
         let randB = Math.floor(Math.random() * factor);
         for (let i = 0; i < length; i++) {
             let r = data[(i + randR) * 4];
-            let g = data[(i + randG) * 4 + 1];
-            let b = data[(i + randB) * 4 + 2];
+            let g = data[(i + randG) * 4 + 2];
+            let b = data[(i + randB) * 4 + 4];
             if (r + g + b === 0) r = g = b = 255;
             data[i * 4] = r;
             data[i * 4 + 1] = g;
@@ -61,7 +61,7 @@ class GlitchedImage {
         context.putImageData(imageData, 0, startHeight);
     }
 
-    effectList = [GlitchedImage.glitch, GlitchedImage.glitchWave, GlitchedImage.glitchSlip, GlitchedImage.glitchColor];
+    effectList = [GlitchedImage.glitch, GlitchedImage.glitchWave];
 
     constructor(imageBoard, delay) {
         let image = imageBoard.querySelector('img');
