@@ -61,7 +61,7 @@ class GlitchedImage {
         context.putImageData(imageData, 0, startHeight);
     }
 
-    effectList = [GlitchedImage.glitch, GlitchedImage.glitchWave];
+    effectList = [GlitchedImage.glitch, GlitchedImage.glitchWave, GlitchedImage.glitchSlip];
 
     constructor(imageBoard, delay) {
         let image = imageBoard.querySelector('img');

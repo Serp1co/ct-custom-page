@@ -169,7 +169,7 @@
                 Component.renderComponent(app.background, template, "background");
                 Component.renderComponent(app.menu, template, "menu");
                 let audiomanager = await AudioManager.getInstance();
-                let glitch = new GlitchedImage(document.querySelector("#bottomimg"), 180);
+                let glitch = new GlitchedImage(document.querySelector("#bottomimg"), 120);
                 let background = new MusicAnalyzer(document.querySelector("#backgroundcanvas"), 564, 600, audiomanager.musicManager);
                 let menu = new Menu(background, glitch, audiomanager.effectManager, audiomanager.musicManager);
             })
