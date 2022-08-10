@@ -25,12 +25,12 @@ class Menu {
         this.btnList = document.querySelectorAll(".menu-item-btn");
         this.btnList.forEach(e => {
             e.addEventListener("mouseover", _ => {
-                if (!Menu._can_play)
+                if (!Menu._can_play && Menu._muted)
                     return;
                 effectManager.playAudio("nav");
             });
             e.addEventListener("click", _ => {
-                if (!Menu._muted)
+                if (!Menu._can_play && Menu._muted)
                     return;
                 effectManager.playAudio("ok");
                 Menu._can_play = false;
