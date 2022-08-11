@@ -42,7 +42,7 @@ class Menu {
                 return;
             this.menunav.classList.add("hidden");
             document.querySelector("#ashley").classList.remove("hidden");
-            document.querySelector("#backgroundcanvas").classList.remove("hidden");
+            document.querySelector("#backgroundCanvas").classList.remove("hidden");
             background.draw();
             musicManager.audioCtx.resume().then(_ => {
                 musicManager.loadAudio().then(() => {
