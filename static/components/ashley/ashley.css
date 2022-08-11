@@ -109,6 +109,12 @@ div .monitor {
     align-items: center;
 }
 
+.upper-part {
+    background: black;
+    display: flex;
+    flex-direction: column;
+}
+
 .my-content {
     height: inherit;
     width: 100%;
@@ -124,4 +130,9 @@ div .monitor {
 
 .bottom-part {
     border-top: dimgray 1px solid;
+    position: relative;
+}
+
+#bottomimg {
+    opacity: 0.9;
 }

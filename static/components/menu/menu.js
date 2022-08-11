@@ -19,7 +19,6 @@ class CookieCutter {
 class Menu {
     static _can_play = true;
     static _muted = false;
-    static _instance;
 
     constructor(background, glitch, effectManager, musicManager) {
         this.btnList = document.querySelectorAll(".menu-item-btn");

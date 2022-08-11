@@ -134,22 +134,22 @@
         static EFFECTS_PATH = "/effects";
 
         constructor() {
-            this.section = new Component("ashley", App.COMPONENTS_PATH);
-            this.audiomanager = new Component("audiomanager", App.COMPONENTS_PATH);
-            this.background = new Component("musicanalyzer", App.COMPONENTS_PATH);
+            this.sectionAshley = new Component("ashley", App.COMPONENTS_PATH);
+            this.audioManager = new Component("audiomanager", App.COMPONENTS_PATH);
+            this.musicAnalyzer = new Component("musicanalyzer", App.COMPONENTS_PATH);
             this.menu = new Component("menu", App.COMPONENTS_PATH);
-            this.glitchimage = new _Resource(App.EFFECTS_PATH + "/" + "glitchimage" + ".js", "script");
+            this.glitchImage = new _Resource(App.EFFECTS_PATH + "/" + "glitchimage" + ".js", "script");
             this.crt = new _Resource(App.EFFECTS_PATH + "/" + "crt" + ".css", "style");
             this.loader = new _Resource(App.EFFECTS_PATH + "/" + "loader" + ".css", "style");
         }
 
         async initApp() {
             await Promise.all([
-                this.section.initComponent(),
-                this.audiomanager.initComponent(),
-                this.background.initComponent(),
+                this.sectionAshley.initComponent(),
+                this.audioManager.initComponent(),
+                this.musicAnalyzer.initComponent(),
                 this.menu.initComponent(),
-                this.glitchimage.initResource()
+                this.glitchImage.initResource()
                     .then(el => document.body.appendChild(el)),
                 this.crt.initResource()
                     .then(el => document.head.appendChild(el)),
@@ -164,15 +164,17 @@
         let app = new App();
         app.initApp()
             .then(async () => {
-                Component.renderComponent(app.section, template, "ashley", ["hidden"]);
-                Component.renderComponent(app.audiomanager, template, "audiomanager");
-                Component.renderComponent(app.background, template, "background");
+                Component.renderComponent(app.sectionAshley, template, "ashley", ["hidden"]);
+                Component.renderComponent(app.audioManager, template, "audiomanager");
+                const sectionBottom = document.querySelector(".bottom-part");
+                Component.renderComponent(app.musicAnalyzer, sectionBottom, "musicAnalyer");
                 Component.renderComponent(app.menu, template, "menu");
                 let audiomanager = await AudioManager.getInstance();
-                let glitch = new GlitchedImage(document.querySelector("#bottomimg"), 120);
-                let background = new MusicAnalyzer(document.querySelector("#backgroundcanvas"), 564, 600, audiomanager.musicManager);
-                let menu = new Menu(background, glitch, audiomanager.effectManager, audiomanager.musicManager);
+                const glitch = new GlitchedImage(document.querySelector("#bottomimg"), 120);
+                const musicAnalyzer = new MusicAnalyzer(document.querySelector("#backgroundCanvas"), 564, 336, audiomanager.musicManager);
+                const menu = new Menu(musicAnalyzer, glitch, audiomanager.effectManager, audiomanager.musicManager);
             })
+            .catch((exception) => console.error(exception))
             .finally(() => {
                 let username = CookieCutter.getCookie("lastlogin");
                 document.querySelector("#startext").innerHTML = "Welcome, " + username + ".<br>Remember: I See You.<br>";

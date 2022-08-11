@@ -66,22 +66,35 @@ class MusicManager {
         this.volume = 1;
         this.baseURL = "https://audio.jukehost.co.uk/";
         this.fileNames = [
+            "d9QaJCgAoBqfXZAUdak8YLR50z2ksEzp",
+            "4EN6yYN0u4hM5lguBpJFgPBpF5b4GSeL",
+            "5s7c2aghBwch2h0FDG3ASvjUlBXGZME4",
             "DmiVCHVOiJ7HF63YCD1LZW9xE3nxQuze",
-            "YYP2oRL56y8FgxQkATVyNxJ0RfK9Jnay",
+            "hH85da3Buz0pgpTfeYmZkZh3okG3lDth",
             "QskM0E8A8ewtTOok16LgvGEPkjduXUbL",
-            "98ZhqFRuc5zKyOXBIb3vtjF1RnnQTRTg"
+            "UHqBe9VQ4hFy3BFAmcaDGJddGH1bCkfl",
+            "udJBq0eQdAiwFFJFyWdOl3D1NpkZ3vY2",
+            "1THpVPzebCYYlxa5AVxysOLiUIZ91YdO",
+            "2PsyieSY3shMS5bc23qi6S0JydrIeNxY"
         ];
 
         this.songTitles = [
+            "#67, The Night Skinny - On Tour",
+            "Pop Smoke - Tell the Vision",
+            "Noyz Narcos - Enemy",
             "Pop Smoke - Invincible",
-            "Ketama126, Noyz Narcos - Animale",
-            "Ketama126 - Benedizione",
-            "Noyz Narcos, prod. The Night Skinny - Dope Games"
+            "Dimzy - Bet you do",
+            "Ketama126 - Animale",
+            "Run the Jewels - Crown",
+            "SR - Welcome to Brixton",
+            "Stormzy - Audacity",
+            "Idris Elba - Daily Duppy"
         ];
 
         this.audio = document.getElementById("audio");
         this.audio.addEventListener("ended", () => {
             this.audio.currentTime = 0;
+            this.nextAudio();
         });
         this.audio.addEventListener("timeupdate", () => {
             this.progressBar.style = `transform: scaleX(${this.audio.currentTime / this.audio.duration})`;
@@ -101,7 +114,7 @@ class MusicManager {
         this.controls.prev.disabled = true;
         this.loader.classList.remove("hidden");
         this.title.classList.add("hidden");
-        await MusicManager.adjustVolume(this.audio, 0);
+        await MusicManager.adjustVolume(this.audio, 0).catch((exception) => console.error(exception));
         return await fetch(this.baseURL + this.fileNames[this.currentSong - 1], {
             method: "GET", // *GET, POST, PUT, DELETE, etc.
             mode: "cors", // no-cors, *cors, same-origin
