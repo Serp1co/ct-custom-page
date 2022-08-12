@@ -30,10 +30,8 @@
 
 #controls {
     display: flex;
-    padding: 3px;
     position: absolute;
     right: 0;
-    height: 20px;
 }
 
 #controls .btn {
